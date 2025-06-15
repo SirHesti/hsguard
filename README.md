@@ -69,8 +69,8 @@ gebildet. Diese wird gegengeprüft und ggf. Alarm geschlagen.
 
 ### OPTIONS
 
- - __\-\-help \-? \-h __            <p>>Print this helpmsg</p>
- - __\-d \-\-db sqlite3.db __       <p>>use this "\[PATH/\]sqlite3.db" database __overwrite: [RCdatabase](#RC-DATABASE)__</p>
+ - __\-\-help \-? \-h__            <p>>Print this helpmsg</p>
+ - __\-d \-\-db sqlite3.db__       <p>>use this "\[PATH/\]sqlite3.db" database __overwrite: [RCdatabase](#RC-DATABASE)__</p>
  - __\-b \-\-base \<dir\> __        <p>>basedir for all operations __overwrite [RCbase](#RC-BASE)__</p>
  - __\-\-create __                  <p>>create an empty ConfigFile highcommand to edit this</p>
  - __\-\-initdb __                  <p>>create an empty Database</p>
