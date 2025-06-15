@@ -69,6 +69,13 @@ gebildet. Diese wird gegengeprüft und ggf. Alarm geschlagen.
 
 ### OPTIONS
 
+ - $${\color{red}$$-u \-\-update $${\colorend$$              <p>>update database</p>
+ - $${\color{red}$$-\-rescan $${\colorend$$                  <p>>update all, but reread crc32</p>
+ - $${\color{red}$$-n \-\-nodirtest $${\colorend$$           <p>>update will _not_ scan for empty dirs otherwise no exists\
+                                    dirs(and entries) will remove from database</p>
+ - $${\color{red}$$-\-yes $${\colorend$$                     <p>>don't ask me; i answer yes</p>
+
+
  - \color{red}-\-help \-? \-h **            <p>>Print this helpmsg</p>
  - \color{red}-d \-\-db sqlite3.db **       <p>>use this "\[PATH/\]sqlite3.db" database **overwrite: [RCdatabase](#RC-DATABASE)**</p>
 
