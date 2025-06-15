@@ -1,4 +1,4 @@
-# 15.06.2025 17:23:35 Genrated by cbp2cmake V2.12.0 Finale X64 
+# 15.06.2025 17:25:04 Genrated by cbp2cmake V2.12.0 Finale X64 
 project(hsguard LANGUAGES C)
 cmake_minimum_required(VERSION 3.0 FATAL_ERROR)
 set (CMAKE_INSTALL_PREFIX /usr )
