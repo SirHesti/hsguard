@@ -69,59 +69,59 @@ gebildet. Diese wird gegengeprüft und ggf. Alarm geschlagen.
 
 ### OPTIONS
 
- - __\-\-help \-? \-h__             <p>>Print this helpmsg</p>
- - __\-d \-\-db sqlite3.db__        <p>>use this "\[PATH/\]sqlite3.db" database __overwrite: [RCdatabase](#RC-DATABASE)__</p>
- - __\-b \-\-base \<dir\>__         <p>>basedir for all operations __overwrite [RCbase](#RC-BASE)__</p>
- - __\-\-create__                   <p>>create an empty ConfigFile highcommand to edit this</p>
- - __\-\-initdb__                   <p>>create an empty Database</p>
- - __\-\-createExcl__               <p>>create an example excludefile</p>
- - __\-x \-\-exclude  \<file\>__    <p>>read a list of excluded files \-\- '#' comment #### __add this list: [RCexclude](#RC-EXCLUDE)__</p>
- - __\-\-exclude_add \<file\>__     <p>>add a single file/dir to excludelist __works too: [RCexadd](#RC-EXADD)__</p>
- - __\-\-ldir/\-\-edir \<dir\>__    <p>>an LS for exclude file writers (NO Function on DB)</p>
- - __\-\-update_deep \<num\>__      <p>>update database only this deep (update will set)</p>
- - __\-\-update_dir \<dir\>__       <p>>update from here into database (update will set)</p>
- - __\-u \-\-update__               <p>>update database</p>
- - __\-\-rescan__                   <p>>update all, but reread crc32</p>
- - __\-n \-\-nodirtest__            <p>>update will _not_ scan for empty dirs otherwise no exists\
+ - __\-\-help \-? \-h__             <p>Print this helpmsg</p>
+ - __\-d \-\-db sqlite3.db__        <p>use this "\[PATH/\]sqlite3.db" database __overwrite: [RCdatabase](#RC-DATABASE)__</p>
+ - __\-b \-\-base \<dir\>__         <p>basedir for all operations __overwrite [RCbase](#RC-BASE)__</p>
+ - __\-\-create__                   <p>create an empty ConfigFile highcommand to edit this</p>
+ - __\-\-initdb__                   <p>create an empty Database</p>
+ - __\-\-createExcl__               <p>create an example excludefile</p>
+ - __\-x \-\-exclude  \<file\>__    <p>read a list of excluded files \-\- '#' comment #### __add this list: [RCexclude](#RC-EXCLUDE)__</p>
+ - __\-\-exclude_add \<file\>__     <p>add a single file/dir to excludelist __works too: [RCexadd](#RC-EXADD)__</p>
+ - __\-\-ldir/\-\-edir \<dir\>__    <p>an LS for exclude file writers (NO Function on DB)</p>
+ - __\-\-update_deep \<num\>__      <p>update database only this deep (update will set)</p>
+ - __\-\-update_dir \<dir\>__       <p>update from here into database (update will set)</p>
+ - __\-u \-\-update__               <p>update database</p>
+ - __\-\-rescan__                   <p>update all, but reread crc32</p>
+ - __\-n \-\-nodirtest__            <p>update will _not_ scan for empty dirs otherwise no exists\
                                     dirs(and entries) will remove from database</p>
- - __\-\-yes__                      <p>>don't ask me; i answer yes</p>
- - __\-v \-\-verbose__              <p>>use&nbsp;&nbsp;&nbsp;\-v=1 to silence, also use \-v\-__  overwrite [RCverbose](#RC-VERBOSE)__\
+ - __\-\-yes__                      <p>don't ask me; i answer yes</p>
+ - __\-v \-\-verbose__              <p>use&nbsp;&nbsp;&nbsp;\-v=1 to silence, also use \-v\-__  overwrite [RCverbose](#RC-VERBOSE)__\
                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\-v=2 erros(default) \-v FAIL is the same\
                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\-v=3 (same \-v) userinfo\
                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\-vv&nbsp;&nbsp;\-v=4 info\
                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\-vvv \-v=5 developer</p>
- - __\-s \-\-noscreen__             <p>>In case of UserCMD's like '\-\-list' make screen for output.\
+ - __\-s \-\-noscreen__             <p>In case of UserCMD's like '\-\-list' make screen for output.\
                                     all UserMsg are saved only in the log. to turn off noscreen use \-s\- __overwrite [RCnoscreen](#RC-NOSCREEN)__</p>
- - __\-a \-\-ansi on/off/\-/\+__    <p>>Ansicolor at find/info/list \-a\- off \-a=On or only \-a is on\
+ - __\-a \-\-ansi on/off/\-/\+__    <p>Ansicolor at find/info/list \-a\- off \-a=On or only \-a is on\
                                     colors can be tuned in the config file __overwrite: [RCansicolor](#RC-ANSICOLOR)__</p>
- - __\-l \-\-list__                 <p>>print out database contens</p>
- - __\-\-listdir__                  <p>>print only dirs from database see: \-\-recursive</p>
- - __\-f \-\-formout__              <p>>Format Out to UserLevel\
+ - __\-l \-\-list__                 <p>print out database contens</p>
+ - __\-\-listdir__                  <p>print only dirs from database see: \-\-recursive</p>
+ - __\-f \-\-formout__              <p>Format Out to UserLevel\
                                     Singleline :ONELINE, LONGLINE, MAXLINE\
                                     Multiline: :MINI, BASIC, MEDIUM, ALL</p>
- - __\-r \-\-recursive__            <p>>list subdirs too _\-r=deep_ can go deeper _'\-r'_ lists everything</p>
- - __\-i \-\-info \<dir\>or\<path\>or@\<id\>__  <p>>Info about file in path \<entrie\> in database\
+ - __\-r \-\-recursive__            <p>list subdirs too _\-r=deep_ can go deeper _'\-r'_ lists everything</p>
+ - __\-i \-\-info \<dir\>or\<path\>or@\<id\>__  <p>Info about file in path \<entrie\> in database\
                                     path like /name/too\
                                     path without starting '/' will find with '*' case intensive</p>
- - __\-\-find__                     <p>>same as info, but finddir is not implemented</p>
- - __\-\-infodir \<dir\>or@\<id\>__  <p>>Info about file in dir \<places\> in database</p>
- - __\-\-remove  \<dir\>or\<path\>__  <p>>remove entrie or a complete path(include entries/subdirs) from DB\
+ - __\-\-find__                     <p>same as info, but finddir is not implemented</p>
+ - __\-\-infodir \<dir\>or@\<id\>__  <p>Info about file in dir \<places\> in database</p>
+ - __\-\-remove  \<dir\>or\<path\>__  <p>remove entrie or a complete path(include entries/subdirs) from DB\
                                     you must confirmed (Y/N) (or use \-\-yes)</p>
- - __\-\-finddupes \<dir\>__        <p>>find dupes beginn at \<dir\> or start in base. This can take a while</p>
- - __\-t \-\-testdb \[OPTIONS\]__   <p>>_OPTIONS_ are \[r\],count,\[size\],\[path\], where...\
+ - __\-\-finddupes \<dir\>__        <p>find dupes beginn at \<dir\> or start in base. This can take a while</p>
+ - __\-t \-\-testdb \[OPTIONS\]__   <p>_OPTIONS_ are \[r\],count,\[size\],\[path\], where...\
                                     _\[r\]_&nbsp;&nbsp;&nbsp;&nbsp;optional will activate the random Mode *\
                                     _count_&nbsp;&nbsp;of Files that will checked\
                                     _\[size\]_ optional size that will never reached. You can use 10TB or 500k\
                                     _\[path\]_ optional, if not set then start check from BASE\
                                     * if no random activated, then oldest (from lastchk) will checked</p>
- - __\-e \-\-emergency \[OPTIONS\]__  <p>>PANIC,ABORT=\<errorlevel\>,SKIP,COUNT=\<num\>,UPDATE,UPDATEALL __overwrite: [RCemergency](#RC-EMERGENCY)__\
+ - __\-e \-\-emergency \[OPTIONS\]__  <p>PANIC,ABORT=\<errorlevel\>,SKIP,COUNT=\<num\>,UPDATE,UPDATEALL __overwrite: [RCemergency](#RC-EMERGENCY)__\
                                     _PANIC_&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Abort all, use Errorlevel 99 to exit\
                                     _ABORT_\[=\<el\>\] : Abort with Errorlevel 1, if \<el\>(2\-98) is set, then el is use\
                                     _SKIP_&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Skip this to COUNT, then abort\
                                     _COUNT_=\<num\>&nbsp;&nbsp;: Skip not forever, only for this \<num\>\
                                     _UPDATE_&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Update lastchk and chkcount in DB\
                                     _UPDATEALL_&nbsp;&nbsp;&nbsp;&nbsp;: Update size,fmtime,crc32 as found too</p>
- - __\-\-wbs \<size\>__             <p>>Warning big size Files default is 16GB __overwrite: [RCwarnbigsize](#RC-WBS)__</p>
+ - __\-\-wbs \<size\>__             <p>Warning big size Files default is 16GB __overwrite: [RCwarnbigsize](#RC-WBS)__</p>
 
 ### ENVIRONMENT
 siehe Anschnitt: __[hsguard.rc](#hsguard.rc)__
