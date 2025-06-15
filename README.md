@@ -7,7 +7,7 @@ date: 15.06.2025
 ---
 
 ### NAME
-___hsguard___ - Programm um Aenderungen im Dateisystem festzustellen
+__hsguard__ - Programm um Aenderungen im Dateisystem festzustellen
 
 ### SYNOPSIS
 
@@ -69,62 +69,62 @@ gebildet. Diese wird gegengeprüft und ggf. Alarm geschlagen.
 
 ### OPTIONS
 
- - __\-\-help \-? \-h__            <p>>Print this helpmsg</p>
- - ___\-d \-\-db sqlite3.db ___       <p>>use this "\[PATH/\]sqlite3.db" database ___overwrite: [RCdatabase](#RC-DATABASE)___</p>
- - ___\-b \-\-base \<dir\> ___        <p>>basedir for all operations ___overwrite [RCbase](#RC-BASE)___</p>
- - ___\-\-create ___                  <p>>create an empty ConfigFile highcommand to edit this</p>
- - ___\-\-initdb ___                  <p>>create an empty Database</p>
- - ___\-\-createExcl ___              <p>>create an example excludefile</p>
- - ___\-x \-\-exclude  \<file\> ___   <p>>read a list of excluded files \-\- '#' comment #### ___add this list: [RCexclude](#RC-EXCLUDE)___</p>
- - ___\-\-exclude_add \<file\> ___    <p>>add a single file/dir to excludelist ___works too: [RCexadd](#RC-EXADD)___</p>
- - ___\-\-ldir/\-\-edir \<dir\> ___   <p>>an LS for exclude file writers (NO Function on DB)</p>
- - ___\-\-update_deep \<num\> ___     <p>>update database only this deep (update will set)</p>
- - ___\-\-update_dir \<dir\> ___      <p>>update from here into database (update will set)</p>
- - ___\-u \-\-update ___              <p>>update database</p>
- - ___\-\-rescan ___                  <p>>update all, but reread crc32</p>
- - ___\-n \-\-nodirtest ___           <p>>update will _not_ scan for empty dirs otherwise no exists\
+ - __\-\-help \-? \-h __            <p>>Print this helpmsg</p>
+ - __\-d \-\-db sqlite3.db __       <p>>use this "\[PATH/\]sqlite3.db" database __overwrite: [RCdatabase](#RC-DATABASE)__</p>
+ - __\-b \-\-base \<dir\> __        <p>>basedir for all operations __overwrite [RCbase](#RC-BASE)__</p>
+ - __\-\-create __                  <p>>create an empty ConfigFile highcommand to edit this</p>
+ - __\-\-initdb __                  <p>>create an empty Database</p>
+ - __\-\-createExcl __              <p>>create an example excludefile</p>
+ - __\-x \-\-exclude  \<file\> __   <p>>read a list of excluded files \-\- '#' comment #### __add this list: [RCexclude](#RC-EXCLUDE)__</p>
+ - __\-\-exclude_add \<file\> __    <p>>add a single file/dir to excludelist __works too: [RCexadd](#RC-EXADD)__</p>
+ - __\-\-ldir/\-\-edir \<dir\> __   <p>>an LS for exclude file writers (NO Function on DB)</p>
+ - __\-\-update_deep \<num\> __     <p>>update database only this deep (update will set)</p>
+ - __\-\-update_dir \<dir\> __      <p>>update from here into database (update will set)</p>
+ - __\-u \-\-update __              <p>>update database</p>
+ - __\-\-rescan __                  <p>>update all, but reread crc32</p>
+ - __\-n \-\-nodirtest __           <p>>update will _not_ scan for empty dirs otherwise no exists\
                                     dirs(and entries) will remove from database</p>
- - ___\-\-yes ___                     <p>>don't ask me; i answer yes</p>
- - ___\-v \-\-verbose ___             <p>>use&nbsp;&nbsp;&nbsp;\-v=1 to silence, also use \-v\- ___ overwrite [RCverbose](#RC-VERBOSE)___\
+ - __\-\-yes __                     <p>>don't ask me; i answer yes</p>
+ - __\-v \-\-verbose __             <p>>use&nbsp;&nbsp;&nbsp;\-v=1 to silence, also use \-v\- __ overwrite [RCverbose](#RC-VERBOSE)__\
                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\-v=2 erros(default) \-v FAIL is the same\
                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\-v=3 (same \-v) userinfo\
                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\-vv&nbsp;&nbsp;\-v=4 info\
                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\-vvv \-v=5 developer</p>
- - ___\-s \-\-noscreen ___            <p>>In case of UserCMD's like '\-\-list' make screen for output.\
-                                    all UserMsg are saved only in the log. to turn off noscreen use \-s\- ___overwrite [RCnoscreen](#RC-NOSCREEN)___</p>
- - ___\-a \-\-ansi on/off/\-/\+ ___   <p>>Ansicolor at find/info/list \-a\- off \-a=On or only \-a is on\
-                                    colors can be tuned in the config file ___overwrite: [RCansicolor](#RC-ANSICOLOR)___</p>
- - ___\-l \-\-list ___                <p>>print out database contens</p>
- - ___\-\-listdir ___                 <p>>print only dirs from database see: \-\-recursive</p>
- - ___\-f \-\-formout ___             <p>>Format Out to UserLevel\
+ - __\-s \-\-noscreen __            <p>>In case of UserCMD's like '\-\-list' make screen for output.\
+                                    all UserMsg are saved only in the log. to turn off noscreen use \-s\- __overwrite [RCnoscreen](#RC-NOSCREEN)__</p>
+ - __\-a \-\-ansi on/off/\-/\+ __   <p>>Ansicolor at find/info/list \-a\- off \-a=On or only \-a is on\
+                                    colors can be tuned in the config file __overwrite: [RCansicolor](#RC-ANSICOLOR)__</p>
+ - __\-l \-\-list __                <p>>print out database contens</p>
+ - __\-\-listdir __                 <p>>print only dirs from database see: \-\-recursive</p>
+ - __\-f \-\-formout __             <p>>Format Out to UserLevel\
                                     Singleline :ONELINE, LONGLINE, MAXLINE\
                                     Multiline: :MINI, BASIC, MEDIUM, ALL</p>
- - ___\-r \-\-recursive ___           <p>>list subdirs too _\-r=deep_ can go deeper _'\-r'_ lists everything</p>
- - ___\-i \-\-info \<dir\>or\<path\>or@\<id\> ___ <p>>Info about file in path \<entrie\> in database\
+ - __\-r \-\-recursive __           <p>>list subdirs too _\-r=deep_ can go deeper _'\-r'_ lists everything</p>
+ - __\-i \-\-info \<dir\>or\<path\>or@\<id\> __ <p>>Info about file in path \<entrie\> in database\
                                     path like /name/too\
                                     path without starting '/' will find with '*' case intensive</p>
- - ___\-\-find ___                    <p>>same as info, but finddir is not implemented</p>
- - ___\-\-infodir \<dir\>or@\<id\> ___ <p>>Info about file in dir \<places\> in database</p>
- - ___\-\-remove  \<dir\>or\<path\> ___ <p>>remove entrie or a complete path(include entries/subdirs) from DB\
+ - __\-\-find __                    <p>>same as info, but finddir is not implemented</p>
+ - __\-\-infodir \<dir\>or@\<id\> __ <p>>Info about file in dir \<places\> in database</p>
+ - __\-\-remove  \<dir\>or\<path\> __ <p>>remove entrie or a complete path(include entries/subdirs) from DB\
                                     you must confirmed (Y/N) (or use \-\-yes)</p>
- - ___\-\-finddupes \<dir\> ___       <p>>find dupes beginn at \<dir\> or start in base. This can take a while</p>
- - ___\-t \-\-testdb \[OPTIONS\] ___  <p>>_OPTIONS_ are \[r\],count,\[size\],\[path\], where...\
+ - __\-\-finddupes \<dir\> __       <p>>find dupes beginn at \<dir\> or start in base. This can take a while</p>
+ - __\-t \-\-testdb \[OPTIONS\] __  <p>>_OPTIONS_ are \[r\],count,\[size\],\[path\], where...\
                                     _\[r\]_&nbsp;&nbsp;&nbsp;&nbsp;optional will activate the random Mode *\
                                     _count_&nbsp;&nbsp;of Files that will checked\
                                     _\[size\]_ optional size that will never reached. You can use 10TB or 500k\
                                     _\[path\]_ optional, if not set then start check from BASE\
                                     * if no random activated, then oldest (from lastchk) will checked</p>
- - ___\-e \-\-emergency \[OPTIONS\] ___ <p>>PANIC,ABORT=\<errorlevel\>,SKIP,COUNT=\<num\>,UPDATE,UPDATEALL ___overwrite: [RCemergency](#RC-EMERGENCY)___\
+ - __\-e \-\-emergency \[OPTIONS\] __ <p>>PANIC,ABORT=\<errorlevel\>,SKIP,COUNT=\<num\>,UPDATE,UPDATEALL __overwrite: [RCemergency](#RC-EMERGENCY)__\
                                     _PANIC_&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Abort all, use Errorlevel 99 to exit\
                                     _ABORT_\[=\<el\>\] : Abort with Errorlevel 1, if \<el\>(2\-98) is set, then el is use\
                                     _SKIP_&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Skip this to COUNT, then abort\
                                     _COUNT_=\<num\>&nbsp;&nbsp;: Skip not forever, only for this \<num\>\
                                     _UPDATE_&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Update lastchk and chkcount in DB\
                                     _UPDATEALL_&nbsp;&nbsp;&nbsp;&nbsp;: Update size,fmtime,crc32 as found too</p>
- - ___\-\-wbs \<size\> ___            <p>>Warning big size Files default is 16GB ___overwrite: [RCwarnbigsize](#RC-WBS)___</p>
+ - __\-\-wbs \<size\> __            <p>>Warning big size Files default is 16GB __overwrite: [RCwarnbigsize](#RC-WBS)__</p>
 
 ### ENVIRONMENT
-siehe Anschnitt: ___[hsguard.rc](#hsguard.rc)___
+siehe Anschnitt: __[hsguard.rc](#hsguard.rc)__
 
 <a name="hsguard.rc"></a>
 
@@ -162,7 +162,7 @@ Verboselevel wird von 0-4 oder besser unterstützt:
 #### EXCLUDE=
 Es gibt Ordner die muessen nicht durchsucht werden, zB. TempOrdner oder der Ordner dieser Datenbank.
 Die Dateien/Verzeichnisse werden zeilenweise notiert, die mit '?' und '*' auch Mehrfachausshluß zulassen.
-Ein '#' am Zeilenanfang ist eine Kommentarzeile. Mehr zu diesem Thema ___unter: [Exclude-File](#EXCLUDEFILE)___",
+Ein '#' am Zeilenanfang ist eine Kommentarzeile. Mehr zu diesem Thema __unter: [Exclude-File](#EXCLUDEFILE)__",
 
 <a name="RC-NOSCREEN"></a>
 
