@@ -69,6 +69,10 @@ gebildet. Diese wird gegengeprüft und ggf. Alarm geschlagen.
 
 ### OPTIONS
 
+ - \color{red}-\-help \-? \-h **            <p>>Print this helpmsg</p>
+ - \color{red}-d \-\-db sqlite3.db **       <p>>use this "\[PATH/\]sqlite3.db" database **overwrite: [RCdatabase](#RC-DATABASE)**</p>
+
+
  - **\-\-help \-? \-h **            <p>>Print this helpmsg</p>
  - **\-d \-\-db sqlite3.db **       <p>>use this "\[PATH/\]sqlite3.db" database **overwrite: [RCdatabase](#RC-DATABASE)**</p>
  - **\-b \-\-base \<dir\> **        <p>>basedir for all operations **overwrite [RCbase](#RC-BASE)**</p>
