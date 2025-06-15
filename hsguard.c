@@ -221,7 +221,7 @@ ifhost WKST-Conny ifuser werner message "Mach nix kaputt auf Connys PC"
 ```
 
 token     | Beschreibung
-----------|:-----------------
+---------:|:-----------------
 ifhost X  | Wenn der aktuelle PC X ist
 ifnhost X | Wenn der aktuelle PC nicht X ist
 ifuser X  | Wenn der aktuelle Benutzer X ist
