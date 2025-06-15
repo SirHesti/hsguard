@@ -69,7 +69,7 @@ gebildet. Diese wird gegengeprüft und ggf. Alarm geschlagen.
 
 ### OPTIONS
 
- - ___\-\-help \-? \-h ___            <p>>Print this helpmsg</p>
+ - __\-\-help \-? \-h__            <p>>Print this helpmsg</p>
  - ___\-d \-\-db sqlite3.db ___       <p>>use this "\[PATH/\]sqlite3.db" database ___overwrite: [RCdatabase](#RC-DATABASE)___</p>
  - ___\-b \-\-base \<dir\> ___        <p>>basedir for all operations ___overwrite [RCbase](#RC-BASE)___</p>
  - ___\-\-create ___                  <p>>create an empty ConfigFile highcommand to edit this</p>
