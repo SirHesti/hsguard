@@ -1,0 +1,23 @@
+ ** 08.06.25 HS Dokumentation überarbeitet
+ ** 01.06.25 HS exludes werden in Listen nicht mehr als singlefile verarbeitet
+ ** 31.05.25 HS --wbz / EXADD in RC-Files
+ ** 29.05.25 HS exclude mit include
+ ** 28.05.25 HS datenbank multi satt einzelabfragen
+ ** 27.05.25 HS places mit parent und in entries ist fmtime jetzt eine Integer
+ ** 24.05.25 HS Datum, zurückwandeln schlägt fehlt am Ende der Sommerzeit zwischen 2 und 3
+ ** 22.05.25 HS immer noch zu langsam ...
+ ** 20.05.25 HS --ldir möglich, ist nur zum Einrichten von Exclude-Dateien gedacht
+ ** 19.05.25 HS Exclude jetzt mit "halber" Scriptsprache
+ ** 18.05.25 HS Weitere Realdata-Test
+ ** 16.05.25 HS --testDB und erster Echtlauf
+ ** 12.05.25 HS --info mit 0xcrc und find fname like
+ **             --list aufgeräumt
+ ** 11.05.25 HS --remove
+ ** 10.05.25 HS NOSCREEN und lmsgGuard verschoben/erweitert
+ ** 08.05.25 HS g_color.c
+ ** 07.05.25 HS --info
+ ** 06.05.25 HS --rescan / Hauptabfrage nochmal überarbeitet/ getLevel
+ ** 04.05.25 HS --list
+ ** 01.05.25 HS Grundsätzliche Funktionen geschaffen
+ ** 20.04.25 HS Erste Programmzeilen
+ ** 01.01.20 HS Erste Ideen und entwürfe

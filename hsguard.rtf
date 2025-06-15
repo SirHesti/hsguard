@@ -1,0 +1,286 @@
+{\rtf1\ansi\deff0{\fonttbl{\f0 \fswiss Helvetica;}{\f1 \fmodern Courier;}}
+{\colortbl;\red255\green0\blue0;\red0\green0\blue255;}
+\widowctrl\hyphauto
+
+{\pard \qc \f0 \sa180 \li0 \fi0 \b \fs36 hsguard\par}
+{\pard \qc \f0 \sa180 \li0 \fi0  15.06.2025\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \outlinelevel0 \b \fs36 NAME\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 {\b hsguard} - Programm um Aenderungen im Dateisystem festzustellen\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \outlinelevel0 \b \fs36 SYNOPSIS\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 About\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 hsguard stellt aus den konfigurierbaren Verzeichnisse eine Datenbank zusammen. Dabei wird jede Datei f\u252?r sich gepr\u252?ft und eine CRC-Pr\u252?fsumme (OLDSTYLE) erstellt. Ist die Festplatte erst einmal in der Datenbank, dann kann jede Datei auf (nicht gewollte) \u196?nderungen gepr\u252?ft werden.\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 Genau das ist der Zweck von hsguard. Festplatten (HDD) altern und wenn Daten nicht gelesen werden, dann \u8216'vergisst\u8217' die Festplatte mal ein Bit.\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 Bei mir laufen HDD\u8217's rund um die Uhr als Backupsystem, lokales Filesharing etc.. Daten auf diesen Platten m\u246?chte ich auch nach vielen Jahren behalten.\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 Zus\u228?tzlich kann so erkannt werden, ob eine Malware gerade dabei ist s\u228?mtliche Daten zu verschl\u252?sseln.\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 Hier greift \u8220"hsguard\u8221". hsguard speichert alle wichtigen Informationen zu einer Datei. Eine Datei die ge\u228?ndert wurde, wird in der Datenbank normal geupdatet. \u220?ber jede Datei wird eine CRC32 gebildet. Die Pr\u252?fsumme wird pro Datei gespeichert und kann gegengepr\u252?ft werden.\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 Es wird Position, Name, FileSize, FileModifDate und die CRC32 gespeichert. Pr\u252?fcounter und Aufnahmedatum k\u246?nnen aus der Datenbank ebenfalls abgerufen werden.\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 Im CronJob kann hsguard [\u8211-update] \u8211-check aufgerufen werden, wo verschiedene Dateien dann gegengepr\u252?ft werden k\u246?nnen. Diese werden im Zufallsprinzip ausgew\u228?hlt. Ein Update nimmt neue oder ge\u228?nderte Dateien vorher auf.\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 Mit vielen M\u246?glichkeiten k\u246?nnen die Daten aufgelistet und verifiziert werden. So wird im Fall des Falles die Datenbank eine hilfreiche Erg\u228?nzung sein.\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 WICHTIG! hsguard wird keine Festplatteninhalte \u228?ndern. Keine Datei l\u246?schen oder hinzuf\u252?gen. Die einzige Ausnahme ist die Datenbank selsbt. \u8220"hsguard \u8211-create\u8221" wird einmalig eine hsguard.rc anlegen. Diese Datei wird nicht \u252?berschrieben. Alle Parameter k\u246?nnen aber auch auf der Kommandozeile angegeben werden.\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 hsguard ben\u246?tigt lediglich Leserechte f\u252?r die Daten.\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 hsguard kann auf vielf\u228?ltig configuriert werden. Configdatei, Excludedatei und Kommandozeilenswitch.\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 Wird hsguard das erste Mal gestartet, dann wird die Datei /etc/hsguard.rc fehlend bem\u228?ngelt. Mit \u8220"hsguard \u8211-create\u8221" kann eine erste Version mitsamt einen Unterverzeichnis /var/hsguard erstellt werden. Ein Beispiel kann in der Datei hsguard_sample.rc nachgeschlagen werden.\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \outlinelevel0 \b \fs36 DESCRIPTION\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 hsguard liest das Dateisystem ein und speichert rudiment\u228?re Daten. Sofern nicht vorhanden/ge\u228?ndert(fsize/mtime) wird eine CRC32 der Datei gebildet. Diese wird gegengepr\u252?ft und ggf. Alarm geschlagen.\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \outlinelevel0 \b \fs36 OPTIONS\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab {\b --help -? -h }\par}
+{\pard \ql \f0 \sa0 \li1080 \fi0 Print this helpmsg\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab {\b -d --db sqlite3.db }\par}
+{\pard \ql \f0 \sa0 \li1080 \fi0 use this \u8220"[PATH/]sqlite3.db\u8221" database {\b overwrite: {\field{\*\fldinst{HYPERLINK "#RC-DATABASE"}}{\fldrslt{\ul
+RCdatabase
+}}}
+}\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab {\b -b --base <dir> }\par}
+{\pard \ql \f0 \sa0 \li1080 \fi0 basedir for all operations {\b overwrite {\field{\*\fldinst{HYPERLINK "#RC-BASE"}}{\fldrslt{\ul
+RCbase
+}}}
+}\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab {\b --create }\par}
+{\pard \ql \f0 \sa0 \li1080 \fi0 create an empty ConfigFile highcommand to edit this\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab {\b --initdb }\par}
+{\pard \ql \f0 \sa0 \li1080 \fi0 create an empty Database\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab {\b --createExcl }\par}
+{\pard \ql \f0 \sa0 \li1080 \fi0 create an example excludefile\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab {\b -x --exclude <file> }\par}
+{\pard \ql \f0 \sa0 \li1080 \fi0 read a list of excluded files -- \u8216'#\u8217' comment ## {\b add this list: {\field{\*\fldinst{HYPERLINK "#RC-EXCLUDE"}}{\fldrslt{\ul
+RCexclude
+}}}
+}\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab {\b --exclude_add <file> }\par}
+{\pard \ql \f0 \sa0 \li1080 \fi0 add a single file/dir to excludelist {\b works too: {\field{\*\fldinst{HYPERLINK "#RC-EXADD"}}{\fldrslt{\ul
+RCexadd
+}}}
+}\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab {\b --ldir/--edir <dir> }\par}
+{\pard \ql \f0 \sa0 \li1080 \fi0 an LS for exclude file writers (NO Function on DB)\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab {\b --update_deep <num> }\par}
+{\pard \ql \f0 \sa0 \li1080 \fi0 update database only this deep (update will set)\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab {\b --update_dir <dir> }\par}
+{\pard \ql \f0 \sa0 \li1080 \fi0 update from here into database (update will set)\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab {\b -u --update }\par}
+{\pard \ql \f0 \sa0 \li1080 \fi0 update database\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab {\b --rescan }\par}
+{\pard \ql \f0 \sa0 \li1080 \fi0 update all, but reread crc32\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab {\b -n --nodirtest }\par}
+{\pard \ql \f0 \sa0 \li1080 \fi0 update will {\i not} scan for empty dirs otherwise no exists\line dirs(and entries) will remove from database\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab {\b --yes }\par}
+{\pard \ql \f0 \sa0 \li1080 \fi0 don\u8217't ask me; i answer yes\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab {\b -v --verbose }\par}
+{\pard \ql \f0 \sa0 \li1080 \fi0 use\u160?\u160?\u160?-v=1 to silence, also use -v- ** overwrite {\field{\*\fldinst{HYPERLINK "#RC-VERBOSE"}}{\fldrslt{\ul
+RCverbose
+}}}
+**\line \u160?\u160?\u160?\u160?\u160?\u160?-v=2 erros(default) -v FAIL is the same\line \u160?\u160?\u160?\u160?\u160?\u160?-v=3 (same -v) userinfo\line \u160?\u160?\u160?\u160?\u160?\u160?-vv\u160?\u160?-v=4 info\line \u160?\u160?\u160?\u160?\u160?\u160?-vvv -v=5 developer\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab {\b -s --noscreen }\par}
+{\pard \ql \f0 \sa0 \li1080 \fi0 In case of UserCMD\u8217's like \u8216'--list\u8217' make screen for output.\line all UserMsg are saved only in the log. to turn off noscreen use -s- {\b overwrite {\field{\*\fldinst{HYPERLINK "#RC-NOSCREEN"}}{\fldrslt{\ul
+RCnoscreen
+}}}
+}\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab {\b -a --ansi on/off/-/+ }\par}
+{\pard \ql \f0 \sa0 \li1080 \fi0 Ansicolor at find/info/list -a- off -a=On or only -a is on\line colors can be tuned in the config file {\b overwrite: {\field{\*\fldinst{HYPERLINK "#RC-ANSICOLOR"}}{\fldrslt{\ul
+RCansicolor
+}}}
+}\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab {\b -l --list }\par}
+{\pard \ql \f0 \sa0 \li1080 \fi0 print out database contens\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab {\b --listdir }\par}
+{\pard \ql \f0 \sa0 \li1080 \fi0 print only dirs from database see: --recursive\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab {\b -f --formout }\par}
+{\pard \ql \f0 \sa0 \li1080 \fi0 Format Out to UserLevel\line Singleline :ONELINE, LONGLINE, MAXLINE\line Multiline: :MINI, BASIC, MEDIUM, ALL\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab {\b -r --recursive }\par}
+{\pard \ql \f0 \sa0 \li1080 \fi0 list subdirs too {\i -r=deep} can go deeper {\i \u8216'-r\u8217'} lists everything\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab {\b -i --info <dir>or<path>or@<id> }\par}
+{\pard \ql \f0 \sa0 \li1080 \fi0 Info about file in path <entrie> in database\line path like /name/too\line path without starting \u8216'/\u8217' will find with \u8217'*\u8217' case intensive\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab {\b --find }\par}
+{\pard \ql \f0 \sa0 \li1080 \fi0 same as info, but finddir is not implemented\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab {\b --infodir <dir>or@<id> }\par}
+{\pard \ql \f0 \sa0 \li1080 \fi0 Info about file in dir <places> in database\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab {\b --remove <dir>or<path> }\par}
+{\pard \ql \f0 \sa0 \li1080 \fi0 remove entrie or a complete path(include entries/subdirs) from DB\line you must confirmed (Y/N) (or use --yes)\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab {\b --finddupes <dir> }\par}
+{\pard \ql \f0 \sa0 \li1080 \fi0 find dupes beginn at <dir> or start in base. This can take a while\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab {\b -t --testdb [OPTIONS] }\par}
+{\pard \ql \f0 \sa0 \li1080 \fi0 {\i OPTIONS} are [r],count,[size],[path], where\u8230?\line {\i [r]}\u160?\u160?\u160?\u160?optional will activate the random Mode *\line {\i count}\u160?\u160?of Files that will checked\line {\i [size]} optional size that will never reached. You can use 10TB or 500k\line {\i [path]} optional, if not set then start check from BASE\line \par}
+{\pard \ql \f0 \sa0 \li1440 \fi-360 \endash \tx360\tab if no random activated, then oldest (from lastchk) will checked\sa180\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab {\b -e --emergency [OPTIONS] }\par}
+{\pard \ql \f0 \sa0 \li1080 \fi0 PANIC,ABORT=<errorlevel>,SKIP,COUNT=<num>,UPDATE,UPDATEALL {\b overwrite: {\field{\*\fldinst{HYPERLINK "#RC-EMERGENCY"}}{\fldrslt{\ul
+RCemergency
+}}}
+}\line {\i PANIC}\u160?\u160?\u160?\u160?\u160?\u160?\u160?\u160?: Abort all, use Errorlevel 99 to exit\line {\i ABORT}[=<el>] : Abort with Errorlevel 1, if <el>(2-98) is set, then el is use\line {\i SKIP}\u160?\u160?\u160?\u160?\u160?\u160?\u160?\u160?\u160?: Skip this to COUNT, then abort\line {\i COUNT}=<num>\u160?\u160?: Skip not forever, only for this <num>\line {\i UPDATE}\u160?\u160?\u160?\u160?\u160?\u160?\u160?: Update lastchk and chkcount in DB\line {\i UPDATEALL}\u160?\u160?\u160?\u160?: Update size,fmtime,crc32 as found too\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab {\b --wbs <size> }\par}
+{\pard \ql \f0 \sa0 \li1080 \fi0 Warning big size Files default is 16GB {\b overwrite: {\field{\*\fldinst{HYPERLINK "#RC-WBS"}}{\fldrslt{\ul
+RCwarnbigsize
+}}}
+}\sa180\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \outlinelevel0 \b \fs36 ENVIRONMENT\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 siehe Anschnitt: {\b {\field{\*\fldinst{HYPERLINK "#hsguard.rc"}}{\fldrslt{\ul
+hsguard.rc
+}}}
+}\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \outlinelevel0 \b \fs36 /etc/hsguard.rc\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \outlinelevel1 \b \fs32 DATABASE=\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 Die Datenbank selbst. Diese kann sinnvoll unter /var sein. Zusammen mit \u8211-initDB kann diese als Grundkonfig erstellt werden. Daf\u252?r muss diese Lese-/Schreibrechte haben. | --db \u252?berschreibt die im RC-File angegebene Datei\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \outlinelevel1 \b \fs32 BASE=\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 BASIS alles was angegeben wird. Ab wo soll die Datenbank erstellt werden. Diese Zeile sollte unbedingt angepasst werden. ZB. kann der Pfad zu den sch\u252?tzendwerten Daten /server/pictures oder \u228?hnlichem. -b  \u252?berschreibt das\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \outlinelevel1 \b \fs32 VERBOSE=\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 stellt den Loglevel dar. Je h\u246?her der Level je mehr Informationen zu den erledigten Aufgaben findet man im Logfile bzw. auf dem Bildschirm. Feiner getunt \u252?ber den Spezialswitch \u8211-noscreen Verboselevel wird von 0-4 oder besser unterst\u252?tzt:\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab {\f1 ROOT  0 :} Nur Systemfehler\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab {\f1 FAIL  1 :} Nur Nachrichten, die Fehler beinhalten\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab {\f1 USER  2 :} Standardeinstellung Es werden Informationen zu Start und Ende einer jeden Aktion ausgegeben\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab {\f1 INFO  3 :} Das k\u246?nnen sehr viele Nachrichten sein\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab {\f1 DEVL  4 :} Das sollte man sich besser nicht ansehen, diese sind nur f\u252?r Entwickler gedacht\sa180\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \outlinelevel1 \b \fs32 EXCLUDE=\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 Es gibt Ordner die muessen nicht durchsucht werden, zB. TempOrdner oder der Ordner dieser Datenbank. Die Dateien/Verzeichnisse werden zeilenweise notiert, die mit \u8216'?\u8217' und \u8217'*\u8217' auch Mehrfachausshlu\u223? zulassen. Ein \u8216'#\u8217' am Zeilenanfang ist eine Kommentarzeile. Mehr zu diesem Thema {\b unter: {\field{\*\fldinst{HYPERLINK "#EXCLUDEFILE"}}{\fldrslt{\ul
+Exclude-File
+}}}
+}\u8221",\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \outlinelevel1 \b \fs32 NOSCREEN=\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 kann N/Y sein. Bei Y werden fast alle Ausgaben nur im Logfile vermerkt und nicht mehr auf dem Bildschirm ausgeben. Meldungen stehen nur im Logfile zur Verf\u252?gung. -s- auf der Kommandozeile kann dieses Verhalten abschalten. Auch wenn NOSCREEN=Y angegeben wurde. Es wird empfohlen diese Zeile zum Einrichten auszukommentieren.\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \outlinelevel1 \b \fs32 EMERGENCY=\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 Hiermit wird festgelegt, wie \u8211-testDB bei Fehlern verfahren soll. Incl. deren Wiederhohlung. Ausdr\u252?cklich wird die Option PANIC empfohlen.\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab {\f1 PANIC     :} sofortiger Abbruch. Programmende mit Errorlevel 99\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab {\f1 COUNT=    :} Es wird die angegebene Zahl von Fehlern gez\u228?hlt. Bei 0 STOP\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab {\f1 SKIP      :} Es wird gepr\u252?ft, aber das bleibt ohne weitere Aktion\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab {\f1 ABORT     :} Es wird mit Errorlevel 1 \u8220"normal\u8221" beendet. CONUT!\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab {\f1 UPDATE    :} Auch im Fehlerfall wird das lastchk Datum neu gesetzt\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab {\f1 UPDATEALL :} Wie Oben, nur die neue Size,CRC,FMTime werden geupdatet\sa180\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 -e oder \u8211-emergency k\u246?nnen diese Einstellung \u252?berschreiben werden\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \outlinelevel1 \b \fs32 ANSICOLOR=\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 Viele Ausgaben werden, zur besseren Unterscheidung, farblich unterschiedlich gekennzeichnet. Y/N kann die Ausgabe von AnsiColors ausschalten. Bei Y k\u246?nnen die Farben auch noch variiert werden. Diese k\u246?nnen in der Sample-Datei angesehen werden.\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \outlinelevel1 \b \fs32 EXADD=\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 Hiermit kann eine Datei oder auch ein Verzeichnis ignoriert werden. Wesentlich besser geht es mit {\field{\*\fldinst{HYPERLINK "#RC-EXCLUDE"}}{\fldrslt{\ul
+RCexclude
+}}}
+.\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \outlinelevel1 \b \fs32 WARNWBS\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 Dieser Parameter bewirkt das eine \u8220"Warnung\u8221" ausgegeben wird, wenn ein \u8220"gro\u223?es File\u8221" erkannt wird. Das kann sinnvoll sein, wenn die zu pr\u252?fenden Dateien nicht die schnellste Verbindung haben. Damit der Cursor, nicht wie eingefroren, auf der Stelle anzeigefrei blinkt kann hier eine Dateigr\u246?\u223?e einstellt werden. Die Warnung wird auf Userlevel ausgegeben. Die Angabe erfolgt Humanlike wie 1TB oder 10MB. Auf 0 setzen um dieses Verhalten auszuschalten. Defaultwert ist 16GB.\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \outlinelevel1 \b \fs32 FORWARD\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 Einmalig kann hier auf eine andere Config verweisen. Das bietet sich an, wenn man andere Config (z.B.im Netzwerk) verweisen kann. Als Feature ist ganz klar, dass auch die Section direkt mit angegeben werden kann. Das kann dann so aussehen:\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \f1 FORWARD=/srv/pub/backup.rc,std\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \outlinelevel2 \b \fs28 Exclude Dateien\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 Es gibt viele gute Gr\u252?nde einige Dateien oder ganze Verzeichnis(b\u228?ume) auszuschliessen. Das kann ganz rudiment\u228?r mit nur einer Datei in der ExcludeDatei passieren. Ein Kommentar beginnt mit einem \u8216'#\u8217'. Alles folgende ist ein Kommentar.\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 Mehrere Dateien k\u246?nnen jeweils einzeln aufgenommen werden oder \u252?ber das eingebaute Fileglobbing eingefangen werden. Das Dateien die schon ein \u8216'ls\u8217' einfangen w\u252?rde, wie \u8217'ls /var/log/*.log\u8217'.\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 Dar\u252?ber hinnaus gibt es einige Schl\u252?sselw\u246?rter, die etwas ausschliessen, wenn eine bestimmte Situation zutrifft. z.B.:\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \f1 ifhost WKST-Conny /etc/pconly.rc\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 Mit jeder neuen Zeile ist die Situation neu zu bewerten. Dh. keine Mehrzeiler. Daf\u252?r k\u246?nnen die \u8216'Situationbewertungen\u8217' beliebig tief verschachtelt sein. Folgendes kann so verwendet werden:\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \f1 ifhost WKST-Conny ifuser werner message "Mach nix kaputt auf Connys PC"\par}
+{
+\trowd \trgaph120
+\clbrdrb\brdrs\cellx4320\clbrdrb\brdrs\cellx8640
+\trkeep\intbl
+{
+{{\pard\intbl \ql \f0 \sa0 \li0 \fi0 token\par}
+\cell}
+{{\pard\intbl \ql \f0 \sa0 \li0 \fi0 Beschreibung\par}
+\cell}
+}
+\intbl\row}
+{
+\trowd \trgaph120
+\cellx4320\cellx8640
+\trkeep\intbl
+{
+{{\pard\intbl \ql \f0 \sa0 \li0 \fi0 ifhost X\par}
+\cell}
+{{\pard\intbl \ql \f0 \sa0 \li0 \fi0 Wenn der aktuelle PC X ist\par}
+\cell}
+}
+\intbl\row}
+{
+\trowd \trgaph120
+\cellx4320\cellx8640
+\trkeep\intbl
+{
+{{\pard\intbl \ql \f0 \sa0 \li0 \fi0 ifnhost X\par}
+\cell}
+{{\pard\intbl \ql \f0 \sa0 \li0 \fi0 Wenn der aktuelle PC nicht X ist\par}
+\cell}
+}
+\intbl\row}
+{
+\trowd \trgaph120
+\cellx4320\cellx8640
+\trkeep\intbl
+{
+{{\pard\intbl \ql \f0 \sa0 \li0 \fi0 ifuser X\par}
+\cell}
+{{\pard\intbl \ql \f0 \sa0 \li0 \fi0 Wenn der aktuelle Benutzer X ist\par}
+\cell}
+}
+\intbl\row}
+{
+\trowd \trgaph120
+\cellx4320\cellx8640
+\trkeep\intbl
+{
+{{\pard\intbl \ql \f0 \sa0 \li0 \fi0 ifnuser X\par}
+\cell}
+{{\pard\intbl \ql \f0 \sa0 \li0 \fi0 Wenn der aktuelle Benutzer nicht X ist\par}
+\cell}
+}
+\intbl\row}
+{
+\trowd \trgaph120
+\cellx4320\cellx8640
+\trkeep\intbl
+{
+{{\pard\intbl \ql \f0 \sa0 \li0 \fi0 ifbase X\par}
+\cell}
+{{\pard\intbl \ql \f0 \sa0 \li0 \fi0 BASE=X (-b=X)\par}
+\cell}
+}
+\intbl\row}
+{
+\trowd \trgaph120
+\cellx4320\cellx8640
+\trkeep\intbl
+{
+{{\pard\intbl \ql \f0 \sa0 \li0 \fi0 ifnbase X\par}
+\cell}
+{{\pard\intbl \ql \f0 \sa0 \li0 \fi0 wenn BASE nicht zutrifft\par}
+\cell}
+}
+\intbl\row}
+{
+\trowd \trgaph120
+\cellx4320\cellx8640
+\trkeep\intbl
+{
+{{\pard\intbl \ql \f0 \sa0 \li0 \fi0 include X\par}
+\cell}
+{{\pard\intbl \ql \f0 \sa0 \li0 \fi0 X includen. Datei X an dieser Stelle einlesen\par}
+\cell}
+}
+\intbl\row}
+{
+\trowd \trgaph120
+\cellx4320\cellx8640
+\trkeep\intbl
+{
+{{\pard\intbl \ql \f0 \sa0 \li0 \fi0 message X\par}
+\cell}
+{{\pard\intbl \ql \f0 \sa0 \li0 \fi0 Diese Nachricht ausgeben\par}
+\cell}
+}
+\intbl\row}
+{\pard \ql \f0 \sa180 \li0 \fi0 \par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \outlinelevel0 \b \fs36 AUTHORS\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 Heiko Stoevesandt - alias Hesti - {\field{\*\fldinst{HYPERLINK "mailto:hstools@t-online.de"}}{\fldrslt{\ul
+hstools@t-online.de
+}}}
+\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \outlinelevel0 \b \fs36 FEHLER\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 Fehler (auch in dieser Manpage) unbedingt bitte melden\par}
+}
