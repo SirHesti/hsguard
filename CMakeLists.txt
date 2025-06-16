@@ -1,7 +1,8 @@
-# 16.06.2025 18:02:09 Genrated by cbp2cmake V2.12.0 Finale X64 
+# 16.06.2025 18:08:34 Genrated by cbp2cmake V2.13.0 Finale X64 
 project(hsguard LANGUAGES C)
 cmake_minimum_required(VERSION 3.0 FATAL_ERROR)
 set (CMAKE_INSTALL_PREFIX /usr )
+include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 add_executable(hsguard ctools/c_crc32.c tools.c g_cfg.c g_color.c g_finddupes.c g_helper.c g_info.c g_list.c g_longtable.c g_remove.c g_sql.c g_testdb.c g_update.c hsguard.c)
 find_package(SQLite3)
 if (SQLite3_FOUND)
