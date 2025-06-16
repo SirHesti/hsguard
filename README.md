@@ -11,7 +11,7 @@ __hsguard__ - Programm um Aenderungen im Dateisystem festzustellen
 
 ### SYNOPSIS
 
-[switch to german translation 🇩🇪](README-de.md)
+$LINK:🇩🇪 german translation 🇩🇪:README-de.md:hsguard-de.html:null
 
 About
 

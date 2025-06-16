@@ -28,8 +28,7 @@ Deutsche Doku
 
 #-[ README.md ]------------------------------------------------------------------------------------
 
-switch to german translation
-[🇩🇪](README-de.md)
+$LINK:🇩🇪 german translation 🇩🇪:README-de.md:hsguard-de.html:null
 
 #### About
 
@@ -74,6 +73,18 @@ Wird hsguard das erste Mal gestartet, dann wird die Datei /etc/hsguard.rc fehlen
 Mit "hsguard --create" kann eine erste Version mitsamt einen Unterverzeichnis /var/hsguard
 erstellt werden. Ein Beispiel kann in der Datei hsguard_sample.rc nachgeschlagen werden.
 
+
+#-[ hsguard-de.man ]----------------------------------------------------------------------------------
+---
+title: hsguard
+section: 8
+header: hsguard - coded by Hesti
+footer: hsguard $VERSION
+date: $DATE
+---
+
+#NAME
+**hsguard** - ein deutsches Programm um Aenderungen im Dateisystem festzustellen
 
 #-[ hsguard.man ]----------------------------------------------------------------------------------
 ---
@@ -294,6 +305,7 @@ COL_LOCFOUNDED=PURPLE
  ** 31.05.25 HS --wbz / EXADD in RC-Files
  ** 01.06.25 HS exludes werden in Listen nicht mehr als singlefile verarbeitet
  ** 08.06.25 HS Dokumentation überarbeitet
+ ** 16.06.25 HS Dokumentation überarbeitet (Übersetzung vorgesehen)
 
 #-[ ******************************************************************************************** */
 

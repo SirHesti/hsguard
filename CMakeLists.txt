@@ -1,4 +1,4 @@
-# 16.06.2025 10:10:51 Genrated by cbp2cmake V2.12.0 Finale X64 
+# 16.06.2025 17:12:21 Genrated by cbp2cmake V2.12.0 Finale X64 
 project(hsguard LANGUAGES C)
 cmake_minimum_required(VERSION 3.0 FATAL_ERROR)
 set (CMAKE_INSTALL_PREFIX /usr )
@@ -12,13 +12,27 @@ else()
      message( FATAL_ERROR "SQLite3 not found. make sure you have: apt install sqlite3 libsqlite3-dev\n" )
 endif()
 install(TARGETS hsguard RUNTIME DESTINATION bin)
-add_custom_target(
-	hsguard.man ALL
-	DEPENDS hsguard.8
-  VERBATIM
-add_custom_command(TARGET hsguard.man
-	COMMAND ${CMAKE_COMMAND} -E rm -f hsguard.8.gz
-  COMMAND gzip -k -9 hsguard.8
-  VERBATIM
-)
-install(FILES hsguard.8.gz DESTINATION ${CMAKE_INSTALL_PREFIX}/share/man/man8)
+set(outfiles "")
+set(CMAKE_INSTALL_MANDIR "${CMAKE_INSTALL_PREFIX}/share/man")
+function(add_manpage file suffix lang)
+	if ("" STREQUAL "${lang}")
+		set(parsedinput "")
+	else()
+		set(parsedinput "-${lang}")
+	endif()
+
+	set(input  "${CMAKE_CURRENT_SOURCE_DIR}/${file}${parsedinput}.${suffix}")
+	set(output "${CMAKE_CURRENT_BINARY_DIR}/${file}${parsedinput}.${suffix}.gz")
+	add_custom_command(
+		OUTPUT "${output}"
+		COMMAND gzip -k -9 -c ${input} > ${output}
+		DEPENDS "${input}"
+		WORKING_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}"
+		VERBATIM)
+	list(APPEND outfiles "${output}")
+	set(outfiles "${outfiles}" PARENT_SCOPE)
+	install(FILES ${output} DESTINATION ${CMAKE_INSTALL_MANDIR}/${lang}/man${suffix} RENAME "${file}.${suffix}.gz" )
+endfunction()
+add_manpage(hsguard 8 "")
+add_manpage(hsguard 8 "de")
+add_custom_target(man ALL DEPENDS "${outfiles}")
