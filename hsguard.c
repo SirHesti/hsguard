@@ -29,7 +29,7 @@ Deutsche Doku
 #-[ README.md ]------------------------------------------------------------------------------------
 
 switch to german translation
-[![Translation status](🇩🇪)](README-de.md)
+[🇩🇪](README-de.md)
 
 #### About
 
