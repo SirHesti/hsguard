@@ -3,13 +3,15 @@ title: hsguard
 section: 8
 header: hsguard - coded by Hesti
 footer: hsguard 2.24.59 Beta
-date: 15.06.2025
+date: 16.06.2025
 ---
 
 ### NAME
 __hsguard__ - Programm um Aenderungen im Dateisystem festzustellen
 
 ### SYNOPSIS
+
+switch to german translation [Translation status]
 
 About
 

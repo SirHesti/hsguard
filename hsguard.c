@@ -22,7 +22,14 @@
 ###### Screenshot
 ![Screenshot](https://gnunn1.github.io/tilix-web/assets/images/gallery/tilix-screenshot-1.png)
 
+#-[ README-de.md ]---------------------------------------------------------------------------------
+
+Deutsche Doku
+
 #-[ README.md ]------------------------------------------------------------------------------------
+
+switch to german translation
+[![Translation status](🇩🇪)](README-de.md)
 
 #### About
 
