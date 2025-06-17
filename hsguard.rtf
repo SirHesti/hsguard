@@ -3,26 +3,25 @@
 \widowctrl\hyphauto
 
 {\pard \qc \f0 \sa180 \li0 \fi0 \b \fs36 hsguard\par}
-{\pard \qc \f0 \sa180 \li0 \fi0  16.06.2025\par}
+{\pard \qc \f0 \sa180 \li0 \fi0  17.06.2025\par}
 {\pard \ql \f0 \sa180 \li0 \fi0 \par}
 {\pard \ql \f0 \sa180 \li0 \fi0 \outlinelevel0 \b \fs36 NAME\par}
-{\pard \ql \f0 \sa180 \li0 \fi0 {\b hsguard} - Programm um Aenderungen im Dateisystem festzustellen\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 {\b hsguard} - Program to detect changes in the file system\par}
 {\pard \ql \f0 \sa180 \li0 \fi0 \outlinelevel0 \b \fs36 SYNOPSIS\par}
-{\pard \ql \f0 \sa180 \li0 \fi0 About\par}
-{\pard \ql \f0 \sa180 \li0 \fi0 hsguard stellt aus den konfigurierbaren Verzeichnisse eine Datenbank zusammen. Dabei wird jede Datei f\u252?r sich gepr\u252?ft und eine CRC-Pr\u252?fsumme (OLDSTYLE) erstellt. Ist die Festplatte erst einmal in der Datenbank, dann kann jede Datei auf (nicht gewollte) \u196?nderungen gepr\u252?ft werden.\par}
-{\pard \ql \f0 \sa180 \li0 \fi0 Genau das ist der Zweck von hsguard. Festplatten (HDD) altern und wenn Daten nicht gelesen werden, dann \u8216'vergisst\u8217' die Festplatte mal ein Bit.\par}
-{\pard \ql \f0 \sa180 \li0 \fi0 Bei mir laufen HDD\u8217's rund um die Uhr als Backupsystem, lokales Filesharing etc.. Daten auf diesen Platten m\u246?chte ich auch nach vielen Jahren behalten.\par}
-{\pard \ql \f0 \sa180 \li0 \fi0 Zus\u228?tzlich kann so erkannt werden, ob eine Malware gerade dabei ist s\u228?mtliche Daten zu verschl\u252?sseln.\par}
-{\pard \ql \f0 \sa180 \li0 \fi0 Hier greift \u8220"hsguard\u8221". hsguard speichert alle wichtigen Informationen zu einer Datei. Eine Datei die ge\u228?ndert wurde, wird in der Datenbank normal geupdatet. \u220?ber jede Datei wird eine CRC32 gebildet. Die Pr\u252?fsumme wird pro Datei gespeichert und kann gegengepr\u252?ft werden.\par}
-{\pard \ql \f0 \sa180 \li0 \fi0 Es wird Position, Name, FileSize, FileModifDate und die CRC32 gespeichert. Pr\u252?fcounter und Aufnahmedatum k\u246?nnen aus der Datenbank ebenfalls abgerufen werden.\par}
-{\pard \ql \f0 \sa180 \li0 \fi0 Im CronJob kann hsguard [\u8211-update] \u8211-check aufgerufen werden, wo verschiedene Dateien dann gegengepr\u252?ft werden k\u246?nnen. Diese werden im Zufallsprinzip ausgew\u228?hlt. Ein Update nimmt neue oder ge\u228?nderte Dateien vorher auf.\par}
-{\pard \ql \f0 \sa180 \li0 \fi0 Mit vielen M\u246?glichkeiten k\u246?nnen die Daten aufgelistet und verifiziert werden. So wird im Fall des Falles die Datenbank eine hilfreiche Erg\u228?nzung sein.\par}
-{\pard \ql \f0 \sa180 \li0 \fi0 WICHTIG! hsguard wird keine Festplatteninhalte \u228?ndern. Keine Datei l\u246?schen oder hinzuf\u252?gen. Die einzige Ausnahme ist die Datenbank selsbt. \u8220"hsguard \u8211-create\u8221" wird einmalig eine hsguard.rc anlegen. Diese Datei wird nicht \u252?berschrieben. Alle Parameter k\u246?nnen aber auch auf der Kommandozeile angegeben werden.\par}
-{\pard \ql \f0 \sa180 \li0 \fi0 hsguard ben\u246?tigt lediglich Leserechte f\u252?r die Daten.\par}
-{\pard \ql \f0 \sa180 \li0 \fi0 hsguard kann auf vielf\u228?ltig configuriert werden. Configdatei, Excludedatei und Kommandozeilenswitch.\par}
-{\pard \ql \f0 \sa180 \li0 \fi0 Wird hsguard das erste Mal gestartet, dann wird die Datei /etc/hsguard.rc fehlend bem\u228?ngelt. Mit \u8220"hsguard \u8211-create\u8221" kann eine erste Version mitsamt einen Unterverzeichnis /var/hsguard erstellt werden. Ein Beispiel kann in der Datei hsguard_sample.rc nachgeschlagen werden.\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 hsguard creates a database from the configurable directories. Each file is checked individually and a CRC checksum (OLDSTYLE) is generated. Once the hard drive is included in the database every file can be checked for (unwanted) changes.\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 This is precisely the purpose of hsguard. Hard drives (HDDs) age and if data is not read the drive may \u8220"forget\u8221" a bit.\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 I have HDDs running around the clock as backup systems, local file sharing, etc. I want to keep the data on these drives for many years.\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 Additionally, this makes it possible to detect if malware is in the process of encrypting all your data.\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 This is where \u8220"hsguard\u8221" comes in. hsguard stores all important information about a file. A file that has been changed is normally updated in the database. A CRC32 is calculated for each file. The checksum is saved per file and can be checked against.\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 Position, name, file size, file modification date, and the CRC32 are stored. Check counters and the date of inclusion can also be retrieved from the database.\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 In a cron job, hsguard [\u8211-update] \u8211-check can be called, where different files can then be checked. These are selected at random. An update adds new or changed files beforehand.\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 With many options, the data can be listed and verified. Thus, in case of an incident, the database will be a helpful supplement.\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 IMPORTANT! hsguard will not modify the contents of any hard drive. It will not delete or add any files. The only exception is the database itself. \u8220"hsguard \u8211-create\u8221" will, once, create a hsguard.rc. This file will not be overwritten. However, all parameters can also be specified on the command line.\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 hsguard only requires read access to the data.\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 hsguard can be configured in many ways: config file, exclude file, and command-line switches.\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 If hsguard is started for the first time, it will complain that the file /etc/hsguard.rc is missing. With \u8220"hsguard \u8211-create\u8221", an initial version can be created, along with a subdirectory /var/hsguard. An example can be found in the file hsguard_sample.rc.\par}
 {\pard \ql \f0 \sa180 \li0 \fi0 \outlinelevel0 \b \fs36 DESCRIPTION\par}
-{\pard \ql \f0 \sa180 \li0 \fi0 hsguard liest das Dateisystem ein und speichert rudiment\u228?re Daten. Sofern nicht vorhanden/ge\u228?ndert(fsize/mtime) wird eine CRC32 der Datei gebildet. Diese wird gegengepr\u252?ft und ggf. Alarm geschlagen.\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 hsguard reads the file system and stores basic data. If a file is not present or has changed (fsize/mtime), a CRC32 checksum is generated for the file. This checksum is checked and an alert is triggered if necessary.\par}
 {\pard \ql \f0 \sa180 \li0 \fi0 \outlinelevel0 \b \fs36 OPTIONS\par}
 {\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab {\b --help -? -h }\par}
 {\pard \ql \f0 \sa0 \li1080 \fi0 Print this helpmsg\par}
@@ -113,7 +112,7 @@ RCwarnbigsize
 }}}
 }\sa180\par}
 {\pard \ql \f0 \sa180 \li0 \fi0 \outlinelevel0 \b \fs36 ENVIRONMENT\par}
-{\pard \ql \f0 \sa180 \li0 \fi0 siehe Anschnitt: {\b {\field{\*\fldinst{HYPERLINK "#hsguard.rc"}}{\fldrslt{\ul
+{\pard \ql \f0 \sa180 \li0 \fi0 see section: {\b {\field{\*\fldinst{HYPERLINK "#hsguard.rc"}}{\fldrslt{\ul
 hsguard.rc
 }}}
 }\par}
@@ -121,61 +120,63 @@ hsguard.rc
 {\pard \ql \f0 \sa180 \li0 \fi0 \outlinelevel0 \b \fs36 /etc/hsguard.rc\par}
 {\pard \ql \f0 \sa180 \li0 \fi0 \par}
 {\pard \ql \f0 \sa180 \li0 \fi0 \outlinelevel1 \b \fs32 DATABASE=\par}
-{\pard \ql \f0 \sa180 \li0 \fi0 Die Datenbank selbst. Diese kann sinnvoll unter /var sein. Zusammen mit \u8211-initDB kann diese als Grundkonfig erstellt werden. Daf\u252?r muss diese Lese-/Schreibrechte haben. | --db \u252?berschreibt die im RC-File angegebene Datei\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 The database itself. This can usefully be located under /var. Together with \u8211-initDB, this can be created as a basic configuration. For this, it must have read/write permissions. {\i --db overrides the file specified in the RC file}\par}
 {\pard \ql \f0 \sa180 \li0 \fi0 \par}
 {\pard \ql \f0 \sa180 \li0 \fi0 \outlinelevel1 \b \fs32 BASE=\par}
-{\pard \ql \f0 \sa180 \li0 \fi0 BASIS alles was angegeben wird. Ab wo soll die Datenbank erstellt werden. Diese Zeile sollte unbedingt angepasst werden. ZB. kann der Pfad zu den sch\u252?tzendwerten Daten /server/pictures oder \u228?hnlichem. -b  \u252?berschreibt das\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 BASE for everything specified. Where should the database be created from? This line should definitely be adjusted. For example, the path to the data to be protected could be /server/pictures or similar. {\i -b  overrides this}\par}
 {\pard \ql \f0 \sa180 \li0 \fi0 \par}
 {\pard \ql \f0 \sa180 \li0 \fi0 \outlinelevel1 \b \fs32 VERBOSE=\par}
-{\pard \ql \f0 \sa180 \li0 \fi0 stellt den Loglevel dar. Je h\u246?her der Level je mehr Informationen zu den erledigten Aufgaben findet man im Logfile bzw. auf dem Bildschirm. Feiner getunt \u252?ber den Spezialswitch \u8211-noscreen Verboselevel wird von 0-4 oder besser unterst\u252?tzt:\par}
-{\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab {\f1 ROOT  0 :} Nur Systemfehler\par}
-{\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab {\f1 FAIL  1 :} Nur Nachrichten, die Fehler beinhalten\par}
-{\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab {\f1 USER  2 :} Standardeinstellung Es werden Informationen zu Start und Ende einer jeden Aktion ausgegeben\par}
-{\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab {\f1 INFO  3 :} Das k\u246?nnen sehr viele Nachrichten sein\par}
-{\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab {\f1 DEVL  4 :} Das sollte man sich besser nicht ansehen, diese sind nur f\u252?r Entwickler gedacht\sa180\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 Represents the log level. The higher the level, the more information about the tasks performed can be found in the log file or on the screen. More finely tuned via the special switch {\i \u8211-noscreen} .\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 Verbosity levels are supported from 0-4 or better:\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab {\f1 ROOT  0 :} Only system errors\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab {\f1 FAIL  1 :} Only messages that include errors\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab {\f1 USER  2 :} Default setting. Information about the start and end of each action is output\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab {\f1 INFO  3 :} This can be a lot of messages\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab {\f1 DEVL  4 :} Better not to look at this\u8212-intended only for developers\sa180\par}
 {\pard \ql \f0 \sa180 \li0 \fi0 \par}
 {\pard \ql \f0 \sa180 \li0 \fi0 \outlinelevel1 \b \fs32 EXCLUDE=\par}
-{\pard \ql \f0 \sa180 \li0 \fi0 Es gibt Ordner die muessen nicht durchsucht werden, zB. TempOrdner oder der Ordner dieser Datenbank. Die Dateien/Verzeichnisse werden zeilenweise notiert, die mit \u8216'?\u8217' und \u8217'*\u8217' auch Mehrfachausshlu\u223? zulassen. Ein \u8216'#\u8217' am Zeilenanfang ist eine Kommentarzeile. Mehr zu diesem Thema {\b unter: {\field{\*\fldinst{HYPERLINK "#EXCLUDEFILE"}}{\fldrslt{\ul
+{\pard \ql \f0 \sa180 \li0 \fi0 There are folders that do not need to be searched, e.g., temp folders or the folder of this database. The files/directories are listed line by line, and with \u8216'?\u8217' and \u8217'*\u8217' you can exclude multiple items. A \u8216'#\u8217' at the beginning of a line is a comment. More on this topic {\b under: {\field{\*\fldinst{HYPERLINK "#EXCLUDEFILE"}}{\fldrslt{\ul
 Exclude-File
 }}}
-}\u8221",\par}
+}\par}
 {\pard \ql \f0 \sa180 \li0 \fi0 \par}
 {\pard \ql \f0 \sa180 \li0 \fi0 \outlinelevel1 \b \fs32 NOSCREEN=\par}
-{\pard \ql \f0 \sa180 \li0 \fi0 kann N/Y sein. Bei Y werden fast alle Ausgaben nur im Logfile vermerkt und nicht mehr auf dem Bildschirm ausgeben. Meldungen stehen nur im Logfile zur Verf\u252?gung. -s- auf der Kommandozeile kann dieses Verhalten abschalten. Auch wenn NOSCREEN=Y angegeben wurde. Es wird empfohlen diese Zeile zum Einrichten auszukommentieren.\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 Can be Y/N. If Y, almost all output is only written to the log file and no longer displayed on the screen. Messages are only available in the log file. -s- on the command line can disable this behavior, even if NOSCREEN=Y is specified. It is recommended to comment out this line when setting up.\par}
 {\pard \ql \f0 \sa180 \li0 \fi0 \par}
 {\pard \ql \f0 \sa180 \li0 \fi0 \outlinelevel1 \b \fs32 EMERGENCY=\par}
-{\pard \ql \f0 \sa180 \li0 \fi0 Hiermit wird festgelegt, wie \u8211-testDB bei Fehlern verfahren soll. Incl. deren Wiederhohlung. Ausdr\u252?cklich wird die Option PANIC empfohlen.\par}
-{\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab {\f1 PANIC     :} sofortiger Abbruch. Programmende mit Errorlevel 99\par}
-{\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab {\f1 COUNT=    :} Es wird die angegebene Zahl von Fehlern gez\u228?hlt. Bei 0 STOP\par}
-{\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab {\f1 SKIP      :} Es wird gepr\u252?ft, aber das bleibt ohne weitere Aktion\par}
-{\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab {\f1 ABORT     :} Es wird mit Errorlevel 1 \u8220"normal\u8221" beendet. CONUT!\par}
-{\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab {\f1 UPDATE    :} Auch im Fehlerfall wird das lastchk Datum neu gesetzt\par}
-{\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab {\f1 UPDATEALL :} Wie Oben, nur die neue Size,CRC,FMTime werden geupdatet\sa180\par}
-{\pard \ql \f0 \sa180 \li0 \fi0 -e oder \u8211-emergency k\u246?nnen diese Einstellung \u252?berschreiben werden\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 Here you specify how \u8211-testDB should handle errors, including their repetition. The PANIC option is expressly recommended.\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab {\f1 PANIC     :} Immediate abort. Program ends with error level 99\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab {\f1 COUNT=    :} The specified number of errors is counted. STOP at 0\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab {\f1 SKIP      :} Checked, but no further action is taken\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab {\f1 ABORT     :} Ends \u8220"normally\u8221" with error level 1. COUNT!\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab {\f1 UPDATE    :} Even in case of errors, the lastchk date is updated\par}
+{\pard \ql \f0 \sa0 \li360 \fi-360 \bullet \tx360\tab {\f1 UPDATEALL :} As above, but also updates new size, CRC, FMTime\sa180\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 {\i -e or \u8211-emergency can override these settings}\par}
 {\pard \ql \f0 \sa180 \li0 \fi0 \par}
 {\pard \ql \f0 \sa180 \li0 \fi0 \outlinelevel1 \b \fs32 ANSICOLOR=\par}
-{\pard \ql \f0 \sa180 \li0 \fi0 Viele Ausgaben werden, zur besseren Unterscheidung, farblich unterschiedlich gekennzeichnet. Y/N kann die Ausgabe von AnsiColors ausschalten. Bei Y k\u246?nnen die Farben auch noch variiert werden. Diese k\u246?nnen in der Sample-Datei angesehen werden.\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 Many outputs are color-coded for better distinction. Y/N can disable the output of ANSI colors. If Y, colors can also be varied further. These can be viewed in the sample file.\par}
 {\pard \ql \f0 \sa180 \li0 \fi0 \par}
 {\pard \ql \f0 \sa180 \li0 \fi0 \outlinelevel1 \b \fs32 EXADD=\par}
-{\pard \ql \f0 \sa180 \li0 \fi0 Hiermit kann eine Datei oder auch ein Verzeichnis ignoriert werden. Wesentlich besser geht es mit {\field{\*\fldinst{HYPERLINK "#RC-EXCLUDE"}}{\fldrslt{\ul
+{\pard \ql \f0 \sa180 \li0 \fi0 Here you can ignore a file or even a directory. It\u8217's much better to use {\field{\*\fldinst{HYPERLINK "#RC-EXCLUDE"}}{\fldrslt{\ul
 RCexclude
 }}}
 .\par}
 {\pard \ql \f0 \sa180 \li0 \fi0 \par}
 {\pard \ql \f0 \sa180 \li0 \fi0 \outlinelevel1 \b \fs32 WARNWBS\par}
-{\pard \ql \f0 \sa180 \li0 \fi0 Dieser Parameter bewirkt das eine \u8220"Warnung\u8221" ausgegeben wird, wenn ein \u8220"gro\u223?es File\u8221" erkannt wird. Das kann sinnvoll sein, wenn die zu pr\u252?fenden Dateien nicht die schnellste Verbindung haben. Damit der Cursor, nicht wie eingefroren, auf der Stelle anzeigefrei blinkt kann hier eine Dateigr\u246?\u223?e einstellt werden. Die Warnung wird auf Userlevel ausgegeben. Die Angabe erfolgt Humanlike wie 1TB oder 10MB. Auf 0 setzen um dieses Verhalten auszuschalten. Defaultwert ist 16GB.\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 This parameter triggers a \u8220"warning\u8221" when a \u8220"large file\u8221" is detected. This can be useful if the files to be checked are not connected via the fastest connection. To prevent the cursor from appearing frozen while waiting, a file size can be set here. The warning is issued at user level. Specify in human-readable format like 1TB or 10MB. Set to 0 to disable this behavior.\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 Default value is 16GB.\par}
 {\pard \ql \f0 \sa180 \li0 \fi0 \par}
 {\pard \ql \f0 \sa180 \li0 \fi0 \outlinelevel1 \b \fs32 FORWARD\par}
-{\pard \ql \f0 \sa180 \li0 \fi0 Einmalig kann hier auf eine andere Config verweisen. Das bietet sich an, wenn man andere Config (z.B.im Netzwerk) verweisen kann. Als Feature ist ganz klar, dass auch die Section direkt mit angegeben werden kann. Das kann dann so aussehen:\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 This can be used once to refer to another config. This is useful if you can refer to other configs (e.g., on the network). As a feature, the section can be specified directly. This might look like:\par}
 {\pard \ql \f0 \sa180 \li0 \fi0 \f1 FORWARD=/srv/pub/backup.rc,std\par}
 {\pard \ql \f0 \sa180 \li0 \fi0 \par}
-{\pard \ql \f0 \sa180 \li0 \fi0 \outlinelevel2 \b \fs28 Exclude Dateien\par}
-{\pard \ql \f0 \sa180 \li0 \fi0 Es gibt viele gute Gr\u252?nde einige Dateien oder ganze Verzeichnis(b\u228?ume) auszuschliessen. Das kann ganz rudiment\u228?r mit nur einer Datei in der ExcludeDatei passieren. Ein Kommentar beginnt mit einem \u8216'#\u8217'. Alles folgende ist ein Kommentar.\par}
-{\pard \ql \f0 \sa180 \li0 \fi0 Mehrere Dateien k\u246?nnen jeweils einzeln aufgenommen werden oder \u252?ber das eingebaute Fileglobbing eingefangen werden. Das Dateien die schon ein \u8216'ls\u8217' einfangen w\u252?rde, wie \u8217'ls /var/log/*.log\u8217'.\par}
-{\pard \ql \f0 \sa180 \li0 \fi0 Dar\u252?ber hinnaus gibt es einige Schl\u252?sselw\u246?rter, die etwas ausschliessen, wenn eine bestimmte Situation zutrifft. z.B.:\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \outlinelevel2 \b \fs28 Exclude Files\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 There are many good reasons to exclude certain files or entire directory trees. This can be done very simply with a single file in the exclude file. A comment begins with a \u8216'#\u8217'. Everything following is a comment.\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 Multiple files can each be added individually or captured using the built-in file globbing. This works for files that \u8216'ls\u8217' would find, like \u8217'ls /var/log/*.log\u8217'.\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 Additionally, there are some keywords that exclude something if a certain situation applies. For example:\par}
 {\pard \ql \f0 \sa180 \li0 \fi0 \f1 ifhost WKST-Conny /etc/pconly.rc\par}
-{\pard \ql \f0 \sa180 \li0 \fi0 Mit jeder neuen Zeile ist die Situation neu zu bewerten. Dh. keine Mehrzeiler. Daf\u252?r k\u246?nnen die \u8216'Situationbewertungen\u8217' beliebig tief verschachtelt sein. Folgendes kann so verwendet werden:\par}
-{\pard \ql \f0 \sa180 \li0 \fi0 \f1 ifhost WKST-Conny ifuser werner message "Mach nix kaputt auf Connys PC"\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 With each new line, the situation is re-evaluated. That is, no multi-line blocks. However, the \u8216'situation evaluations\u8217' can be nested arbitrarily deep. The following can be used in this way:\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \f1 ifhost WKST-Conny ifuser werner message "Don't break anything on Conny's PC"\par}
 {
 \trowd \trgaph120
 \clbrdrb\brdrs\cellx4320\clbrdrb\brdrs\cellx8640
@@ -183,7 +184,7 @@ RCexclude
 {
 {{\pard\intbl \qr \f0 \sa0 \li0 \fi0 token\par}
 \cell}
-{{\pard\intbl \ql \f0 \sa0 \li0 \fi0 Beschreibung\par}
+{{\pard\intbl \ql \f0 \sa0 \li0 \fi0 Description\par}
 \cell}
 }
 \intbl\row}
@@ -194,7 +195,7 @@ RCexclude
 {
 {{\pard\intbl \qr \f0 \sa0 \li0 \fi0 ifhost X\par}
 \cell}
-{{\pard\intbl \ql \f0 \sa0 \li0 \fi0 Wenn der aktuelle PC X ist\par}
+{{\pard\intbl \ql \f0 \sa0 \li0 \fi0 If the current PC is X\par}
 \cell}
 }
 \intbl\row}
@@ -205,7 +206,7 @@ RCexclude
 {
 {{\pard\intbl \qr \f0 \sa0 \li0 \fi0 ifnhost X\par}
 \cell}
-{{\pard\intbl \ql \f0 \sa0 \li0 \fi0 Wenn der aktuelle PC nicht X ist\par}
+{{\pard\intbl \ql \f0 \sa0 \li0 \fi0 If the current PC is not X\par}
 \cell}
 }
 \intbl\row}
@@ -216,7 +217,7 @@ RCexclude
 {
 {{\pard\intbl \qr \f0 \sa0 \li0 \fi0 ifuser X\par}
 \cell}
-{{\pard\intbl \ql \f0 \sa0 \li0 \fi0 Wenn der aktuelle Benutzer X ist\par}
+{{\pard\intbl \ql \f0 \sa0 \li0 \fi0 If the current user is X\par}
 \cell}
 }
 \intbl\row}
@@ -227,7 +228,7 @@ RCexclude
 {
 {{\pard\intbl \qr \f0 \sa0 \li0 \fi0 ifnuser X\par}
 \cell}
-{{\pard\intbl \ql \f0 \sa0 \li0 \fi0 Wenn der aktuelle Benutzer nicht X ist\par}
+{{\pard\intbl \ql \f0 \sa0 \li0 \fi0 If the current user is not X\par}
 \cell}
 }
 \intbl\row}
@@ -249,7 +250,7 @@ RCexclude
 {
 {{\pard\intbl \qr \f0 \sa0 \li0 \fi0 ifnbase X\par}
 \cell}
-{{\pard\intbl \ql \f0 \sa0 \li0 \fi0 wenn BASE nicht zutrifft\par}
+{{\pard\intbl \ql \f0 \sa0 \li0 \fi0 if BASE does not apply\par}
 \cell}
 }
 \intbl\row}
@@ -260,7 +261,7 @@ RCexclude
 {
 {{\pard\intbl \qr \f0 \sa0 \li0 \fi0 include X\par}
 \cell}
-{{\pard\intbl \ql \f0 \sa0 \li0 \fi0 X includen. Datei X an dieser Stelle einlesen\par}
+{{\pard\intbl \ql \f0 \sa0 \li0 \fi0 Include X. Read file X at this point\par}
 \cell}
 }
 \intbl\row}
@@ -271,7 +272,7 @@ RCexclude
 {
 {{\pard\intbl \qr \f0 \sa0 \li0 \fi0 message X\par}
 \cell}
-{{\pard\intbl \ql \f0 \sa0 \li0 \fi0 Diese Nachricht ausgeben\par}
+{{\pard\intbl \ql \f0 \sa0 \li0 \fi0 Output this message\par}
 \cell}
 }
 \intbl\row}
@@ -281,6 +282,6 @@ RCexclude
 hstools@t-online.de
 }}}
 \par}
-{\pard \ql \f0 \sa180 \li0 \fi0 \outlinelevel0 \b \fs36 FEHLER\par}
-{\pard \ql \f0 \sa180 \li0 \fi0 Fehler (auch in dieser Manpage) unbedingt bitte melden\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 \outlinelevel0 \b \fs36 BUGS\par}
+{\pard \ql \f0 \sa180 \li0 \fi0 Please report bugs (including in this manpage)\par}
 }

@@ -15,83 +15,73 @@
 . ftr VB CB
 . ftr VBI CBI
 .\}
-.TH "hsguard" "8" "16.06.2025" "hsguard 2.24.59 Beta" "hsguard - coded by Hesti"
+.TH "hsguard" "8" "17.06.2025" "hsguard 2.24.59 Beta" "hsguard - coded by Hesti"
 .hy
 .SH NAME
 .PP
-\f[B]hsguard\f[R] - Programm um Aenderungen im Dateisystem festzustellen
+\f[B]hsguard\f[R] - Program to detect changes in the file system
 .SH SYNOPSIS
 .PP
-About
+hsguard creates a database from the configurable directories.
+Each file is checked individually and a CRC checksum (OLDSTYLE) is
+generated.
+Once the hard drive is included in the database every file can be
+checked for (unwanted) changes.
 .PP
-hsguard stellt aus den konfigurierbaren Verzeichnisse eine Datenbank
-zusammen.
-Dabei wird jede Datei f\[:u]r sich gepr\[:u]ft und eine
-CRC-Pr\[:u]fsumme (OLDSTYLE) erstellt.
-Ist die Festplatte erst einmal in der Datenbank, dann kann jede Datei
-auf (nicht gewollte) \[:A]nderungen gepr\[:u]ft werden.
+This is precisely the purpose of hsguard.
+Hard drives (HDDs) age and if data is not read the drive may
+\[lq]forget\[rq] a bit.
 .PP
-Genau das ist der Zweck von hsguard.
-Festplatten (HDD) altern und wenn Daten nicht gelesen werden, dann
-`vergisst' die Festplatte mal ein Bit.
+I have HDDs running around the clock as backup systems, local file
+sharing, etc.
+I want to keep the data on these drives for many years.
 .PP
-Bei mir laufen HDD\[cq]s rund um die Uhr als Backupsystem, lokales
-Filesharing etc..
-Daten auf diesen Platten m\[:o]chte ich auch nach vielen Jahren
-behalten.
+Additionally, this makes it possible to detect if malware is in the
+process of encrypting all your data.
 .PP
-Zus\[:a]tzlich kann so erkannt werden, ob eine Malware gerade dabei ist
-s\[:a]mtliche Daten zu verschl\[:u]sseln.
+This is where \[lq]hsguard\[rq] comes in.
+hsguard stores all important information about a file.
+A file that has been changed is normally updated in the database.
+A CRC32 is calculated for each file.
+The checksum is saved per file and can be checked against.
 .PP
-Hier greift \[lq]hsguard\[rq].
-hsguard speichert alle wichtigen Informationen zu einer Datei.
-Eine Datei die ge\[:a]ndert wurde, wird in der Datenbank normal
-geupdatet.
-\[:U]ber jede Datei wird eine CRC32 gebildet.
-Die Pr\[:u]fsumme wird pro Datei gespeichert und kann gegengepr\[:u]ft
-werden.
+Position, name, file size, file modification date, and the CRC32 are
+stored.
+Check counters and the date of inclusion can also be retrieved from the
+database.
 .PP
-Es wird Position, Name, FileSize, FileModifDate und die CRC32
-gespeichert.
-Pr\[:u]fcounter und Aufnahmedatum k\[:o]nnen aus der Datenbank ebenfalls
-abgerufen werden.
+In a cron job, hsguard [\[en]update] \[en]check can be called, where
+different files can then be checked.
+These are selected at random.
+An update adds new or changed files beforehand.
 .PP
-Im CronJob kann hsguard [\[en]update] \[en]check aufgerufen werden, wo
-verschiedene Dateien dann gegengepr\[:u]ft werden k\[:o]nnen.
-Diese werden im Zufallsprinzip ausgew\[:a]hlt.
-Ein Update nimmt neue oder ge\[:a]nderte Dateien vorher auf.
+With many options, the data can be listed and verified.
+Thus, in case of an incident, the database will be a helpful supplement.
 .PP
-Mit vielen M\[:o]glichkeiten k\[:o]nnen die Daten aufgelistet und
-verifiziert werden.
-So wird im Fall des Falles die Datenbank eine hilfreiche Erg\[:a]nzung
-sein.
+IMPORTANT!
+hsguard will not modify the contents of any hard drive.
+It will not delete or add any files.
+The only exception is the database itself.
+\[lq]hsguard \[en]create\[rq] will, once, create a hsguard.rc.
+This file will not be overwritten.
+However, all parameters can also be specified on the command line.
 .PP
-WICHTIG!
-hsguard wird keine Festplatteninhalte \[:a]ndern.
-Keine Datei l\[:o]schen oder hinzuf\[:u]gen.
-Die einzige Ausnahme ist die Datenbank selsbt.
-\[lq]hsguard \[en]create\[rq] wird einmalig eine hsguard.rc anlegen.
-Diese Datei wird nicht \[:u]berschrieben.
-Alle Parameter k\[:o]nnen aber auch auf der Kommandozeile angegeben
-werden.
+hsguard only requires read access to the data.
 .PP
-hsguard ben\[:o]tigt lediglich Leserechte f\[:u]r die Daten.
+hsguard can be configured in many ways: config file, exclude file, and
+command-line switches.
 .PP
-hsguard kann auf vielf\[:a]ltig configuriert werden.
-Configdatei, Excludedatei und Kommandozeilenswitch.
-.PP
-Wird hsguard das erste Mal gestartet, dann wird die Datei
-/etc/hsguard.rc fehlend bem\[:a]ngelt.
-Mit \[lq]hsguard \[en]create\[rq] kann eine erste Version mitsamt einen
-Unterverzeichnis /var/hsguard erstellt werden.
-Ein Beispiel kann in der Datei hsguard_sample.rc nachgeschlagen werden.
+If hsguard is started for the first time, it will complain that the file
+/etc/hsguard.rc is missing.
+With \[lq]hsguard \[en]create\[rq], an initial version can be created,
+along with a subdirectory /var/hsguard.
+An example can be found in the file hsguard_sample.rc.
 .SH DESCRIPTION
 .PP
-hsguard liest das Dateisystem ein und speichert rudiment\[:a]re Daten.
-Sofern nicht vorhanden/ge\[:a]ndert(fsize/mtime) wird eine CRC32 der
-Datei gebildet.
-Diese wird gegengepr\[:u]ft und ggf.
-Alarm geschlagen.
+hsguard reads the file system and stores basic data.
+If a file is not present or has changed (fsize/mtime), a CRC32 checksum
+is generated for the file.
+This checksum is checked and an alert is triggered if necessary.
 .SH OPTIONS
 .IP \[bu] 2
 \f[B]--help -?
@@ -410,131 +400,123 @@ RCwarnbigsize\f[R]
 .RE
 .SH ENVIRONMENT
 .PP
-siehe Anschnitt: \f[B]hsguard.rc\f[R]
+see section: \f[B]hsguard.rc\f[R]
 .PP
 .SH /etc/hsguard.rc
 .PP
 .SS DATABASE=
 .PP
-Die Datenbank selbst.
-Diese kann sinnvoll unter /var sein.
-Zusammen mit \[en]initDB kann diese als Grundkonfig erstellt werden.
-Daf\[:u]r muss diese Lese-/Schreibrechte haben.
-| --db \[:u]berschreibt die im RC-File angegebene Datei
+The database itself.
+This can usefully be located under /var.
+Together with \[en]initDB, this can be created as a basic configuration.
+For this, it must have read/write permissions.
+\f[I]--db overrides the file specified in the RC file\f[R]
 .PP
 .SS BASE=
 .PP
-BASIS alles was angegeben wird.
-Ab wo soll die Datenbank erstellt werden.
-Diese Zeile sollte unbedingt angepasst werden.
-ZB.
-kann der Pfad zu den sch\[:u]tzendwerten Daten /server/pictures oder
-\[:a]hnlichem.
--b \[:u]berschreibt das
+BASE for everything specified.
+Where should the database be created from?
+This line should definitely be adjusted.
+For example, the path to the data to be protected could be
+/server/pictures or similar.
+\f[I]-b overrides this\f[R]
 .PP
 .SS VERBOSE=
 .PP
-stellt den Loglevel dar.
-Je h\[:o]her der Level je mehr Informationen zu den erledigten Aufgaben
-findet man im Logfile bzw.
-auf dem Bildschirm.
-Feiner getunt \[:u]ber den Spezialswitch \[en]noscreen Verboselevel wird
-von 0-4 oder besser unterst\[:u]tzt:
+Represents the log level.
+The higher the level, the more information about the tasks performed can
+be found in the log file or on the screen.
+More finely tuned via the special switch \f[I]\[en]noscreen\f[R] .
+.PP
+Verbosity levels are supported from 0-4 or better:
 .IP \[bu] 2
-\f[V]ROOT  0 :\f[R] Nur Systemfehler
+\f[V]ROOT  0 :\f[R] Only system errors
 .IP \[bu] 2
-\f[V]FAIL  1 :\f[R] Nur Nachrichten, die Fehler beinhalten
+\f[V]FAIL  1 :\f[R] Only messages that include errors
 .IP \[bu] 2
-\f[V]USER  2 :\f[R] Standardeinstellung Es werden Informationen zu Start
-und Ende einer jeden Aktion ausgegeben
+\f[V]USER  2 :\f[R] Default setting.
+Information about the start and end of each action is output
 .IP \[bu] 2
-\f[V]INFO  3 :\f[R] Das k\[:o]nnen sehr viele Nachrichten sein
+\f[V]INFO  3 :\f[R] This can be a lot of messages
 .IP \[bu] 2
-\f[V]DEVL  4 :\f[R] Das sollte man sich besser nicht ansehen, diese sind
-nur f\[:u]r Entwickler gedacht
+\f[V]DEVL  4 :\f[R] Better not to look at this\[em]intended only for
+developers
 .PP
 .SS EXCLUDE=
 .PP
-Es gibt Ordner die muessen nicht durchsucht werden, zB.
-TempOrdner oder der Ordner dieser Datenbank.
-Die Dateien/Verzeichnisse werden zeilenweise notiert, die mit `?' und
-\[cq]*\[cq] auch Mehrfachausshlu\[ss] zulassen.
-Ein `#' am Zeilenanfang ist eine Kommentarzeile.
-Mehr zu diesem Thema \f[B]unter: Exclude-File\f[R]\[rq],
+There are folders that do not need to be searched, e.g., temp folders or
+the folder of this database.
+The files/directories are listed line by line, and with `?' and
+\[cq]*\[cq] you can exclude multiple items.
+A `#' at the beginning of a line is a comment.
+More on this topic \f[B]under: Exclude-File\f[R]
 .PP
 .SS NOSCREEN=
 .PP
-kann N/Y sein.
-Bei Y werden fast alle Ausgaben nur im Logfile vermerkt und nicht mehr
-auf dem Bildschirm ausgeben.
-Meldungen stehen nur im Logfile zur Verf\[:u]gung.
--s- auf der Kommandozeile kann dieses Verhalten abschalten.
-Auch wenn NOSCREEN=Y angegeben wurde.
-Es wird empfohlen diese Zeile zum Einrichten auszukommentieren.
+Can be Y/N.
+If Y, almost all output is only written to the log file and no longer
+displayed on the screen.
+Messages are only available in the log file.
+-s- on the command line can disable this behavior, even if NOSCREEN=Y is
+specified.
+It is recommended to comment out this line when setting up.
 .PP
 .SS EMERGENCY=
 .PP
-Hiermit wird festgelegt, wie \[en]testDB bei Fehlern verfahren soll.
-Incl.
-deren Wiederhohlung.
-Ausdr\[:u]cklich wird die Option PANIC empfohlen.
+Here you specify how \[en]testDB should handle errors, including their
+repetition.
+The PANIC option is expressly recommended.
 .IP \[bu] 2
-\f[V]PANIC     :\f[R] sofortiger Abbruch.
-Programmende mit Errorlevel 99
+\f[V]PANIC     :\f[R] Immediate abort.
+Program ends with error level 99
 .IP \[bu] 2
-\f[V]COUNT=    :\f[R] Es wird die angegebene Zahl von Fehlern
-gez\[:a]hlt.
-Bei 0 STOP
+\f[V]COUNT=    :\f[R] The specified number of errors is counted.
+STOP at 0
 .IP \[bu] 2
-\f[V]SKIP      :\f[R] Es wird gepr\[:u]ft, aber das bleibt ohne weitere
-Aktion
+\f[V]SKIP      :\f[R] Checked, but no further action is taken
 .IP \[bu] 2
-\f[V]ABORT     :\f[R] Es wird mit Errorlevel 1 \[lq]normal\[rq] beendet.
-CONUT!
+\f[V]ABORT     :\f[R] Ends \[lq]normally\[rq] with error level 1.
+COUNT!
 .IP \[bu] 2
-\f[V]UPDATE    :\f[R] Auch im Fehlerfall wird das lastchk Datum neu
-gesetzt
+\f[V]UPDATE    :\f[R] Even in case of errors, the lastchk date is
+updated
 .IP \[bu] 2
-\f[V]UPDATEALL :\f[R] Wie Oben, nur die neue Size,CRC,FMTime werden
-geupdatet
+\f[V]UPDATEALL :\f[R] As above, but also updates new size, CRC, FMTime
 .PP
--e oder \[en]emergency k\[:o]nnen diese Einstellung \[:u]berschreiben
-werden
+\f[I]-e or \[en]emergency can override these settings\f[R]
 .PP
 .SS ANSICOLOR=
 .PP
-Viele Ausgaben werden, zur besseren Unterscheidung, farblich
-unterschiedlich gekennzeichnet.
-Y/N kann die Ausgabe von AnsiColors ausschalten.
-Bei Y k\[:o]nnen die Farben auch noch variiert werden.
-Diese k\[:o]nnen in der Sample-Datei angesehen werden.
+Many outputs are color-coded for better distinction.
+Y/N can disable the output of ANSI colors.
+If Y, colors can also be varied further.
+These can be viewed in the sample file.
 .PP
 .SS EXADD=
 .PP
-Hiermit kann eine Datei oder auch ein Verzeichnis ignoriert werden.
-Wesentlich besser geht es mit RCexclude.
+Here you can ignore a file or even a directory.
+It\[cq]s much better to use RCexclude.
 .PP
 .SS WARNWBS
 .PP
-Dieser Parameter bewirkt das eine \[lq]Warnung\[rq] ausgegeben wird,
-wenn ein \[lq]gro\[ss]es File\[rq] erkannt wird.
-Das kann sinnvoll sein, wenn die zu pr\[:u]fenden Dateien nicht die
-schnellste Verbindung haben.
-Damit der Cursor, nicht wie eingefroren, auf der Stelle anzeigefrei
-blinkt kann hier eine Dateigr\[:o]\[ss]e einstellt werden.
-Die Warnung wird auf Userlevel ausgegeben.
-Die Angabe erfolgt Humanlike wie 1TB oder 10MB.
-Auf 0 setzen um dieses Verhalten auszuschalten.
-Defaultwert ist 16GB.
+This parameter triggers a \[lq]warning\[rq] when a \[lq]large file\[rq]
+is detected.
+This can be useful if the files to be checked are not connected via the
+fastest connection.
+To prevent the cursor from appearing frozen while waiting, a file size
+can be set here.
+The warning is issued at user level.
+Specify in human-readable format like 1TB or 10MB.
+Set to 0 to disable this behavior.
+.PP
+Default value is 16GB.
 .PP
 .SS FORWARD
 .PP
-Einmalig kann hier auf eine andere Config verweisen.
-Das bietet sich an, wenn man andere Config (z.B.im Netzwerk) verweisen
-kann.
-Als Feature ist ganz klar, dass auch die Section direkt mit angegeben
-werden kann.
-Das kann dann so aussehen:
+This can be used once to refer to another config.
+This is useful if you can refer to other configs (e.g., on the network).
+As a feature, the section can be specified directly.
+This might look like:
 .IP
 .nf
 \f[C]
@@ -542,23 +524,22 @@ FORWARD=/srv/pub/backup.rc,std
 \f[R]
 .fi
 .PP
-.SS Exclude Dateien
+.SS Exclude Files
 .PP
-Es gibt viele gute Gr\[:u]nde einige Dateien oder ganze
-Verzeichnis(b\[:a]ume) auszuschliessen.
-Das kann ganz rudiment\[:a]r mit nur einer Datei in der ExcludeDatei
-passieren.
-Ein Kommentar beginnt mit einem `#'.
-Alles folgende ist ein Kommentar.
+There are many good reasons to exclude certain files or entire directory
+trees.
+This can be done very simply with a single file in the exclude file.
+A comment begins with a `#'.
+Everything following is a comment.
 .PP
-Mehrere Dateien k\[:o]nnen jeweils einzeln aufgenommen werden oder
-\[:u]ber das eingebaute Fileglobbing eingefangen werden.
-Das Dateien die schon ein `ls' einfangen w\[:u]rde, wie \[cq]ls
+Multiple files can each be added individually or captured using the
+built-in file globbing.
+This works for files that `ls' would find, like \[cq]ls
 /var/log/*.log\[cq].
 .PP
-Dar\[:u]ber hinnaus gibt es einige Schl\[:u]sselw\[:o]rter, die etwas
-ausschliessen, wenn eine bestimmte Situation zutrifft.
-z.B.:
+Additionally, there are some keywords that exclude something if a
+certain situation applies.
+For example:
 .IP
 .nf
 \f[C]
@@ -566,16 +547,14 @@ ifhost WKST-Conny /etc/pconly.rc
 \f[R]
 .fi
 .PP
-Mit jeder neuen Zeile ist die Situation neu zu bewerten.
-Dh.
-keine Mehrzeiler.
-Daf\[:u]r k\[:o]nnen die `Situationbewertungen' beliebig tief
-verschachtelt sein.
-Folgendes kann so verwendet werden:
+With each new line, the situation is re-evaluated.
+That is, no multi-line blocks.
+However, the `situation evaluations' can be nested arbitrarily deep.
+The following can be used in this way:
 .IP
 .nf
 \f[C]
-ifhost WKST-Conny ifuser werner message \[dq]Mach nix kaputt auf Connys PC\[dq]
+ifhost WKST-Conny ifuser werner message \[dq]Don\[aq]t break anything on Conny\[aq]s PC\[dq]
 \f[R]
 .fi
 .PP
@@ -585,28 +564,28 @@ r l.
 T{
 token
 T}@T{
-Beschreibung
+Description
 T}
 _
 T{
 ifhost X
 T}@T{
-Wenn der aktuelle PC X ist
+If the current PC is X
 T}
 T{
 ifnhost X
 T}@T{
-Wenn der aktuelle PC nicht X ist
+If the current PC is not X
 T}
 T{
 ifuser X
 T}@T{
-Wenn der aktuelle Benutzer X ist
+If the current user is X
 T}
 T{
 ifnuser X
 T}@T{
-Wenn der aktuelle Benutzer nicht X ist
+If the current user is not X
 T}
 T{
 ifbase X
@@ -616,23 +595,23 @@ T}
 T{
 ifnbase X
 T}@T{
-wenn BASE nicht zutrifft
+if BASE does not apply
 T}
 T{
 include X
 T}@T{
-X includen.
-Datei X an dieser Stelle einlesen
+Include X.
+Read file X at this point
 T}
 T{
 message X
 T}@T{
-Diese Nachricht ausgeben
+Output this message
 T}
 .TE
 .SH AUTHORS
 .PP
 Heiko Stoevesandt - alias Hesti - <hstools@t-online.de>
-.SH FEHLER
+.SH BUGS
 .PP
-Fehler (auch in dieser Manpage) unbedingt bitte melden
+Please report bugs (including in this manpage)

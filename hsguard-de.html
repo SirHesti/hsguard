@@ -158,9 +158,435 @@
 <body>
 <header id="title-block-header">
 <h1 class="title">hsguard</h1>
-<p class="date">16.06.2025</p>
+<p class="date">17.06.2025</p>
 </header>
-<p>#NAME <strong>hsguard</strong> - ein deutsches Programm um
-Aenderungen im Dateisystem festzustellen</p>
+<h1 id="name">NAME</h1>
+<p><strong>hsguard</strong> - Programm um Aenderungen im Dateisystem
+festzustellen</p>
+<h1 id="synopsis">SYNOPSIS</h1>
+<a href="hsguard.html">🇬🇧 english version 🇬🇧</a>
+<p>hsguard stellt aus den konfigurierbaren Verzeichnisse eine Datenbank
+zusammen. Dabei wird jede Datei für sich geprüft und eine CRC-Prüfsumme
+(OLDSTYLE) erstellt. Ist die Festplatte erst einmal in der Datenbank,
+dann kann jede Datei auf (nicht gewollte) Änderungen geprüft werden.</p>
+<p>Genau das ist der Zweck von hsguard. Festplatten (HDD) altern und
+wenn Daten nicht gelesen werden, dann ‘vergisst’ die Festplatte mal ein
+Bit.</p>
+<p>Bei mir laufen HDD’s rund um die Uhr als Backupsystem, lokales
+Filesharing etc.. Daten auf diesen Platten möchte ich auch nach vielen
+Jahren behalten.</p>
+<p>Zusätzlich kann so erkannt werden, ob eine Malware gerade dabei ist
+sämtliche Daten zu verschlüsseln.</p>
+<p>Hier greift “hsguard”. hsguard speichert alle wichtigen Informationen
+zu einer Datei. Eine Datei die geändert wurde, wird in der Datenbank
+normal geupdatet. Über jede Datei wird eine CRC32 gebildet. Die
+Prüfsumme wird pro Datei gespeichert und kann gegengeprüft werden.</p>
+<p>Es wird Position, Name, FileSize, FileModifDate und die CRC32
+gespeichert. Prüfcounter und Aufnahmedatum können aus der Datenbank
+ebenfalls abgerufen werden.</p>
+<p>Im CronJob kann hsguard [–update] –check aufgerufen werden, wo
+verschiedene Dateien dann gegengeprüft werden können. Diese werden im
+Zufallsprinzip ausgewählt. Ein Update nimmt neue oder geänderte Dateien
+vorher auf.</p>
+<p>Mit vielen Möglichkeiten können die Daten aufgelistet und verifiziert
+werden. So wird im Fall des Falles die Datenbank eine hilfreiche
+Ergänzung sein.</p>
+<p>WICHTIG! hsguard wird keine Festplatteninhalte ändern. Keine Datei
+löschen oder hinzufügen. Die einzige Ausnahme ist die Datenbank selsbt.
+“hsguard –create” wird einmalig eine hsguard.rc anlegen. Diese Datei
+wird nicht überschrieben. Alle Parameter können aber auch auf der
+Kommandozeile angegeben werden.</p>
+<p>hsguard benötigt lediglich Leserechte für die Daten.</p>
+<p>hsguard kann auf vielfältig configuriert werden. Configdatei,
+Excludedatei und Kommandozeilenswitch.</p>
+<p>Wird hsguard das erste Mal gestartet, dann wird die Datei
+/etc/hsguard.rc fehlend bemängelt. Mit “hsguard –create” kann eine erste
+Version mitsamt einen Unterverzeichnis /var/hsguard erstellt werden. Ein
+Beispiel kann in der Datei hsguard_sample.rc nachgeschlagen werden.</p>
+<h1 id="description">DESCRIPTION</h1>
+<p>hsguard liest das Dateisystem ein und speichert rudimentäre Daten.
+Sofern nicht vorhanden/geändert(fsize/mtime) wird eine CRC32 der Datei
+gebildet. Diese wird gegengeprüft und ggf. Alarm geschlagen.</p>
+<h1 id="options">OPTIONS</h1>
+<ul>
+<li><strong>--help -? -h </strong>
+<p>
+<blockquote>
+Print this helpmsg
+</p>
+</blockquote></li>
+<li><strong>-d --db sqlite3.db </strong>
+<p>
+<blockquote>
+use this “[PATH/]sqlite3.db” database <strong>overwrite: <a
+href="#RC-DATABASE">RCdatabase</a></strong>
+</p>
+</blockquote></li>
+<li><strong>-b --base &lt;dir&gt; </strong>
+<p>
+<blockquote>
+basedir for all operations <strong>overwrite <a
+href="#RC-BASE">RCbase</a></strong>
+</p>
+</blockquote></li>
+<li><strong>--create </strong>
+<p>
+<blockquote>
+create an empty ConfigFile highcommand to edit this
+</p>
+</blockquote></li>
+<li><strong>--initdb </strong>
+<p>
+<blockquote>
+create an empty Database
+</p>
+</blockquote></li>
+<li><strong>--createExcl </strong>
+<p>
+<blockquote>
+create an example excludefile
+</p>
+</blockquote></li>
+<li><strong>-x --exclude &lt;file&gt; </strong>
+<p>
+<blockquote>
+read a list of excluded files -- ‘#’ comment ## <strong>add this list:
+<a href="#RC-EXCLUDE">RCexclude</a></strong>
+</p>
+</blockquote></li>
+<li><strong>--exclude_add &lt;file&gt; </strong>
+<p>
+<blockquote>
+add a single file/dir to excludelist <strong>works too: <a
+href="#RC-EXADD">RCexadd</a></strong>
+</p>
+</blockquote></li>
+<li><strong>--ldir/--edir &lt;dir&gt; </strong>
+<p>
+<blockquote>
+an LS for exclude file writers (NO Function on DB)
+</p>
+</blockquote></li>
+<li><strong>--update_deep &lt;num&gt; </strong>
+<p>
+<blockquote>
+update database only this deep (update will set)
+</p>
+</blockquote></li>
+<li><strong>--update_dir &lt;dir&gt; </strong>
+<p>
+<blockquote>
+update from here into database (update will set)
+</p>
+</blockquote></li>
+<li><strong>-u --update </strong>
+<p>
+<blockquote>
+update database
+</p>
+</blockquote></li>
+<li><strong>--rescan </strong>
+<p>
+<blockquote>
+update all, but reread crc32
+</p>
+</blockquote></li>
+<li><strong>-n --nodirtest </strong>
+<p>
+<blockquote>
+update will <em>not</em> scan for empty dirs otherwise no exists<br />
+dirs(and entries) will remove from database
+</p>
+</blockquote></li>
+<li><strong>--yes </strong>
+<p>
+<blockquote>
+don’t ask me; i answer yes
+</p>
+</blockquote></li>
+<li><strong>-v --verbose </strong>
+<p>
+<blockquote>
+use   -v=1 to silence, also use -v- ** overwrite <a
+href="#RC-VERBOSE">RCverbose</a>**<br />
+      -v=2 erros(default) -v FAIL is the same<br />
+      -v=3 (same -v) userinfo<br />
+      -vv  -v=4 info<br />
+      -vvv -v=5 developer
+</p>
+</blockquote></li>
+<li><strong>-s --noscreen </strong>
+<p>
+<blockquote>
+In case of UserCMD’s like ‘--list’ make screen for output.<br />
+all UserMsg are saved only in the log. to turn off noscreen use -s-
+<strong>overwrite <a href="#RC-NOSCREEN">RCnoscreen</a></strong>
+</p>
+</blockquote></li>
+<li><strong>-a --ansi on/off/-/+ </strong>
+<p>
+<blockquote>
+Ansicolor at find/info/list -a- off -a=On or only -a is on<br />
+colors can be tuned in the config file <strong>overwrite: <a
+href="#RC-ANSICOLOR">RCansicolor</a></strong>
+</p>
+</blockquote></li>
+<li><strong>-l --list </strong>
+<p>
+<blockquote>
+print out database contens
+</p>
+</blockquote></li>
+<li><strong>--listdir </strong>
+<p>
+<blockquote>
+print only dirs from database see: --recursive
+</p>
+</blockquote></li>
+<li><strong>-f --formout </strong>
+<p>
+<blockquote>
+Format Out to UserLevel<br />
+Singleline :ONELINE, LONGLINE, MAXLINE<br />
+Multiline: :MINI, BASIC, MEDIUM, ALL
+</p>
+</blockquote></li>
+<li><strong>-r --recursive </strong>
+<p>
+<blockquote>
+list subdirs too <em>-r=deep</em> can go deeper <em>‘-r’</em> lists
+everything
+</p>
+</blockquote></li>
+<li><strong>-i --info &lt;dir&gt;or&lt;path&gt;or@&lt;id&gt; </strong>
+<p>
+<blockquote>
+Info about file in path &lt;entrie&gt; in database<br />
+path like /name/too<br />
+path without starting ‘/’ will find with ’*’ case intensive
+</p>
+</blockquote></li>
+<li><strong>--find </strong>
+<p>
+<blockquote>
+same as info, but finddir is not implemented
+</p>
+</blockquote></li>
+<li><strong>--infodir &lt;dir&gt;or@&lt;id&gt; </strong>
+<p>
+<blockquote>
+Info about file in dir &lt;places&gt; in database
+</p>
+</blockquote></li>
+<li><strong>--remove &lt;dir&gt;or&lt;path&gt; </strong>
+<p>
+<blockquote>
+remove entrie or a complete path(include entries/subdirs) from DB<br />
+you must confirmed (Y/N) (or use --yes)
+</p>
+</blockquote></li>
+<li><strong>--finddupes &lt;dir&gt; </strong>
+<p>
+<blockquote>
+find dupes beginn at &lt;dir&gt; or start in base. This can take a while
+</p>
+</blockquote></li>
+<li><strong>-t --testdb [OPTIONS] </strong>
+<p>
+<blockquote>
+<em>OPTIONS</em> are [r],count,[size],[path], where…<br />
+<em>[r]</em>    optional will activate the random Mode *<br />
+<em>count</em>  of Files that will checked<br />
+<em>[size]</em> optional size that will never reached. You can use 10TB
+or 500k<br />
+<em>[path]</em> optional, if not set then start check from BASE<br />
+<ul>
+<li>if no random activated, then oldest (from lastchk) will checked
+</p></li>
+</ul>
+</blockquote></li>
+<li><strong>-e --emergency [OPTIONS] </strong>
+<p>
+<blockquote>
+PANIC,ABORT=&lt;errorlevel&gt;,SKIP,COUNT=&lt;num&gt;,UPDATE,UPDATEALL
+<strong>overwrite: <a
+href="#RC-EMERGENCY">RCemergency</a></strong><br />
+<em>PANIC</em>        : Abort all, use Errorlevel 99 to exit<br />
+<em>ABORT</em>[=&lt;el&gt;] : Abort with Errorlevel 1, if
+&lt;el&gt;(2-98) is set, then el is use<br />
+<em>SKIP</em>         : Skip this to COUNT, then abort<br />
+<em>COUNT</em>=&lt;num&gt;  : Skip not forever, only for this
+&lt;num&gt;<br />
+<em>UPDATE</em>       : Update lastchk and chkcount in DB<br />
+<em>UPDATEALL</em>    : Update size,fmtime,crc32 as found too
+</p>
+</blockquote></li>
+<li><strong>--wbs &lt;size&gt; </strong>
+<p>
+<blockquote>
+Warning big size Files default is 16GB <strong>overwrite: <a
+href="#RC-WBS">RCwarnbigsize</a></strong>
+</p>
+</blockquote></li>
+</ul>
+<h1 id="environment">ENVIRONMENT</h1>
+<p>siehe Anschnitt: <strong><a
+href="#hsguard.rc">hsguard.rc</a></strong></p>
+<p><a name="hsguard.rc"></a></p>
+<h1 id="etchsguard.rc">/etc/hsguard.rc</h1>
+<p><a name="RC-DATABASE"></a></p>
+<h2 id="database">DATABASE=</h2>
+<p>Die Datenbank selbst. Diese kann sinnvoll unter /var sein. Zusammen
+mit –initDB kann diese als Grundkonfig erstellt werden. Dafür muss diese
+Lese-/Schreibrechte haben.</p>
+<p><em>--db überschreibt die im RC-File angegebene Datei</em></p>
+<p><a name="RC-BASE"></a></p>
+<h2 id="base">BASE=</h2>
+<p>BASIS alles was angegeben wird. Ab wo soll die Datenbank erstellt
+werden. Diese Zeile sollte unbedingt angepasst werden. ZB. kann der Pfad
+zu den schützendwerten Daten /server/pictures oder ähnlichem.</p>
+<p><em>-b <path> überschreibt das</em></p>
+<p><a name="RC-VERBOSE"></a></p>
+<h2 id="verbose">VERBOSE=</h2>
+<p>stellt den Loglevel dar. Je höher der Level je mehr Informationen zu
+den erledigten Aufgaben findet man im Logfile bzw. auf dem Bildschirm.
+Feiner getunt über den Spezialswitch <em>–noscreen</em></p>
+<p>Verboselevel wird von 0-4 oder besser unterstützt:</p>
+<ul>
+<li><code>ROOT  0 :</code> Nur Systemfehler</li>
+<li><code>FAIL  1 :</code> Nur Nachrichten, die Fehler beinhalten</li>
+<li><code>USER  2 :</code> Standardeinstellung Es werden Informationen
+zu Start und Ende einer jeden Aktion ausgegeben</li>
+<li><code>INFO  3 :</code> Das können sehr viele Nachrichten sein</li>
+<li><code>DEVL  4 :</code> Das sollte man sich besser nicht ansehen,
+diese sind nur für Entwickler gedacht</li>
+</ul>
+<p><a name="RC-EXCLUDE"></a></p>
+<h2 id="exclude">EXCLUDE=</h2>
+<p>Es gibt Ordner die muessen nicht durchsucht werden, zB. TempOrdner
+oder der Ordner dieser Datenbank. Die Dateien/Verzeichnisse werden
+zeilenweise notiert, die mit ‘?’ und ’*’ auch Mehrfachausshluß zulassen.
+Ein ‘#’ am Zeilenanfang ist eine Kommentarzeile. Mehr zu diesem Thema
+<strong>unter: <a href="#EXCLUDEFILE">Exclude-File</a></strong>”,</p>
+<p><a name="RC-NOSCREEN"></a></p>
+<h2 id="noscreen">NOSCREEN=</h2>
+<p>kann N/Y sein. Bei Y werden fast alle Ausgaben nur im Logfile
+vermerkt und nicht mehr auf dem Bildschirm ausgeben. Meldungen stehen
+nur im Logfile zur Verfügung. -s- auf der Kommandozeile kann dieses
+Verhalten abschalten. Auch wenn NOSCREEN=Y angegeben wurde. Es wird
+empfohlen diese Zeile zum Einrichten auszukommentieren.</p>
+<p><a name="RC-EMERGENCY"></a></p>
+<h2 id="emergency">EMERGENCY=</h2>
+<p>Hiermit wird festgelegt, wie –testDB bei Fehlern verfahren soll.
+Incl. deren Wiederhohlung. Ausdrücklich wird die Option PANIC
+empfohlen.</p>
+<ul>
+<li><code>PANIC     :</code> sofortiger Abbruch. Programmende mit
+Errorlevel 99</li>
+<li><code>COUNT=    :</code> Es wird die angegebene Zahl von Fehlern
+gezählt. Bei 0 STOP</li>
+<li><code>SKIP      :</code> Es wird geprüft, aber das bleibt ohne
+weitere Aktion</li>
+<li><code>ABORT     :</code> Es wird mit Errorlevel 1 “normal” beendet.
+CONUT!</li>
+<li><code>UPDATE    :</code> Auch im Fehlerfall wird das lastchk Datum
+neu gesetzt</li>
+<li><code>UPDATEALL :</code> Wie Oben, nur die neue Size,CRC,FMTime
+werden geupdatet</li>
+</ul>
+<p><em>-e oder –emergency können diese Einstellung überschreiben
+werden</em></p>
+<p><a name="RC-ANSICOLOR"></a></p>
+<h2 id="ansicolor">ANSICOLOR=</h2>
+<p>Viele Ausgaben werden, zur besseren Unterscheidung, farblich
+unterschiedlich gekennzeichnet. Y/N kann die Ausgabe von AnsiColors
+ausschalten. Bei Y können die Farben auch noch variiert werden. Diese
+können in der Sample-Datei angesehen werden.</p>
+<p><a name="RC-EXADD"></a></p>
+<h2 id="exadd">EXADD=</h2>
+<p>Hiermit kann eine Datei oder auch ein Verzeichnis ignoriert werden.
+Wesentlich besser geht es mit <a href="#RC-EXCLUDE">RCexclude</a>.</p>
+<p><a name="RC-WBS"></a></p>
+<h2 id="warnwbs">WARNWBS</h2>
+<p>Dieser Parameter bewirkt das eine “Warnung” ausgegeben wird, wenn ein
+“großes File” erkannt wird. Das kann sinnvoll sein, wenn die zu
+prüfenden Dateien nicht die schnellste Verbindung haben. Damit der
+Cursor, nicht wie eingefroren, auf der Stelle anzeigefrei blinkt kann
+hier eine Dateigröße einstellt werden. Die Warnung wird auf Userlevel
+ausgegeben. Die Angabe erfolgt Humanlike wie 1TB oder 10MB. Auf 0 setzen
+um dieses Verhalten auszuschalten. Defaultwert ist 16GB.</p>
+<p><a name="RC-FORWARD"></a></p>
+<h2 id="forward">FORWARD</h2>
+<p>Einmalig kann hier auf eine andere Config verweisen. Das bietet sich
+an, wenn man andere Config (z.B.im Netzwerk) verweisen kann. Als Feature
+ist ganz klar, dass auch die Section direkt mit angegeben werden kann.
+Das kann dann so aussehen:</p>
+<pre><code>FORWARD=/srv/pub/backup.rc,std</code></pre>
+<p><a name="EXCLUDEFILE"></a></p>
+<h3 id="exclude-dateien">Exclude Dateien</h3>
+<p>Es gibt viele gute Gründe einige Dateien oder ganze
+Verzeichnis(bäume) auszuschliessen. Das kann ganz rudimentär mit nur
+einer Datei in der ExcludeDatei passieren. Ein Kommentar beginnt mit
+einem ‘#’. Alles folgende ist ein Kommentar.</p>
+<p>Mehrere Dateien können jeweils einzeln aufgenommen werden oder über
+das eingebaute Fileglobbing eingefangen werden. Das Dateien die schon
+ein ‘ls’ einfangen würde, wie ’ls /var/log/*.log’.</p>
+<p>Darüber hinnaus gibt es einige Schlüsselwörter, die etwas
+ausschliessen, wenn eine bestimmte Situation zutrifft. z.B.:</p>
+<pre><code>ifhost WKST-Conny /etc/pconly.rc</code></pre>
+<p>Mit jeder neuen Zeile ist die Situation neu zu bewerten. Dh. keine
+Mehrzeiler. Dafür können die ‘Situationbewertungen’ beliebig tief
+verschachtelt sein. Folgendes kann so verwendet werden:</p>
+<pre><code>ifhost WKST-Conny ifuser werner message &quot;Mach nix kaputt auf Connys PC&quot;</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: right;">token</th>
+<th style="text-align: left;">Beschreibung</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">ifhost X</td>
+<td style="text-align: left;">Wenn der aktuelle PC X ist</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">ifnhost X</td>
+<td style="text-align: left;">Wenn der aktuelle PC nicht X ist</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">ifuser X</td>
+<td style="text-align: left;">Wenn der aktuelle Benutzer X ist</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">ifnuser X</td>
+<td style="text-align: left;">Wenn der aktuelle Benutzer nicht X
+ist</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">ifbase X</td>
+<td style="text-align: left;">BASE=X (-b=X)</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">ifnbase X</td>
+<td style="text-align: left;">wenn BASE nicht zutrifft</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">include X</td>
+<td style="text-align: left;">X includen. Datei X an dieser Stelle
+einlesen</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">message X</td>
+<td style="text-align: left;">Diese Nachricht ausgeben</td>
+</tr>
+</tbody>
+</table>
+<h1 id="authors">AUTHORS</h1>
+<p>Heiko Stoevesandt - alias Hesti - <a
+href="mailto:hstools@t-online.de"
+class="email">hstools@t-online.de</a></p>
+<h1 id="fehler">FEHLER</h1>
+<p>Fehler (auch in dieser Manpage) unbedingt bitte melden</p>
 </body>
 </html>

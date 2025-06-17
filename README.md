@@ -3,71 +3,67 @@ title: hsguard
 section: 8
 header: hsguard - coded by Hesti
 footer: hsguard 2.24.59 Beta
-date: 16.06.2025
+date: 17.06.2025
 ---
 
 ### NAME
-__hsguard__ - Programm um Aenderungen im Dateisystem festzustellen
+__hsguard__ - Program to detect changes in the file system
 
 ### SYNOPSIS
 
 [🇩🇪 german translation 🇩🇪](README-de.md)
 
-About
+hsguard creates a database from the configurable directories. Each file
+is checked individually and a CRC checksum (OLDSTYLE) is generated. Once
+the hard drive is included in the database every file can be checked for
+(unwanted) changes.
 
-hsguard stellt aus den konfigurierbaren Verzeichnisse eine Datenbank
-zusammen. Dabei wird jede Datei für sich geprüft und eine CRC-Prüfsumme
-(OLDSTYLE) erstellt. Ist die Festplatte erst einmal in der Datenbank,
-dann kann jede Datei auf (nicht gewollte) Änderungen geprüft werden.
+This is precisely the purpose of hsguard. Hard drives (HDDs) age and if
+data is not read the drive may “forget” a bit.
 
-Genau das ist der Zweck von hsguard. Festplatten (HDD) altern und wenn
-Daten nicht gelesen werden, dann ‘vergisst’ die Festplatte mal ein Bit.
+I have HDDs running around the clock as backup systems, local file
+sharing, etc. I want to keep the data on these drives for many years.
 
-Bei mir laufen HDD’s rund um die Uhr als Backupsystem, lokales
-Filesharing etc.. Daten auf diesen Platten möchte ich auch nach vielen
-Jahren behalten.
+Additionally, this makes it possible to detect if malware is in the
+process of encrypting all your data.
 
-Zusätzlich kann so erkannt werden, ob eine Malware gerade dabei ist
-sämtliche Daten zu verschlüsseln.
+This is where “hsguard” comes in. hsguard stores all important
+information about a file. A file that has been changed is normally
+updated in the database. A CRC32 is calculated for each file. The
+checksum is saved per file and can be checked against.
 
-Hier greift “hsguard”. hsguard speichert alle wichtigen Informationen zu
-einer Datei. Eine Datei die geändert wurde, wird in der Datenbank normal
-geupdatet. Über jede Datei wird eine CRC32 gebildet. Die Prüfsumme wird
-pro Datei gespeichert und kann gegengeprüft werden.
+Position, name, file size, file modification date, and the CRC32 are
+stored. Check counters and the date of inclusion can also be retrieved
+from the database.
 
-Es wird Position, Name, FileSize, FileModifDate und die CRC32
-gespeichert. Prüfcounter und Aufnahmedatum können aus der Datenbank
-ebenfalls abgerufen werden.
+In a cron job, hsguard [–update] –check can be called, where different
+files can then be checked. These are selected at random. An update adds
+new or changed files beforehand.
 
-Im CronJob kann hsguard [–update] –check aufgerufen werden, wo
-verschiedene Dateien dann gegengeprüft werden können. Diese werden im
-Zufallsprinzip ausgewählt. Ein Update nimmt neue oder geänderte Dateien
-vorher auf.
+With many options, the data can be listed and verified. Thus, in case of
+an incident, the database will be a helpful supplement.
 
-Mit vielen Möglichkeiten können die Daten aufgelistet und verifiziert
-werden. So wird im Fall des Falles die Datenbank eine hilfreiche
-Ergänzung sein.
+IMPORTANT! hsguard will not modify the contents of any hard drive. It
+will not delete or add any files. The only exception is the database
+itself. “hsguard –create” will, once, create a hsguard.rc. This file
+will not be overwritten. However, all parameters can also be specified
+on the command line.
 
-WICHTIG! hsguard wird keine Festplatteninhalte ändern. Keine Datei
-löschen oder hinzufügen. Die einzige Ausnahme ist die Datenbank selsbt.
-“hsguard –create” wird einmalig eine hsguard.rc anlegen. Diese Datei
-wird nicht überschrieben. Alle Parameter können aber auch auf der
-Kommandozeile angegeben werden.
+hsguard only requires read access to the data.
 
-hsguard benötigt lediglich Leserechte für die Daten.
+hsguard can be configured in many ways: config file, exclude file, and
+command-line switches.
 
-hsguard kann auf vielfältig configuriert werden. Configdatei,
-Excludedatei und Kommandozeilenswitch.
-
-Wird hsguard das erste Mal gestartet, dann wird die Datei
-/etc/hsguard.rc fehlend bemängelt. Mit “hsguard –create” kann eine erste
-Version mitsamt einen Unterverzeichnis /var/hsguard erstellt werden. Ein
-Beispiel kann in der Datei hsguard_sample.rc nachgeschlagen werden.
+If hsguard is started for the first time, it will complain that the file
+/etc/hsguard.rc is missing. With “hsguard –create”, an initial version
+can be created, along with a subdirectory /var/hsguard. An example can
+be found in the file hsguard_sample.rc.
 
 ### DESCRIPTION
-hsguard liest das Dateisystem ein und speichert rudimentäre Daten.
-Sofern nicht vorhanden/geändert(fsize/mtime) wird eine CRC32 der Datei
-gebildet. Diese wird gegengeprüft und ggf. Alarm geschlagen.
+hsguard reads the file system and stores basic data.
+If a file is not present or has changed (fsize/mtime), a CRC32 checksum is
+generated for the file. This checksum is checked and an alert is triggered
+if necessary.
 
 ### OPTIONS
 
@@ -126,7 +122,7 @@ gebildet. Diese wird gegengeprüft und ggf. Alarm geschlagen.
  - __\-\-wbs \<size\>__             <p>Warning big size Files default is 16GB __overwrite: [RCwarnbigsize](#RC-WBS)__</p>
 
 ### ENVIRONMENT
-siehe Anschnitt: __[hsguard.rc](#hsguard.rc)__
+see section: __[hsguard.rc](#hsguard.rc)__
 
 <a name="hsguard.rc"></a>
 
@@ -134,139 +130,144 @@ siehe Anschnitt: __[hsguard.rc](#hsguard.rc)__
 <a name="RC-DATABASE"></a>
 
 #### DATABASE=
-Die Datenbank selbst. Diese kann sinnvoll unter /var sein. Zusammen mit --initDB
-kann diese als Grundkonfig erstellt werden. Dafür muss diese Lese-/Schreibrechte haben.
-| \-\-db überschreibt die im RC-File angegebene Datei
+The database itself. This can usefully be located under /var. Together with --initDB,
+this can be created as a basic configuration. For this, it must have read/write
+permissions.
+_\-\-db overrides the file specified in the RC file_
 
 <a name="RC-BASE"></a>
 
 #### BASE=
-BASIS alles was angegeben wird. Ab wo soll die Datenbank erstellt werden. Diese Zeile sollte
-unbedingt angepasst werden. ZB. kann der Pfad zu den schützendwerten
-Daten /server/pictures oder ähnlichem.
--b <path> überschreibt das
+BASE for everything specified. Where should the database be created from? This line
+should definitely be adjusted. For example, the path to the data to be protected
+could be /server/pictures or similar.
+_\-b <path> overrides this_
 
 <a name="RC-VERBOSE"></a>
 
 #### VERBOSE=
-stellt den Loglevel dar. Je höher der Level je mehr Informationen zu den erledigten Aufgaben
-findet man im Logfile bzw. auf dem Bildschirm. Feiner getunt über den Spezialswitch --noscreen
-Verboselevel wird von 0-4 oder besser unterstützt:
+Represents the log level. The higher the level, the more information about the tasks
+performed can be found in the log file or on the screen. More finely tuned via the
+special switch _--noscreen_ .
 
- - `ROOT  0 :` Nur Systemfehler
- - `FAIL  1 :` Nur Nachrichten, die Fehler beinhalten
- - `USER  2 :` Standardeinstellung Es werden Informationen zu Start und Ende einer jeden Aktion ausgegeben
- - `INFO  3 :` Das können sehr viele Nachrichten sein
- - `DEVL  4 :` Das sollte man sich besser nicht ansehen, diese sind nur für Entwickler gedacht
+Verbosity levels are supported from 0-4 or better:
+
+ - `ROOT  0 :` Only system errors
+ - `FAIL  1 :` Only messages that include errors
+ - `USER  2 :` Default setting. Information about the start and end of each action is output
+ - `INFO  3 :` This can be a lot of messages
+ - `DEVL  4 :` Better not to look at this—intended only for developers
 
 <a name="RC-EXCLUDE"></a>
 
 #### EXCLUDE=
-Es gibt Ordner die muessen nicht durchsucht werden, zB. TempOrdner oder der Ordner dieser Datenbank.
-Die Dateien/Verzeichnisse werden zeilenweise notiert, die mit '?' und '*' auch Mehrfachausshluß zulassen.
-Ein '#' am Zeilenanfang ist eine Kommentarzeile. Mehr zu diesem Thema __unter: [Exclude-File](#EXCLUDEFILE)__",
+There are folders that do not need to be searched, e.g., temp folders or the folder
+of this database. The files/directories are listed line by line, and with '?'
+and '*' you can exclude multiple items. A '#' at the beginning of a line is a
+comment. More on this topic __under: [Exclude-File](#EXCLUDEFILE)__
 
 <a name="RC-NOSCREEN"></a>
 
 #### NOSCREEN=
-kann N/Y sein. Bei Y werden fast alle Ausgaben nur im Logfile vermerkt und nicht mehr auf dem
-Bildschirm ausgeben. Meldungen stehen nur im Logfile zur Verfügung. -s- auf der Kommandozeile kann dieses
-Verhalten abschalten. Auch wenn NOSCREEN=Y angegeben wurde. Es wird empfohlen diese Zeile zum Einrichten
-auszukommentieren.
+Can be Y/N. If Y, almost all output is only written to the log file and no longer
+displayed on the screen. Messages are only available in the log file. -s- on the
+command line can disable this behavior, even if NOSCREEN=Y is specified. It is
+recommended to comment out this line when setting up.
 
 <a name="RC-EMERGENCY"></a>
 
 #### EMERGENCY=
-Hiermit wird festgelegt, wie --testDB bei Fehlern verfahren soll. Incl. deren Wiederhohlung.
-Ausdrücklich wird die Option PANIC empfohlen.
+Here you specify how --testDB should handle errors, including their repetition.
+The PANIC option is expressly recommended.
 
- - `PANIC     :` sofortiger Abbruch. Programmende mit Errorlevel 99
- - `COUNT=    :` Es wird die angegebene Zahl von Fehlern gezählt. Bei 0 STOP
- - `SKIP      :` Es wird geprüft, aber das bleibt ohne weitere Aktion
- - `ABORT     :` Es wird mit Errorlevel 1 "normal" beendet. CONUT!
- - `UPDATE    :` Auch im Fehlerfall wird das lastchk Datum neu gesetzt
- - `UPDATEALL :` Wie Oben, nur die neue Size,CRC,FMTime werden geupdatet
+ - `PANIC     :` Immediate abort. Program ends with error level 99
+ - `COUNT=    :` The specified number of errors is counted. STOP at 0
+ - `SKIP      :` Checked, but no further action is taken
+ - `ABORT     :` Ends "normally" with error level 1. COUNT!
+ - `UPDATE    :` Even in case of errors, the lastchk date is updated
+ - `UPDATEALL :` As above, but also updates new size, CRC, FMTime
 
--e oder --emergency können diese Einstellung überschreiben werden
+_-e or --emergency can override these settings_
 
 <a name="RC-ANSICOLOR"></a>
 
 #### ANSICOLOR=
-Viele Ausgaben werden, zur besseren Unterscheidung, farblich unterschiedlich gekennzeichnet.
-Y/N kann die Ausgabe von AnsiColors ausschalten. Bei Y können die Farben auch noch variiert werden.
-Diese können in der Sample-Datei angesehen werden.
+Many outputs are color-coded for better distinction.
+Y/N can disable the output of ANSI colors. If Y, colors can also be varied further.
+These can be viewed in the sample file.
 
 <a name="RC-EXADD"></a>
 
 #### EXADD=
 
-Hiermit kann eine Datei oder auch ein Verzeichnis ignoriert werden. Wesentlich besser geht es mit
-[RCexclude](#RC-EXCLUDE).
+Here you can ignore a file or even a directory. It’s much better to
+use [RCexclude](#RC-EXCLUDE).
 
 <a name="RC-WBS"></a>
 
 #### WARNWBS
 
-Dieser Parameter bewirkt das eine "Warnung" ausgegeben wird, wenn ein "großes File" erkannt
-wird. Das kann sinnvoll sein, wenn die zu prüfenden Dateien nicht die schnellste Verbindung
-haben. Damit der Cursor, nicht wie eingefroren, auf der Stelle anzeigefrei blinkt kann hier
-eine Dateigröße einstellt werden. Die Warnung wird auf Userlevel ausgegeben. Die Angabe
-erfolgt Humanlike wie 1TB oder 10MB. Auf 0 setzen um dieses Verhalten auszuschalten.
-Defaultwert ist 16GB.
+This parameter triggers a "warning" when a "large file" is detected.
+This can be useful if the files to be checked are not connected via the fastest
+connection. To prevent the cursor from appearing frozen while waiting, a file size
+can be set here. The warning is issued at user level. Specify in human-readable
+format like 1TB or 10MB. Set to 0 to disable this behavior.
+
+Default value is 16GB.
 
 <a name="RC-FORWARD"></a>
 
 #### FORWARD
 
-Einmalig kann hier auf eine andere Config verweisen. Das bietet sich an, wenn man andere
-Config (z.B.im Netzwerk) verweisen kann. Als Feature ist ganz klar, dass auch die Section
-direkt mit angegeben werden kann. Das kann dann so aussehen:
+This can be used once to refer to another config. This is useful if you can refer
+to other configs (e.g., on the network). As a feature, the section can be specified
+directly. This might look like:
+
 ```
 FORWARD=/srv/pub/backup.rc,std
 ```
 
 <a name="EXCLUDEFILE"></a>
 
-##### Exclude Dateien
+##### Exclude Files
 
-Es gibt viele gute Gründe einige Dateien oder ganze Verzeichnis(bäume) auszuschliessen. Das
-kann ganz rudimentär mit nur einer Datei in der ExcludeDatei passieren. Ein Kommentar
-beginnt mit einem '#'. Alles folgende ist ein Kommentar.
+There are many good reasons to exclude certain files or entire directory trees. This
+can be done very simply with a single file in the exclude file. A comment begins
+with a '#'. Everything following is a comment.
 
-Mehrere Dateien können jeweils einzeln aufgenommen werden oder über das eingebaute
-Fileglobbing eingefangen werden. Das Dateien die schon ein 'ls' einfangen würde, wie
-'ls /var/log/*.log'.
+Multiple files can each be added individually or captured using the built-in file
+globbing. This works for files that 'ls' would find, like 'ls /var/log/*.log'.
 
-Darüber hinnaus gibt es einige Schlüsselwörter, die etwas ausschliessen, wenn eine bestimmte
-Situation zutrifft. z.B.:
+Additionally, there are some keywords that exclude something if a certain situation
+applies. For example:
 
 ```
 ifhost WKST-Conny /etc/pconly.rc
 ```
 
-Mit jeder neuen Zeile ist die Situation neu zu bewerten. Dh. keine Mehrzeiler.
-Dafür können die 'Situationbewertungen' beliebig tief verschachtelt sein.
-Folgendes kann so verwendet werden:
+With each new line, the situation is re-evaluated. That is, no multi-line blocks.
+However, the 'situation evaluations' can be nested arbitrarily deep.
+The following can be used in this way:
 
 ```
-ifhost WKST-Conny ifuser werner message "Mach nix kaputt auf Connys PC"
+ifhost WKST-Conny ifuser werner message "Don't break anything on Conny's PC"
 ```
 
-token     | Beschreibung
+token     | Description
 ---------:|:-----------------
-ifhost X  | Wenn der aktuelle PC X ist
-ifnhost X | Wenn der aktuelle PC nicht X ist
-ifuser X  | Wenn der aktuelle Benutzer X ist
-ifnuser X | Wenn der aktuelle Benutzer nicht X ist
+ifhost X  | If the current PC is X
+ifnhost X | If the current PC is not X
+ifuser X  | If the current user is X
+ifnuser X | If the current user is not X
 ifbase X  | BASE=X (-b=X)
-ifnbase X | wenn BASE nicht zutrifft
-include X | X includen. Datei X an dieser Stelle einlesen
-message X | Diese Nachricht ausgeben
+ifnbase X | if BASE does not apply
+include X | Include X. Read file X at this point
+message X | Output this message
 
 
 ### AUTHORS
 Heiko Stoevesandt - alias Hesti - <hstools@t-online.de>
 
-### FEHLER
-Fehler (auch in dieser Manpage) unbedingt bitte melden
+### BUGS
+Please report bugs (including in this manpage)
 

@@ -17,20 +17,54 @@
 
 ----- ??????????  ---------------------------------------------------------------------------------
 
-![Build Status](https://github.com/gnunn1/tilix/workflows/Build%20Test/badge.svg)
-[![Translation status](https://hosted.weblate.org/widgets/tilix/-/svg-badge.svg)](https://hosted.weblate.org/engage/tilix/?utm_source=widget)
-###### Screenshot
-![Screenshot](https://gnunn1.github.io/tilix-web/assets/images/gallery/tilix-screenshot-1.png)
-
-#-[ README-de.md ]---------------------------------------------------------------------------------
-
-Deutsche Doku
-
-#-[ README.md ]------------------------------------------------------------------------------------
+#-[ README.md ]---------------------------------------------------------------------------------
 
 $LINK:🇩🇪 german translation 🇩🇪:README-de.md:hsguard-de.html:null
 
-#### About
+hsguard creates a database from the configurable directories. Each file is checked
+individually and a CRC checksum (OLDSTYLE) is generated. Once the hard drive is included
+in the database every file can be checked for (unwanted) changes.
+
+This is precisely the purpose of hsguard. Hard drives (HDDs) age and if data is not read
+the drive may "forget" a bit.
+
+I have HDDs running around the clock as backup systems, local file sharing, etc. I want
+to keep the data on these drives for many years.
+
+Additionally, this makes it possible to detect if malware is in the process of encrypting
+all your data.
+
+This is where "hsguard" comes in. hsguard stores all important information about a file.
+A file that has been changed is normally updated in the database. A CRC32 is calculated
+for each file. The checksum is saved per file and can be checked against.
+
+Position, name, file size, file modification date, and the CRC32 are stored. Check
+counters and the date of inclusion can also be retrieved from the database.
+
+In a cron job, hsguard [--update] --check can be called, where different files can then
+be checked. These are selected at random. An update adds new or changed files beforehand.
+
+With many options, the data can be listed and verified. Thus, in case of an incident,
+the database will be a helpful supplement.
+
+IMPORTANT! hsguard will not modify the contents of any hard drive. It will not delete
+or add any files. The only exception is the database itself. "hsguard --create" will,
+once, create a hsguard.rc. This file will not be overwritten. However, all parameters
+can also be specified on the command line.
+
+hsguard only requires read access to the data.
+
+hsguard can be configured in many ways: config file, exclude file, and
+command-line switches.
+
+If hsguard is started for the first time, it will complain that the
+file /etc/hsguard.rc is missing. With "hsguard --create", an initial version can be
+created, along with a subdirectory /var/hsguard. An example can be found in the
+file hsguard_sample.rc.
+
+#-[ README-de.md ]------------------------------------------------------------------------------------
+
+$LINK:🇬🇧 english version 🇬🇧:README.md:hsguard.html:null
 
 hsguard stellt aus den konfigurierbaren Verzeichnisse eine Datenbank zusammen. Dabei wird jede
 Datei für sich geprüft und eine CRC-Prüfsumme (OLDSTYLE) erstellt. Ist die Festplatte erst
@@ -74,7 +108,7 @@ Mit "hsguard --create" kann eine erste Version mitsamt einen Unterverzeichnis /v
 erstellt werden. Ein Beispiel kann in der Datei hsguard_sample.rc nachgeschlagen werden.
 
 
-#-[ hsguard-de.man ]----------------------------------------------------------------------------------
+#-[ hsguard.man ]----------------------------------------------------------------------------------
 ---
 title: hsguard
 section: 8
@@ -83,10 +117,174 @@ footer: hsguard $VERSION
 date: $DATE
 ---
 
-#NAME
-**hsguard** - ein deutsches Programm um Aenderungen im Dateisystem festzustellen
+# NAME
+**hsguard** - Program to detect changes in the file system
 
-#-[ hsguard.man ]----------------------------------------------------------------------------------
+# SYNOPSIS
+
+$README
+
+# DESCRIPTION
+hsguard reads the file system and stores basic data.
+If a file is not present or has changed (fsize/mtime), a CRC32 checksum is
+generated for the file. This checksum is checked and an alert is triggered
+if necessary.
+
+# OPTIONS
+
+$OPTIONS:g_helper.c:HELP
+
+# ENVIRONMENT
+see section: **[hsguard.rc](#hsguard.rc)**
+
+<a name="hsguard.rc"></a>
+
+# /etc/hsguard.rc
+<a name="RC-DATABASE"></a>
+
+## DATABASE=
+The database itself. This can usefully be located under /var. Together with --initDB,
+this can be created as a basic configuration. For this, it must have read/write
+permissions.
+_\-\-db overrides the file specified in the RC file_
+
+<a name="RC-BASE"></a>
+
+## BASE=
+BASE for everything specified. Where should the database be created from? This line
+should definitely be adjusted. For example, the path to the data to be protected
+could be /server/pictures or similar.
+_\-b <path> overrides this_
+
+<a name="RC-VERBOSE"></a>
+
+## VERBOSE=
+Represents the log level. The higher the level, the more information about the tasks
+performed can be found in the log file or on the screen. More finely tuned via the
+special switch _--noscreen_ .
+
+Verbosity levels are supported from 0-4 or better:
+
+ - `ROOT  0 :` Only system errors
+ - `FAIL  1 :` Only messages that include errors
+ - `USER  2 :` Default setting. Information about the start and end of each action is output
+ - `INFO  3 :` This can be a lot of messages
+ - `DEVL  4 :` Better not to look at this—intended only for developers
+
+<a name="RC-EXCLUDE"></a>
+
+## EXCLUDE=
+There are folders that do not need to be searched, e.g., temp folders or the folder
+of this database. The files/directories are listed line by line, and with '?'
+and '*' you can exclude multiple items. A '#' at the beginning of a line is a
+comment. More on this topic **under: [Exclude-File](#EXCLUDEFILE)**
+
+<a name="RC-NOSCREEN"></a>
+
+## NOSCREEN=
+Can be Y/N. If Y, almost all output is only written to the log file and no longer
+displayed on the screen. Messages are only available in the log file. -s- on the
+command line can disable this behavior, even if NOSCREEN=Y is specified. It is
+recommended to comment out this line when setting up.
+
+<a name="RC-EMERGENCY"></a>
+
+## EMERGENCY=
+Here you specify how --testDB should handle errors, including their repetition.
+The PANIC option is expressly recommended.
+
+ - `PANIC     :` Immediate abort. Program ends with error level 99
+ - `COUNT=    :` The specified number of errors is counted. STOP at 0
+ - `SKIP      :` Checked, but no further action is taken
+ - `ABORT     :` Ends "normally" with error level 1. COUNT!
+ - `UPDATE    :` Even in case of errors, the lastchk date is updated
+ - `UPDATEALL :` As above, but also updates new size, CRC, FMTime
+
+_-e or --emergency can override these settings_
+
+<a name="RC-ANSICOLOR"></a>
+
+## ANSICOLOR=
+Many outputs are color-coded for better distinction.
+Y/N can disable the output of ANSI colors. If Y, colors can also be varied further.
+These can be viewed in the sample file.
+
+<a name="RC-EXADD"></a>
+
+## EXADD=
+
+Here you can ignore a file or even a directory. It’s much better to
+use [RCexclude](#RC-EXCLUDE).
+
+<a name="RC-WBS"></a>
+
+## WARNWBS
+
+This parameter triggers a "warning" when a "large file" is detected.
+This can be useful if the files to be checked are not connected via the fastest
+connection. To prevent the cursor from appearing frozen while waiting, a file size
+can be set here. The warning is issued at user level. Specify in human-readable
+format like 1TB or 10MB. Set to 0 to disable this behavior.
+
+Default value is 16GB.
+
+<a name="RC-FORWARD"></a>
+
+## FORWARD
+
+This can be used once to refer to another config. This is useful if you can refer
+to other configs (e.g., on the network). As a feature, the section can be specified
+directly. This might look like:
+
+```
+FORWARD=/srv/pub/backup.rc,std
+```
+
+<a name="EXCLUDEFILE"></a>
+
+### Exclude Files
+
+There are many good reasons to exclude certain files or entire directory trees. This
+can be done very simply with a single file in the exclude file. A comment begins
+with a '#'. Everything following is a comment.
+
+Multiple files can each be added individually or captured using the built-in file
+globbing. This works for files that 'ls' would find, like 'ls /var/log/*.log'.
+
+Additionally, there are some keywords that exclude something if a certain situation
+applies. For example:
+
+```
+ifhost WKST-Conny /etc/pconly.rc
+```
+
+With each new line, the situation is re-evaluated. That is, no multi-line blocks.
+However, the 'situation evaluations' can be nested arbitrarily deep.
+The following can be used in this way:
+
+```
+ifhost WKST-Conny ifuser werner message "Don't break anything on Conny's PC"
+```
+
+token     | Description
+---------:|:-----------------
+ifhost X  | If the current PC is X
+ifnhost X | If the current PC is not X
+ifuser X  | If the current user is X
+ifnuser X | If the current user is not X
+ifbase X  | BASE=X (-b=X)
+ifnbase X | if BASE does not apply
+include X | Include X. Read file X at this point
+message X | Output this message
+
+
+# AUTHORS
+Heiko Stoevesandt - alias Hesti - <hstools@t-online.de>
+
+# BUGS
+Please report bugs (including in this manpage)
+
+#-[ hsguard-de.man ]----------------------------------------------------------------------------------
 ---
 title: hsguard
 section: 8
@@ -122,7 +320,8 @@ siehe Anschnitt: **[hsguard.rc](#hsguard.rc)**
 ## DATABASE=
 Die Datenbank selbst. Diese kann sinnvoll unter /var sein. Zusammen mit --initDB
 kann diese als Grundkonfig erstellt werden. Dafür muss diese Lese-/Schreibrechte haben.
-| \-\-db überschreibt die im RC-File angegebene Datei
+
+_\-\-db überschreibt die im RC-File angegebene Datei_
 
 <a name="RC-BASE"></a>
 
@@ -130,13 +329,15 @@ kann diese als Grundkonfig erstellt werden. Dafür muss diese Lese-/Schreibrecht
 BASIS alles was angegeben wird. Ab wo soll die Datenbank erstellt werden. Diese Zeile sollte
 unbedingt angepasst werden. ZB. kann der Pfad zu den schützendwerten
 Daten /server/pictures oder ähnlichem.
--b <path> überschreibt das
+
+_\-b <path> überschreibt das_
 
 <a name="RC-VERBOSE"></a>
 
 ## VERBOSE=
 stellt den Loglevel dar. Je höher der Level je mehr Informationen zu den erledigten Aufgaben
-findet man im Logfile bzw. auf dem Bildschirm. Feiner getunt über den Spezialswitch --noscreen
+findet man im Logfile bzw. auf dem Bildschirm. Feiner getunt über den Spezialswitch _--noscreen_
+
 Verboselevel wird von 0-4 oder besser unterstützt:
 
  - `ROOT  0 :` Nur Systemfehler
@@ -173,7 +374,7 @@ Ausdrücklich wird die Option PANIC empfohlen.
  - `UPDATE    :` Auch im Fehlerfall wird das lastchk Datum neu gesetzt
  - `UPDATEALL :` Wie Oben, nur die neue Size,CRC,FMTime werden geupdatet
 
--e oder --emergency können diese Einstellung überschreiben werden
+_-e oder --emergency können diese Einstellung überschreiben werden_
 
 <a name="RC-ANSICOLOR"></a>
 
@@ -306,6 +507,7 @@ COL_LOCFOUNDED=PURPLE
  ** 01.06.25 HS exludes werden in Listen nicht mehr als singlefile verarbeitet
  ** 08.06.25 HS Dokumentation überarbeitet
  ** 16.06.25 HS Dokumentation überarbeitet (Übersetzung vorgesehen)
+ ** 17.06.25 HS English <-> German
 
 #-[ ******************************************************************************************** */
 
