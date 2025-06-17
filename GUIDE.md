@@ -135,7 +135,7 @@ case i wish you 'good luck'. Hope only a concurrent access.
 
 <a name="DATABASE">Check Database</a>
 
-```sh
+```
 -l --list     print out database contens
    --listdir  print only dirs from database
               -r=deep can go deeper '-r' lists everything
@@ -196,7 +196,7 @@ our _BASE_ has been moved to /etc/systemd
 There a more than 2 Idea's to exclude some Files. Some Files may changed daily or else.
 But that should not be reason for this consideration. We will not have them in de Database.
 
-First we have a switch to execlude like:
+First we have a switch to exclude like:
 ```sh
 @>hsguard -u --exclude_add '*logind.conf'
 ```
@@ -245,6 +245,6 @@ ifhost WK-Reception message "Hope nobody here"
 ```
 You can find some info more [here in the Readme](README.md#EXCLUDEFILE)
 
-<a name="HESTI">I was here</a>
+<!-- a name="HESTI">I was here</a -->
 
 
