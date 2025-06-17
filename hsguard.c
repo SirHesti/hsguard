@@ -505,7 +505,7 @@ we're done.
 <a name="CONFIG">Configure hsguard</a>
 
 To run hsguard, a configuration is required. Simply let hsguard do this as follows:
-```
+```sh
 @>hsguard
 [DATE] /etc/hsguard.rc not exists ....
 @>sudo hsguard --create
@@ -514,10 +514,8 @@ Sure you want to create /etc/hsguard.rc (y/n) ? Y
 Create Dir in /var/hsguard (y/n) ? Y
 generated /etc/hsguard.rc
 ```
-
 Now see the config like:
-
-```
+```ini
 DATABASE=/var/hsguard/hsguard.db
 BASE=/
 #ROOT/FAIL/USER/INFO/DEVL
