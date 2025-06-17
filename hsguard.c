@@ -638,8 +638,8 @@ Beware the switch _-r_ . You list recursive all yourfile in __BASE__.
 Attentive observers will notice that the output is identical. The exception is
 that only the directories are listed.
 
-In other cases you need to find a file. You can enter with fileglobbing. Note
-that the shell does not evaluate the asterisk, etc. Use single quotes.
+In other cases you need to find a file. You can do it with fileglobbing. Note
+that the shell does not evaluate the '*', etc. Use single quotes.
 ```
 @>hsguard -i 'login*'
 ID       = 5
@@ -677,18 +677,17 @@ in the config you can an entry to create an exclude file. Remove the Comment-mar
 #If desired, an empty file can be created with --createexcl
 EXCLUDE=/var/hsguard/exclude.lst
 ```
-Now the file does not exists.
+Now the file exclude.lst does not exists.
 ```
 [DATE] exclude not found: /var/hsguard/exclude.lst; maybe using --createexcl
 ```
 Create an sample file.
-
 ```
 @>hsguard --createexcl
 Sure you want to create /var/hsguard/exclude.lst (y/n) ? Y
 please open with editor of your choice and view: /var/hsguard/exclude.lst
 ```
-Ther are god stuff to begin, but we need have the BASE to '/etc/systemd'. Remove
+Ther are good stuff to begin, but we need have the BASE to '/etc/systemd'. Remove
 all lines and write only:
 ```
 /etc/systemd/logind.conf
