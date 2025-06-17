@@ -19,7 +19,7 @@ remote: Enumerating objects: 193, done.
 @> cmake .
 ```
 
-Maybe an Error occured while __"SQLite3 not found"__ . sqlite3(dev) is missing. Then enter
+Maybe an Error occured like __"SQLite3 not found"__ . sqlite3(dev) is missing. In this case enter
 ```
 sudo apt install sqlite3 libsqlite3-dev
 password: ***********
@@ -47,7 +47,6 @@ we're done.
 <a name="CONFIG">Configure hsguard</a>
 
 To run hsguard, configuration is required. Simply let hsguard do this as follows:
-
 ```
 @>hsguard
 [DATE] /etc/hsguard.rc not exists ....
