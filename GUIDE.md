@@ -46,7 +46,7 @@ we're done.
 
 <a name="CONFIG">Configure hsguard</a>
 
-To run hsguard, configuration is required. Simply let hsguard do this as follows:
+To run hsguard, a configuration is required. Simply let hsguard do this as follows:
 ```
 @>hsguard
 [DATE] /etc/hsguard.rc not exists ....
@@ -76,7 +76,7 @@ That's all fine, but _BASE_ need your Attention. Enter here your Datapath. For a
 ```
 BASE=/usr/share/keyrings
 ```
-We need also a Datebase Just Run it:
+We need also a Datebase. Enter following:
 ```
 @>hsguard --initdb
 Sure you want to create /var/hsguard/hsguard.db (y/n) ? Y
@@ -85,14 +85,14 @@ Now run an update:
 ```
 @>hsguard -u
 ```
-This take a short time to see (real colored) what we have just type: 
+This take a short time to see (real colored) what we have just see: 
 ```
 @>hsguard -l
  8 1 debian-archive-bookworm-automatic.gpg            0x290e8fa0    8 KB 2023-03-18 15:53:41
  6 1 debian-archive-bookworm-security-automatic.gpg   0x320bd4fc    9 KB 2023-03-18 15:53:41
 [etc]
 ```
-Now see the [README](README.md)
+
 
 <a name="FORWARD">Forward your Config</a>
 
