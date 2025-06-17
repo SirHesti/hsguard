@@ -109,7 +109,7 @@ and now hsguard continue the config from here.
 <a name="DAILY">Daily Workshop</a>
 
 After all the hard work we need a script. Create a systemd-unit if you want. I can do
-this, but only a daily-call is need. Just use /etc/cron.daily (systemd overrides
+this, but only a daily-call is need. Just use /etc/cron.daily (systemd overwrites
 crontab anyway) and write a little script:
 ```
 #!/bin/sh
