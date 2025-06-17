@@ -459,7 +459,22 @@ Fehler (auch in dieser Manpage) unbedingt bitte melden
 
 #-[ GUIDE.md ]-------------------------------------------------------------------------------------
 
-Dies ist der Guide
+Contens/Verzeichnis
+
+1. [Build from Source](BUILD)
+1. Init
+1. daily
+
+<a name="BUILD">Build from Source</a>
+
+
+
+
+
+
+
+
+
 
 #-[ hsguard.rc ]-----------------------------------------------------------------------------------
 # hsguard has a buildin --create to create your *.rc file maybe you need sudo hsguard --initDB too
