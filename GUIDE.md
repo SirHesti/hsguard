@@ -111,7 +111,7 @@ and now hsguard continue the config from here.
 After all the hard work we need a script. Create a systemd-unit if you want. I can do
 this, but only a daily-call is need. Just use /etc/cron.daily (systemd sign over
 crontab anyway) and write a little script:
-```sh
+```
 #!/bin/sh
 LOGDIR=/srv/admin/log
 function diemsg(){

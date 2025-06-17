@@ -223,7 +223,7 @@ This can be used once to refer to another config. This is useful if you can refe
 to other configs (e.g., on the network). As a feature, the section can be specified
 directly. This might look like:
 
-```
+```sh
 FORWARD=/srv/pub/backup.rc,std
 ```
 
@@ -241,7 +241,7 @@ globbing. This works for files that 'ls' would find, like 'ls /var/log/*.log'.
 Additionally, there are some keywords that exclude something if a certain situation
 applies. For example:
 
-```
+```sh
 ifhost WKST-Conny /etc/pconly.rc
 ```
 
