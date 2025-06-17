@@ -479,13 +479,12 @@ remote: Enumerating objects: 193, done.
 @> cmake .
 ```
 
-Maybe an Error occured __"SQLite3 not found"__ if sqlite3(dev) missing. Then enter
+Maybe an Error occured while __"SQLite3 not found"__ . sqlite3(dev) is missing. Then enter
 ```
 sudo apt install sqlite3 libsqlite3-dev
 password: ***********
 ```
-to solve this problem". run "cmake ." again!
-
+to solve this problem. run "cmake ." again!
 
 ```
 @> make all
