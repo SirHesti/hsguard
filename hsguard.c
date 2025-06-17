@@ -465,6 +465,7 @@ Contens/Verzeichnis
 1. [Base Config](#CONFIG)
 1. [Forward a Config](#FORWARD)
 1. [After init some daily helps](#DAILY)
+1. [Check Database][#DATABASE]
 
 <a name="BUILD">Build from Source</a>
 
@@ -532,7 +533,7 @@ ANSICOLOR=Y
 COL_* can be delete. This is only necessary if you want to become an absolute pro.
 ```
 
-That all fine, but _BASE_ need your Attension. Enter your Datapath. For a Test use an exists path:
+That's all fine, but _BASE_ need your Attension. Enter your Datapath. For a Test use an exists path:
 ```
 BASE=/usr/share/keyrings
 ```
@@ -587,7 +588,7 @@ function diemsg(){
 hsguard -u
 rc=$?
 [ $rc -gt 0 ]  && diemsg 31 "Error[$rc] while hsguard update ${i}"
-hsguard --testdb r,10,10GB
+hsguard --testdb 10,10GB
 rc=$?
 if [ $rc -eq 0 ]; then
 	hsguard --testdb r,100,100GB
@@ -601,6 +602,7 @@ fi
 if you got a PANIC Error use the LOG to see what happens. In this case
 i wish you 'good luck'. Hope this a concurrent access.
 
+<a name="DATABASE">Check Database</a>
 
 
 
