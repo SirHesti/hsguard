@@ -457,6 +457,10 @@ Heiko Stoevesandt - alias Hesti - <hstools@t-online.de>
 # FEHLER
 Fehler (auch in dieser Manpage) unbedingt bitte melden
 
+#-[ GUIDE.md ]-------------------------------------------------------------------------------------
+
+Dies ist der Guide
+
 #-[ hsguard.rc ]-----------------------------------------------------------------------------------
 # hsguard has a buildin --create to create your *.rc file maybe you need sudo hsguard --initDB too
 DATABASE=/var/hsguard/hsguard.db
