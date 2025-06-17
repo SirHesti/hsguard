@@ -109,7 +109,7 @@ and now hsguard continue the config from here.
 <a name="DAILY">Daily Workshop</a>
 
 After all the hard work we need a script. Create a systemd-unit if you want. I can do
-this, but only a daily-call is need. Just use /etc/cron.daily (systemd overwrites
+this, but only a daily-call is need. Just use /etc/cron.daily (systemd sign over
 crontab anyway) and write a little script:
 ```
 #!/bin/sh
@@ -150,7 +150,7 @@ case i wish you 'good luck'. Hope only a concurrent access.
    --find     same as info, but finddir is not implemented
    --infodir  Info about file in dir <places> in database           
 ```
-Something can be listed with -l. You can, but don't have to, specify a directory.
+The standard option for listings is the -l option. You can, but don't have to, specify a directory.
 ```
 @>hsguard -l
     9     1 journald.conf        0x3532257f    1 KB 2022-08-07 15:25:09
@@ -168,7 +168,7 @@ Something can be listed with -l. You can, but don't have to, specify a directory
 ```
 Beware the switch _-r_ . You list recursive all yourfile in __BASE__.
 
-\-\-listdir list only dirs. This is the _places_ in the database.
+\-\-listdir wird nur Verzeichnisse aufzeigen. This is the _places_ in the database.
 ```
 @>hsguard --listdir
     2 /etc/systemd/network                               2025-06-17 12:48:27
@@ -178,7 +178,7 @@ Beware the switch _-r_ . You list recursive all yourfile in __BASE__.
 Attentive observers will notice that the output is identical. The exception is
 that only the directories are listed.
 
-In other cases you need to find a file. You can enter it with fileglobbing. Note
+In other cases you need to find a file. You can enter with fileglobbing. Note
 that the shell does not evaluate the asterisk, etc. Use single quotes.
 ```
 @>hsguard -i 'login*'
