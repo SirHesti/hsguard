@@ -527,22 +527,21 @@ EMERGENCY=PANIC
 ANSICOLOR=Y
 COL_* can be delete. This is only necessary if you want to become an absolute pro.
 ```
-
 That's all fine, but _BASE_ need your Attention. Enter here your Datapath. For a Test use an exists path:
-```
+```ini
 BASE=/usr/share/keyrings
 ```
 We need also a Database. Enter following:
-```
+```sh
 @>hsguard --initdb
 Sure you want to create /var/hsguard/hsguard.db (y/n) ? Y
 ```
 Now run an update:
-```
+```sh
 @>hsguard -u
 ```
 This take a short time to see (real is colored) what we have just see: 
-```
+```sh
 @>hsguard -l
  8 1 debian-archive-bookworm-automatic.gpg            0x290e8fa0    8 KB 2023-03-18 15:53:41
  6 1 debian-archive-bookworm-security-automatic.gpg   0x320bd4fc    9 KB 2023-03-18 15:53:41
@@ -557,7 +556,7 @@ can be overridden with switches. hsguard can use a completely different file tha
 in /etc with '--config <file>'. A "real" forward can be entered in /etc/hsguard.rc
 
 Just write in /etc/hsguard.rc:
-```
+```ini
 FORWARD=/srv/admin/configs/hsguard.rc
 ```
 and now hsguard continue the config from here.
@@ -567,7 +566,7 @@ and now hsguard continue the config from here.
 After all the hard work we need a script. Create a systemd-unit if you want. I can do
 this, but only a daily-call is need. Just use /etc/cron.daily (systemd sign over
 crontab anyway) and write a little script:
-```
+```sh
 #!/bin/sh
 LOGDIR=/srv/admin/log
 function diemsg(){
@@ -596,7 +595,7 @@ case i wish you 'good luck'. Hope only a concurrent access.
 
 <a name="DATABASE">Check Database</a>
 
-``` 
+```sh
 -l --list     print out database contens
    --listdir  print only dirs from database
               -r=deep can go deeper '-r' lists everything
@@ -607,7 +606,7 @@ case i wish you 'good luck'. Hope only a concurrent access.
    --infodir  Info about file in dir <places> in database           
 ```
 The standard option for listings is the -l option. You can, but don't have to, specify a directory.
-```
+```sh
 @>hsguard -l
     9     1 journald.conf        0x3532257f    1 KB 2022-08-07 15:25:09
     5     1 logind.conf          0x6c8caa63    1 KB 2022-08-07 15:25:09
@@ -625,7 +624,7 @@ The standard option for listings is the -l option. You can, but don't have to, s
 Beware the switch _-r_ . You list recursive all yourfile in __BASE__.
 
 \-\-listdir wird nur Verzeichnisse aufzeigen. This is the _places_ in the database.
-```
+```sh
 @>hsguard --listdir
     2 /etc/systemd/network                               2025-06-17 12:48:27
     3 /etc/systemd/system                                2025-06-17 12:48:27
@@ -636,7 +635,7 @@ that only the directories are listed.
 
 In other cases you need to find a file. You can do it with fileglobbing. Note
 that the shell does not evaluate the '*', etc. Use single quotes.
-```
+```sh
 @>hsguard -i 'login*'
 ID       = 5
 location = (1) /etc/systemd 2025-06-17 12:48:26
@@ -658,34 +657,34 @@ There a more than 2 Idea's to exclude some Files. Some Files may changed daily o
 But that should not be reason for this consideration. We will not have them in de Database.
 
 First we have a switch to execlude like:
-```
+```sh
 @>hsguard -u --exclude_add '*logind.conf'
 ```
 _/etc/systemd/logind.conf_ are excluded from update. just type
-```
+```sh
 @>hsguard -l
 ```
 to see the result. if you have many files this. However, if there are many files,
 things can quickly become confusing.
 
 in the config you can an entry to create an exclude file. Remove the Comment-mark.
-```
+```ini
 #If desired, an empty file can be created with --createexcl
 EXCLUDE=/var/hsguard/exclude.lst
 ```
 Now the file exclude.lst does not exists.
-```
+```sh
 [DATE] exclude not found: /var/hsguard/exclude.lst; maybe using --createexcl
 ```
 Create an sample file.
-```
+```sh
 @>hsguard --createexcl
 Sure you want to create /var/hsguard/exclude.lst (y/n) ? Y
 please open with editor of your choice and view: /var/hsguard/exclude.lst
 ```
 There are good stuff to begin, but we need have the BASE to '/etc/systemd'. Remove
 all lines and write only:
-```
+```sh
 /etc/systemd/logind.conf
 /etc/*logind.conf
 /etc/systemd/logind.*
@@ -701,7 +700,7 @@ example, 'ifhost dcyqx-wkst' will execute the next token. The next token can
 again be a condition or an exclude.
 
 A message can also be sent instead of the exclude.
-```
+```sh
 ifhost WK-Reception message "Hope nobody here"
 ```
 You can find some info more [here in the Readme](README.md#EXCLUDEFILE)
