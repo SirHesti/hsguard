@@ -4,7 +4,7 @@ Contens/Verzeichnis
 1. [Build from Source](#BUILD)
 1. [Base Config](#CONFIG)
 1. [Forward a Config](#FORWARD)
-1. [After init some daily helps](#DAILY)
+1. [After install/init Daily Workshop](#DAILY)
 1. [Check Database](#DATABASE)
 1. [Exclude some Files](#EXCLUDE)
 
@@ -76,7 +76,7 @@ That's all fine, but _BASE_ need your Attention. Enter here your Datapath. For a
 ```
 BASE=/usr/share/keyrings
 ```
-We need also a Datebase. Enter following:
+We need also a Database. Enter following:
 ```
 @>hsguard --initdb
 Sure you want to create /var/hsguard/hsguard.db (y/n) ? Y
@@ -92,13 +92,13 @@ This take a short time to see (real is colored) what we have just see:
  6 1 debian-archive-bookworm-security-automatic.gpg   0x320bd4fc    9 KB 2023-03-18 15:53:41
 [etc]
 ```
-The [README](README.md) has mor Information.
+The [README](README.md) has more Information.
 
 <a name="FORWARD">Forward your Config</a>
 
-In some cases, the configuration may have been saved somewhere else entirely. All options
+In some cases, the configuration need saved somewhere else. All options
 can be overridden with switches. hsguard can use a completely different file than the one
-in /etc with '--config <file>'. A "real" forward can be entered in /etc/hsguard.
+in /etc with '--config <file>'. A "real" forward can be entered in /etc/hsguard.rc
 
 Just write in /etc/hsguard.rc:
 ```
@@ -106,11 +106,11 @@ FORWARD=/srv/admin/configs/hsguard.rc
 ```
 and now hsguard continue the config from here.
 
-<a name="DAILY">After init some helps</a>
+<a name="DAILY">Daily Workshop</a>
 
-After all the hard work we need a script. Create a systemd-unit if you want. I am can do
-this, but only a daily-call is need. Just use /etc/cron.daily and write a little script like:
-
+After all the hard work we need a script. Create a systemd-unit if you want. I can do
+this, but only a daily-call is need. Just use /etc/cron.daily (systemd overrides
+crontab anyway) and write a little script:
 ```
 #!/bin/sh
 LOGDIR=/srv/admin/log
@@ -150,7 +150,7 @@ case i wish you 'good luck'. Hope only a concurrent access.
    --find     same as info, but finddir is not implemented
    --infodir  Info about file in dir <places> in database           
 ```
-Something can be listed with -l. You can specify a directory.
+Something can be listed with -l. You can, but don't have to, specify a directory.
 ```
 @>hsguard -l
     9     1 journald.conf        0x3532257f    1 KB 2022-08-07 15:25:09
