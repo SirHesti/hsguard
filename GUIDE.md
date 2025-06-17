@@ -227,18 +227,24 @@ Create an sample file.
 Sure you want to create /var/hsguard/exclude.lst (y/n) ? Y
 please open with editor of your choice and view: /var/hsguard/exclude.lst
 ```
-Ther are good stuff to begin, but we need have the BASE to '/etc/systemd'. Remove
+There are good stuff to begin, but we need have the BASE to '/etc/systemd'. Remove
 all lines and write only:
 ```
 /etc/systemd/logind.conf
 /etc/*logind.conf
 /etc/systemd/logind.*
 ```
-Its not all the same, but in this case every line excludes: _/etc/systemd/logind.conf_
+Its not all the same, but in this case every line excludes: _/etc/systemd/logind.conf_ .
 
 You can add excludes if [not] conditions true. So an 'ifhost dcyqx-wkst' will execute
 next token. if the token an file then that will excluded or next ifxxxx will checked.
 You can add a Message if you like.
+
+Exclusions can also be made dependent on certain conditions being met. For
+example, 'ifhost dcyqx-wkst' will execute the next token. The next token can
+again be a condition or an exclude.
+
+A message can also be sent instead of the exclude.
 ```
 ifhost WK-Reception message "Hope nobody here"
 ```
