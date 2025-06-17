@@ -6,6 +6,7 @@ Contens/Verzeichnis
 1. [Forward a Config](#FORWARD)
 1. [After init some daily helps](#DAILY)
 1. [Check Database][#DATABASE]
+1. [Exclude some Files][#EXCLUDE]
 
 <a name="BUILD">Build from Source</a>
 
@@ -23,7 +24,7 @@ Maybe an Error occured __"SQLite3 not found"__ if sqlite3(dev) missing. Then ent
 sudo apt install sqlite3 libsqlite3-dev
 password: ***********
 ```
-to solve this problem. run "cmake ." again!
+to solve this problem". run "cmake ." again!
 
 
 ```
@@ -144,5 +145,120 @@ i wish you 'good luck'. Hope this a concurrent access.
 
 <a name="DATABASE">Check Database</a>
 
+``` 
+-l --list     print out database contens
+   --listdir  print only dirs from database
+              -r=deep can go deeper '-r' lists everything
+-i --info     Info about file in path <entrie> in database
+              path like /name/too
+              path without starting '/' will find with '*' case intensive
+   --find     same as info, but finddir is not implemented
+   --infodir  Info about file in dir <places> in database           
+```
+
+Something can be listed with -l. You can specify a directory.
+
+```
+@>hsguard -l
+    9     1 journald.conf        0x3532257f    1 KB 2022-08-07 15:25:09
+    5     1 logind.conf          0x6c8caa63    1 KB 2022-08-07 15:25:09
+    4     1 networkd.conf        0xd7c3b869     609 2021-02-02 16:29:47
+    2     1 pstore.conf          0x138466ad     529 2021-02-02 16:29:47
+    6     1 resolved.conf        0x1c561f03     943 2022-08-07 15:25:09
+    8     1 sleep.conf           0x7b985243     790 2021-02-02 16:29:47
+    7     1 system.conf          0xb9fbab51    2 KB 2022-08-07 15:25:09
+    1     1 timesyncd.conf       0x26972bdc     695 2022-12-09 09:37:20
+    3     1 user.conf            0x52dff3f9    1 KB 2022-08-07 15:25:09
+    2 /etc/systemd/network                               2025-06-17 12:48:27
+    3 /etc/systemd/system                                2025-06-17 12:48:27
+   22 /etc/systemd/user                                  2025-06-17 12:48:30
+```
+
+Beware the switch _-r_ . You list noch recursive and this call all your data in
+this _dir_ or __BASE__.
+
+\-\-listdir will only dirs list. this is the _places_ in the database.
+
+
+```
+@>hsguard --listdir
+    2 /etc/systemd/network                               2025-06-17 12:48:27
+    3 /etc/systemd/system                                2025-06-17 12:48:27
+   22 /etc/systemd/user                                  2025-06-17 12:48:30
+```
+
+Attentive observers will notice that the output is identical. The exception is
+that only the directories are listed.
+
+In other cases you will find a file. You can enter it with fileglobbing. Note
+that the shell does not evaluate the asterisk, etc. Use single quotes.
+
+```
+@>hsguard -i 'login*'
+ID       = 5
+location = (1) /etc/systemd 2025-06-17 12:48:26
+fname    = logind.conf
+fsize    = 1145
+fmtime   = 2022-08-07 15:25:09
+crc32    = 0x6c8caa63
+chkcount = 1
+lastchk  = 2025-06-17 12:48:27
+founded  = 2025-06-17 12:48:27
+```
+
+This output is real full-colored. All Files will list only once.
+
+<a name="EXCLUDE">Exclude some Files</a>
+
+our _BASE_ has been moved to /etc/systemd
+
+There a more than 2 Idea's to exclude some Files. Some Files may changed daily or else.
+But that should not be reason for this consideration. We will not have them in de Database.
+
+First we have a switch to execlude like:
+```
+@>hsguard -u --exclude_add '*logind.conf'
+```
+_/etc/systemd/logind.conf_ are excluded from update. just type
+```
+@>hsguard -l
+```
+to see the result. if you have many files this. However, if there are many files,
+things can quickly become confusing.
+
+in the config you can an entry to create an exclude file. Remove the Comment-mark.
+```
+#If desired, an empty file can be created with --createexcl
+EXCLUDE=/var/hsguard/exclude.lst
+```
+Now the file does not exists.
+```
+[DATE] exclude not found: /var/hsguard/exclude.lst; maybe using --createexcl
+```
+Create an sample file.
+
+```
+@>hsguard --createexcl
+Sure you want to create /var/hsguard/exclude.lst (y/n) ? Y
+please open with editor of your choice and view: /var/hsguard/exclude.lst
+```
+Ther are god stuff to begin, but we need have the BASE to '/etc/systemd'. Remove
+all lines and write only:
+```
+/etc/systemd/logind.conf
+/etc/*logind.conf
+/etc/systemd/logind.*
+```
+Its not all the same, but in this case every line excludes: _/etc/systemd/logind.conf_
+
+You can add excludes if [not] conditions true. So an 'ifhost dcyqx-wkst' will execute
+next token. if the token an file then that will excluded or next ifxxxx will checked.
+You can add a Message if you like.
+```
+ifhost WK-Reception message "Hope nobody here"
+```
+You can find some info more [here in the Readme](README.md#EXCLUDEFILE)
+
+<a name="HESTI">I was here</a>
 
 
