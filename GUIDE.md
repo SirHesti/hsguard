@@ -85,14 +85,14 @@ Now run an update:
 ```
 @>hsguard -u
 ```
-This take a short time to see (real colored) what we have just see: 
+This take a short time to see (real is colored) what we have just see: 
 ```
 @>hsguard -l
  8 1 debian-archive-bookworm-automatic.gpg            0x290e8fa0    8 KB 2023-03-18 15:53:41
  6 1 debian-archive-bookworm-security-automatic.gpg   0x320bd4fc    9 KB 2023-03-18 15:53:41
 [etc]
 ```
-
+The [README](README.md) has mor Information.
 
 <a name="FORWARD">Forward your Config</a>
 
@@ -112,7 +112,7 @@ After all the hard work we need a script. Create a systemd-unit if you want. I a
 this, but only a daily-call is need. Just use /etc/cron.daily and write a little script like:
 
 ```
-#!/bin/(ba)sh
+#!/bin/sh
 LOGDIR=/srv/admin/log
 function diemsg(){
 	rc=$1
@@ -135,9 +135,8 @@ fi
 [ $rc -ge 99 ] && diemsg 99 "PANIC - Error [$rc] while hsguard testdb"
 [ $rc -gt 0 ]  && diemsg $rc "Error[$rc] while hsguard testdb"
 ```
-
 if you got a PANIC Error use the LOG-File to see what exactly happened. In this
-case i wish you 'good luck'. Hope this a concurrent access.
+case i wish you 'good luck'. Hope only a concurrent access.
 
 <a name="DATABASE">Check Database</a>
 
@@ -169,7 +168,7 @@ Something can be listed with -l. You can specify a directory.
 ```
 Beware the switch _-r_ . You list recursive all yourfile in __BASE__.
 
-\-\-listdir will only dirs list. this is the _places_ in the database.
+\-\-listdir list only dirs. This is the _places_ in the database.
 ```
 @>hsguard --listdir
     2 /etc/systemd/network                               2025-06-17 12:48:27
@@ -179,7 +178,7 @@ Beware the switch _-r_ . You list recursive all yourfile in __BASE__.
 Attentive observers will notice that the output is identical. The exception is
 that only the directories are listed.
 
-In other cases you will find a file. You can enter it with fileglobbing. Note
+In other cases you need to find a file. You can enter it with fileglobbing. Note
 that the shell does not evaluate the asterisk, etc. Use single quotes.
 ```
 @>hsguard -i 'login*'
