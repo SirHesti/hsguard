@@ -2,7 +2,7 @@
 Contens/Verzeichnis
 
 1. [Build from Source](#BUILD)
-1. Init
+1. [Base Config](#CONFIG)
 1. daily
 
 <a name="BUILD">Build from Source</a>
@@ -67,9 +67,10 @@ VERBOSE=USER
 NOSCREEN=Y
 EMERGENCY=PANIC
 ANSICOLOR=Y
-COL_* can be delete. This is only need if you need 
+COL_* can be delete. This is only necessary if you want to become an absolute pro.
 ```
 
+That all fine, but _BASE_ need your Attension. 
 
 
 
