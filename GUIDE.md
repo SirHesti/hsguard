@@ -73,7 +73,7 @@ ANSICOLOR=Y
 COL_* can be delete. This is only necessary if you want to become an absolute pro.
 ```
 
-That's all fine, but _BASE_ need your Attension. Enter your Datapath. For a Test use an exists path:
+That's all fine, but _BASE_ need your Attention. Enter here your Datapath. For a Test use an exists path:
 ```
 BASE=/usr/share/keyrings
 ```
@@ -86,9 +86,7 @@ Now run an update:
 ```
 @>hsguard -u
 ```
-This take time if your have many ...
-
-to see (real colored) what we have just type: 
+This take a short time to see (real colored) what we have just type: 
 ```
 @>hsguard -l
  8 1 debian-archive-bookworm-automatic.gpg            0x290e8fa0    8 KB 2023-03-18 15:53:41
@@ -107,7 +105,7 @@ Just write in /etc/hsguard.rc:
 ```
 FORWARD=/srv/admin/configs/hsguard.rc
 ```
-and now hsguard read there config from here.
+and now hsguard continue the config from here.
 
 <a name="DAILY">After init some helps</a>
 
@@ -139,8 +137,8 @@ fi
 [ $rc -gt 0 ]  && diemsg $rc "Error[$rc] while hsguard testdb"
 ```
 
-if you got a PANIC Error use the LOG to see what happens. In this case
-i wish you 'good luck'. Hope this a concurrent access.
+if you got a PANIC Error use the LOG-File to see what exactly happened. In this
+case i wish you 'good luck'. Hope this a concurrent access.
 
 <a name="DATABASE">Check Database</a>
 
@@ -154,9 +152,7 @@ i wish you 'good luck'. Hope this a concurrent access.
    --find     same as info, but finddir is not implemented
    --infodir  Info about file in dir <places> in database           
 ```
-
 Something can be listed with -l. You can specify a directory.
-
 ```
 @>hsguard -l
     9     1 journald.conf        0x3532257f    1 KB 2022-08-07 15:25:09
@@ -172,26 +168,20 @@ Something can be listed with -l. You can specify a directory.
     3 /etc/systemd/system                                2025-06-17 12:48:27
    22 /etc/systemd/user                                  2025-06-17 12:48:30
 ```
-
-Beware the switch _-r_ . You list noch recursive and this call all your data in
-this _dir_ or __BASE__.
+Beware the switch _-r_ . You list recursive all yourfile in __BASE__.
 
 \-\-listdir will only dirs list. this is the _places_ in the database.
-
-
 ```
 @>hsguard --listdir
     2 /etc/systemd/network                               2025-06-17 12:48:27
     3 /etc/systemd/system                                2025-06-17 12:48:27
    22 /etc/systemd/user                                  2025-06-17 12:48:30
 ```
-
 Attentive observers will notice that the output is identical. The exception is
 that only the directories are listed.
 
 In other cases you will find a file. You can enter it with fileglobbing. Note
 that the shell does not evaluate the asterisk, etc. Use single quotes.
-
 ```
 @>hsguard -i 'login*'
 ID       = 5
@@ -204,7 +194,6 @@ chkcount = 1
 lastchk  = 2025-06-17 12:48:27
 founded  = 2025-06-17 12:48:27
 ```
-
 This output is real full-colored. All Files will list only once.
 
 <a name="EXCLUDE">Exclude some Files</a>
