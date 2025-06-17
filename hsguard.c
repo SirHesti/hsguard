@@ -465,8 +465,8 @@ Contens/Verzeichnis
 1. [Base Config](#CONFIG)
 1. [Forward a Config](#FORWARD)
 1. [After init some daily helps](#DAILY)
-1. [Check Database][#DATABASE]
-1. [Exclude some Files][#EXCLUDE]
+1. [Check Database](#DATABASE)
+1. [Exclude some Files](#EXCLUDE)
 
 <a name="BUILD">Build from Source</a>
 
