@@ -10,7 +10,7 @@ Contens/Verzeichnis
 
 <a name="BUILD">Build from Source</a>
 
-```
+```sh
 @> git clone https://github.com/SirHesti/hsguard.git
 clone to 'hsguard'...
 remote: Enumerating objects: 193, done.
@@ -18,15 +18,13 @@ remote: Enumerating objects: 193, done.
 @> cd hsguard
 @> cmake .
 ```
-
 Maybe an Error occured like __"SQLite3 not found"__ . sqlite3(dev) is missing. In this case enter
-```
+```sh
 sudo apt install sqlite3 libsqlite3-dev
 password: ***********
 ```
 to solve this problem. run "cmake ." again!
-
-```
+```sh
 @> make all
 -- The C compiler identification is GNU 12.2.0
 -- Detecting C compiler ABI info

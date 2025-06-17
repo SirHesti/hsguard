@@ -236,7 +236,7 @@ This can be used once to refer to another config. This is useful if you can refe
 to other configs (e.g., on the network). As a feature, the section can be specified
 directly. This might look like:
 
-```sh
+```
 FORWARD=/srv/pub/backup.rc,std
 ```
 
@@ -254,7 +254,7 @@ globbing. This works for files that 'ls' would find, like 'ls /var/log/*.log'.
 Additionally, there are some keywords that exclude something if a certain situation
 applies. For example:
 
-```sh
+```
 ifhost WKST-Conny /etc/pconly.rc
 ```
 
@@ -470,7 +470,7 @@ Contens/Verzeichnis
 
 <a name="BUILD">Build from Source</a>
 
-```
+```sh
 @> git clone https://github.com/SirHesti/hsguard.git
 clone to 'hsguard'...
 remote: Enumerating objects: 193, done.
@@ -478,15 +478,13 @@ remote: Enumerating objects: 193, done.
 @> cd hsguard
 @> cmake .
 ```
-
 Maybe an Error occured like __"SQLite3 not found"__ . sqlite3(dev) is missing. In this case enter
-```
+```sh
 sudo apt install sqlite3 libsqlite3-dev
 password: ***********
 ```
 to solve this problem. run "cmake ." again!
-
-```
+```sh
 @> make all
 -- The C compiler identification is GNU 12.2.0
 -- Detecting C compiler ABI info
