@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>QuickStart &amp; Compile-Guide</title>
+  <title>hsguard QuickStart &amp; Compile-Guide</title>
   <style>
     html {
       line-height: 1.5;
@@ -220,7 +220,8 @@
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">QuickStart &amp; Compile-Guide</h1>
+<h1 class="title">hsguard QuickStart &amp; Compile-Guide</h1>
+<p class="date">$DATE</p>
 </header>
 <p><a name="HOME"></a></p>
 <a href="hsguard.html">README / Man-Page</a>
@@ -236,7 +237,8 @@ and using the hsguard tool.</p>
 <li><a href="#DATABASE">Check Database</a></li>
 <li><a href="#EXCLUDE">Exclude some Files</a></li>
 </ol>
-<p><a name="BUILD">Build from Source</a></p>
+<p><a name="BUILD"></a></p>
+<h2 id="build-from-source">Build from Source</h2>
 <p>Clone the repository:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">@</span><span class="op">&gt;</span> git clone https://github.com/SirHesti/hsguard.git</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">clone</span> to <span class="st">&#39;hsguard&#39;</span>...</span>
@@ -263,7 +265,8 @@ and using the hsguard tool.</p>
 <span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="ex">--</span> Installing: /usr/bin/hsguard</span>
 <span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="ex">--</span> Installing: /usr/share/man/man8/hsguard.8.gz</span>
 <span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="ex">--</span> Installing: /usr/share/man/de/man8/hsguard.8.gz</span></code></pre></div>
-<p><a name="CONFIG">Configure hsguard</a></p>
+<p><a name="CONFIG"></a></p>
+<h2 id="configure-hsguard">Configure hsguard</h2>
 <p>To run hsguard, a configuration is required. Steps include:</p>
 <p>Creating the configuration file (/etc/hsguard.rc) using:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">@</span><span class="op">&gt;</span>hsguard</span>
@@ -297,12 +300,14 @@ and using the hsguard tool.</p>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a> <span class="ex">6</span> 1 debian-archive-bookworm-security-automatic.gpg   0x320bd4fc    9 KB 2023-03-18 15:53:41</span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="ex">[etc]</span></span></code></pre></div>
 <a href="hsguard.html">The README has more Information</a>
-<p><a name="FORWARD">Forward your Config</a></p>
+<p><a name="FORWARD"></a></p>
+<h2 id="forward-your-config">Forward your Config</h2>
 <p>Configurations can be forwarded to a different file using ‘–config <file>’ or the FORWARD parameter in /etc/hsguard.rc.
 Example:</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode ini"><code class="sourceCode ini"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="dt">FORWARD</span><span class="ot">=</span><span class="st">/srv/admin/configs/hsguard.rc</span></span></code></pre></div>
 <p>and now hsguard continue the config from here.</p>
-<p><a name="DAILY">Daily Workshop</a></p>
+<p><a name="DAILY"></a></p>
+<h2 id="daily-workshop">Daily Workshop</h2>
 <p>After all that hard work we need a script. Create a systemd-unit if you want. I can do this, but a daily-call is enough. Just use
 /etc/cron.daily (systemd sign over crontab anyway) and write a small script:</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/sh</span></span>
@@ -328,7 +333,8 @@ Example:</p>
 <span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a><span class="bu">[</span> <span class="va">$rc</span> <span class="ot">-ge</span> 99 <span class="bu">]</span> <span class="kw">&amp;&amp;</span> <span class="ex">diemsg</span> 99 <span class="st">&quot;PANIC - Error [</span><span class="va">$rc</span><span class="st">] while hsguard testdb&quot;</span></span>
 <span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a><span class="bu">[</span> <span class="va">$rc</span> <span class="ot">-gt</span> 0 <span class="bu">]</span>  <span class="kw">&amp;&amp;</span> <span class="ex">diemsg</span> <span class="va">$rc</span> <span class="st">&quot;Error[</span><span class="va">$rc</span><span class="st">] while hsguard testdb&quot;</span></span></code></pre></div>
 <p>if you got a PANIC Error use the LOG-File to see what exactly happened.</p>
-<p><a name="DATABASE">Check Database</a></p>
+<p><a name="DATABASE"></a></p>
+<h2 id="check-database">Check Database</h2>
 <p>Details commands to list, inspect, and query the database:</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode txt"><code class="sourceCode default"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>-l --list     print out database contens</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>   --listdir  print only dirs from database</span>

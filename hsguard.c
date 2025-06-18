@@ -465,7 +465,10 @@ Fehler (auch in dieser Manpage) unbedingt bitte melden
 
 #-[ GUIDE.md ]-------------------------------------------------------------------------------------
 ---
-title: QuickStart & Compile-Guide
+title: hsguard QuickStart & Compile-Guide
+header: hsguard - coded by Hesti
+footer: hsguard $VERSION
+date: $DATE
 ---
 <a name="HOME"></a>
 
@@ -485,7 +488,9 @@ Contens/Verzeichnis
 1. [Check Database](#DATABASE)
 1. [Exclude some Files](#EXCLUDE)
 
-<a name="BUILD">Build from Source</a>
+<a name="BUILD"></a>
+
+## Build from Source
 
 Clone the repository:
 ```sh
@@ -520,8 +525,9 @@ Install the project...
 -- Installing: /usr/share/man/man8/hsguard.8.gz
 -- Installing: /usr/share/man/de/man8/hsguard.8.gz
 ```
+<a name="CONFIG"></a>
 
-<a name="CONFIG">Configure hsguard</a>
+## Configure hsguard
 
 To run hsguard, a configuration is required. Steps include:
 
@@ -570,7 +576,9 @@ This take a short time to see (real is colored) what we have just see:
 ```
 $LINK:The README has more Information:README.md:hsguard.html:null
 
-<a name="FORWARD">Forward your Config</a>
+<a name="FORWARD"></a>
+
+## Forward your Config
 
 Configurations can be forwarded to a different file using '--config <file>' or the FORWARD
 parameter in /etc/hsguard.rc. Example:
@@ -579,7 +587,9 @@ FORWARD=/srv/admin/configs/hsguard.rc
 ```
 and now hsguard continue the config from here.
 
-<a name="DAILY">Daily Workshop</a>
+<a name="DAILY"></a>
+
+## Daily Workshop
 
 After all that hard work we need a script. Create a systemd-unit if you want. I can do
 this, but a daily-call is enough. Just use /etc/cron.daily (systemd sign over
@@ -611,7 +621,9 @@ fi
 if you got a PANIC Error use the LOG-File to see what exactly happened.
 
 
-<a name="DATABASE">Check Database</a>
+<a name="DATABASE"></a>
+
+## Check Database
 
 Details commands to list, inspect, and query the database:
 ```txt
