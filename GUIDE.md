@@ -213,7 +213,7 @@ Similar to above, patterns help you search for files by name or partial name.
 You can do it with fileglobbing. 
 
 > [!Note]
-> The shell does evaluate the *, etc. Use single quotes. like: '*'
+> The shell does evaluate the \*, etc. Use single quotes. like: \'\*\'
 
 ```sh
 @>hsguard -i '*login*'
@@ -259,11 +259,25 @@ First we have a command-line exclusion (temporary/immediate):
 _/etc/systemd/logind.conf_ are excluded from update. just type
 ```sh
 @>hsguard -l
+    9     1 journald.conf        0x3532257f    1 KB 2022-08-07 15:25:09
+    4     1 networkd.conf        0xd7c3b869     609 2021-02-02 16:29:47
+    2     1 pstore.conf          0x138466ad     529 2021-02-02 16:29:47
+    6     1 resolved.conf        0x1c561f03     943 2022-08-07 15:25:09
+    8     1 sleep.conf           0x7b985243     790 2021-02-02 16:29:47
+    7     1 system.conf          0xb9fbab51    2 KB 2022-08-07 15:25:09
+    1     1 timesyncd.conf       0x26972bdc     695 2022-12-09 09:37:20
+    3     1 user.conf            0x52dff3f9    1 KB 2022-08-07 15:25:09
+    2 /etc/systemd/network                               2025-06-17 12:48:27
+    3 /etc/systemd/system                                2025-06-17 12:48:27
+   22 /etc/systemd/user                                  2025-06-17 12:48:30
 ```
-to see the result. if you have many files this. However, if there are many files,
-things can quickly become confusing.
+to see the result.
 
-in the config you can an entry to create an exclude file. Remove the Comment-mark.
+The command "-u --exclude_add '*logind.conf'"  tells hsguard to update any
+files matching `*logind.conf` during that update.
+
+In the main configuration file (`/etc/hsguard.rc`), you can specify an
+exclude file by un-commenting or adding the `EXCLUDE` parameter
 ```ini
 #If desired, an empty file can be created with --createexcl
 EXCLUDE=/var/hsguard/exclude.lst
@@ -278,32 +292,40 @@ Create an sample file.
 Sure you want to create /var/hsguard/exclude.lst (y/n) ? Y
 please open with editor of your choice and view: /var/hsguard/exclude.lst
 ```
-There are good stuff to begin, but we need have the BASE to '/etc/systemd'. Remove
-all lines and write only:
+Open `/var/hsguard/exclude.lst` within a text editor and list each
+file or pattern you want to exclude, one per line. 
+
+Example contents for excluding all variations of `logind.conf` in `/etc/systemd`.
+Remove all lines and write only:
 ```sh
 /etc/systemd/logind.conf
 /etc/*logind.conf
 /etc/systemd/logind.*
 ```
-Its not all the same, but in this case every line excludes: _/etc/systemd/logind.conf_ .
+Every line excludes: _/etc/systemd/logind.conf_ .
 
-You can add excludes if [not] conditions true. So an 'ifhost dcyqx-wkst' will execute
-next token. if the token an file then that will excluded or next ifxxxx will checked.
-You can add a Message if you like.
+This section explains advanced exclusion logic for hsguard using
+conditions in your exclude file. Here’s what it means:
 
-Exclusions can also be made dependent on certain conditions being met. For
-example, 'ifhost dcyqx-wkst' will execute the next token. The next token can
-again be a condition or an exclude.
+ * You can make file exclusions conditional, so certain files are only excluded if specific conditions are true.
+ * Example: ifhost dcyqx-wkst means “if this host’s name is dcyqx-wkst,” then take the next action.
+   * If the next entry is a file path, that file is excluded.
+   * If the next entry is another if-condition, it checks that next.
+   * You can also put a message instead of a file to display a custom message.
 
-A message can also be sent instead of the exclude.
+Example usage in your exclude file:
+
 ```sh
 ifhost WK-Reception message "Hope nobody here"
+ifhost dcyqx-wkst /etc/systemd/logind.conf
 ```
+
 You can find some info more
 
 [here in the Readme](README.md#EXCLUDEFILE)
  
+#### Note
 
-<!-- a name="HESTI">I was here</a -->
+Exclusion patterns use globbing (wildcards like `*`), so you can exclude groups of files easily.
 
 
