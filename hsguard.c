@@ -644,9 +644,10 @@ Example:
     3 /etc/systemd/system                                2025-06-17 12:48:27
    22 /etc/systemd/user                                  2025-06-17 12:48:30
 ```
-Beware the switch _-r_ . You list recursive all yourfile in __BASE__.
+Add the `-r` flag to list directories recursively.
 
-\-\-listdir wird nur Verzeichnisse aufzeigen. This is the _places_ in the database.
+Use \-\-listdir to display just the directories in the database. This is
+the _"places"_ - table in the database.
 ```sh
 @>hsguard --listdir
     2 /etc/systemd/network                               2025-06-17 12:48:27
@@ -656,10 +657,20 @@ Beware the switch _-r_ . You list recursive all yourfile in __BASE__.
 Attentive observers will notice that the output is identical. The exception is
 that only the directories are listed.
 
-In other cases you need to find a file. You can do it with fileglobbing. Note
-that the shell does not evaluate the '*', etc. Use single quotes.
+Look up information on specific files.
+ * Use `hsguard \-i <entry>` or `hsguard \-\-info <entry>`.
+  - `<entry>` can be a filename, a file path, or a pattern (using wildcards like `*`).
+  - If you provide a pattern (e.g. `-i '*login*'`), hsguard will display info on all matching files.
+  - Enclose patterns in single quotes to prevent your shell from interpreting the wildcard.
+
+Similar to above, patterns help you search for files by name or partial name.
+You can do it with fileglobbing. 
+
+> [!Note]
+> The shell does evaluate the *, etc. Use single quotes. like: '*'
+
 ```sh
-@>hsguard -i 'login*'
+@>hsguard -i '*login*'
 ID       = 5
 location = (1) /etc/systemd 2025-06-17 12:48:26
 fname    = logind.conf
@@ -670,14 +681,20 @@ chkcount = 1
 lastchk  = 2025-06-17 12:48:27
 founded  = 2025-06-17 12:48:27
 ```
-This output is real full-colored (or do a _ANSICOLOR=N_). All files will be
-listed once.
+
+#### Notes and Tips
+
+- By default, output is colored. You can disable colors by setting `ANSICOLOR=N` in your config.
+- Recursive listing with `-r` shows all files and directories below your BASE directory.
+- When searching, always use single quotes for patterns to avoid shell expansion.
+- The section explains that `--listdir` is useful to see which main directories ("places") are tracked.
+- For file lookups, even partial or fuzzy searches are supported through globbing.
+- Example commands and outputs (above) illustrate how each command works.
 
 <a name="EXCLUDE">Exclude some Files</a>
 
 > [!NOTE]
 > our _BASE_ has been moved to /etc/systemd
-
 
 There are more than 2 Idea's to exclude some Files. Some Files may changed daily or else.
 But that should not be reason for this consideration. We will not have them in de Database.
@@ -941,3 +958,9 @@ int startMsg(void)
     int ws_col = atoi(strNotNULL(getenv("COLUMNS")));
     printf("Columns: %s %d\n",s, ws_col);
 #endif
+Additional Notes
+
+    The guide includes notes on managing exclusions conditionally (e.g., based on hostname).
+    References to related documentation are provided, such as the README file.
+
+This file is essential for understanding how to set up, compile, and operate the hsguard monitoring tool effectively.

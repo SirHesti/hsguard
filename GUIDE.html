@@ -353,16 +353,22 @@ specific files using globbing: hsguard -i ‘<em>login</em>’ Example:</p>
 <span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>    <span class="ex">2</span> /etc/systemd/network                               2025-06-17 12:48:27</span>
 <span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>    <span class="ex">3</span> /etc/systemd/system                                2025-06-17 12:48:27</span>
 <span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>   <span class="ex">22</span> /etc/systemd/user                                  2025-06-17 12:48:30</span></code></pre></div>
-<p>Beware the switch <em>-r</em> . You list recursive all yourfile in <strong>BASE</strong>.</p>
-<p>--listdir wird nur Verzeichnisse aufzeigen. This is the <em>places</em> in the database.</p>
+<p>Add the <code>-r</code> flag to list directories recursively.</p>
+<p>Use --listdir to display just the directories in the database. This is the <em>“places”</em> - table in the database.</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">@</span><span class="op">&gt;</span>hsguard <span class="at">--listdir</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="ex">2</span> /etc/systemd/network                               2025-06-17 12:48:27</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="ex">3</span> /etc/systemd/system                                2025-06-17 12:48:27</span>
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>   <span class="ex">22</span> /etc/systemd/user                                  2025-06-17 12:48:30</span></code></pre></div>
 <p>Attentive observers will notice that the output is identical. The exception is that only the directories are listed.</p>
-<p>In other cases you need to find a file. You can do it with fileglobbing. Note that the shell does not evaluate the ’*’, etc. Use
-single quotes.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">@</span><span class="op">&gt;</span>hsguard <span class="at">-i</span> <span class="st">&#39;login*&#39;</span></span>
+<p>Look up information on specific files. * Use <code>hsguard \-i &lt;entry&gt;</code> or
+<code>hsguard \-\-info &lt;entry&gt;</code>. - <code>&lt;entry&gt;</code> can be a filename, a file path, or a pattern (using
+wildcards like <code>*</code>). - If you provide a pattern (e.g. <code>-i '*login*'</code>), hsguard will display info on all
+matching files. - Enclose patterns in single quotes to prevent your shell from interpreting the wildcard.</p>
+<p>Similar to above, patterns help you search for files by name or partial name. You can do it with fileglobbing.</p>
+<blockquote>
+<p>[!Note] The shell does evaluate the <em>, etc. Use single quotes. like: ’</em>’</p>
+</blockquote>
+<div class="sourceCode" id="cb15"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">@</span><span class="op">&gt;</span>hsguard <span class="at">-i</span> <span class="st">&#39;*login*&#39;</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="ex">ID</span>       = 5</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="ex">location</span> = <span class="er">(</span><span class="ex">1</span><span class="kw">)</span> <span class="ex">/etc/systemd</span> 2025-06-17 12:48:26</span>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="ex">fname</span>    = logind.conf</span>
@@ -372,7 +378,15 @@ single quotes.</p>
 <span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="ex">chkcount</span> = 1</span>
 <span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="ex">lastchk</span>  = 2025-06-17 12:48:27</span>
 <span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="ex">founded</span>  = 2025-06-17 12:48:27</span></code></pre></div>
-<p>This output is real full-colored (or do a <em>ANSICOLOR=N</em>). All files will be listed once.</p>
+<h4 id="notes-and-tips">Notes and Tips</h4>
+<ul>
+<li>By default, output is colored. You can disable colors by setting <code>ANSICOLOR=N</code> in your config.</li>
+<li>Recursive listing with <code>-r</code> shows all files and directories below your BASE directory.</li>
+<li>When searching, always use single quotes for patterns to avoid shell expansion.</li>
+<li>The section explains that <code>--listdir</code> is useful to see which main directories (“places”) are tracked.</li>
+<li>For file lookups, even partial or fuzzy searches are supported through globbing.</li>
+<li>Example commands and outputs (above) illustrate how each command works.</li>
+</ul>
 <p><a name="EXCLUDE">Exclude some Files</a></p>
 <blockquote>
 <p>[!NOTE] our <em>BASE</em> has been moved to /etc/systemd</p>
