@@ -387,16 +387,18 @@ matching files. - Enclose patterns in single quotes to prevent your shell from i
 <li>For file lookups, even partial or fuzzy searches are supported through globbing.</li>
 <li>Example commands and outputs (above) illustrate how each command works.</li>
 </ul>
-<p><a name="EXCLUDE_Y"></a> # Exclude some Files</p>
-<p><a name="EXCLUDE_X">Exclude some Files</a></p>
-<p><a name="EXCLUDE" style="font-size: 150%; text-decoration: underline;">Exclude some Files</a></p>
+<p><a name="EXCLUDE"></a></p>
+<h2 id="exclude-some-files">Exclude some Files</h2>
 <blockquote>
 <p>[!NOTE] our <em>BASE</em> has been moved to /etc/systemd</p>
 </blockquote>
 <p>Some files are not relevant for monitoring—maybe they’re updated all the time, are temporary, or simply not important for your
 use case. Excluding such files keeps your database clean and avoids unnecessary alerts or confusion.</p>
-<p>First we have a command-line exclusion (temporary/immediate): - Use the <code>--exclude_add</code> option with the update command
-to exclude files matching a pattern during that run. - Example:</p>
+<p>First we have a command-line exclusion (temporary/immediate):</p>
+<ul>
+<li>Use the <code>--exclude_add</code> option with the update command to exclude files matching a pattern during that run.</li>
+<li>Example:</li>
+</ul>
 <div class="sourceCode" id="cb16"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">@</span><span class="op">&gt;</span>hsguard <span class="at">-u</span> <span class="at">--exclude_add</span> <span class="st">&#39;*logind.conf&#39;</span></span></code></pre></div>
 <p><em>/etc/systemd/logind.conf</em> are excluded from update. just type</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">@</span><span class="op">&gt;</span>hsguard <span class="at">-l</span></span></code></pre></div>

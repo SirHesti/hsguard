@@ -691,12 +691,9 @@ founded  = 2025-06-17 12:48:27
 - For file lookups, even partial or fuzzy searches are supported through globbing.
 - Example commands and outputs (above) illustrate how each command works.
 
-<a name="EXCLUDE_Y"></a>
-# Exclude some Files
+<a name="EXCLUDE"></a>
 
-<a name="EXCLUDE_X">Exclude some Files</a>
-
-<a name="EXCLUDE" style="font-size: 150%; text-decoration: underline;">Exclude some Files</a>
+## Exclude some Files
 
 > [!NOTE]
 > our _BASE_ has been moved to /etc/systemd
@@ -706,6 +703,7 @@ or simply not important for your use case. Excluding such files keeps your datab
 and avoids unnecessary alerts or confusion.
 
 First we have a command-line exclusion (temporary/immediate):
+
  - Use the `--exclude_add` option with the update command to exclude files
    matching a pattern during that run.
  - Example:
