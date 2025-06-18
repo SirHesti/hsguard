@@ -228,7 +228,7 @@
 <p>This Guide serves as a QuickStart and Compile Guide for the hsguard project. It provides instructions for building, configuring,
 and using the hsguard tool.</p>
 <p>Here’s a breakdown of its contents:</p>
-<p>Contens/Verzeichnis</p>
+<h4 id="table-of-contens">Table of Contens</h4>
 <ol type="1">
 <li><a href="#BUILD">Build from Source</a></li>
 <li><a href="#CONFIG">Base Config</a></li>
@@ -246,11 +246,11 @@ and using the hsguard tool.</p>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="ex">[etc]</span></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="ex">@</span><span class="op">&gt;</span> cd hsguard</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="ex">@</span><span class="op">&gt;</span> cmake .</span></code></pre></div>
-<p>Use cmake . to configure the project. If SQLite3(dev) is missing, install it using:</p>
+<p>Use <code>cmake .</code> to configure the project. If SQLite3(dev) is missing, install it using:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install sqlite3 libsqlite3-dev</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">password:</span> <span class="pp">***********</span></span></code></pre></div>
-<p>run “cmake .” again!</p>
-<p>Compile the project with make all. Install the compiled files using</p>
+<p>run <code>cmake .</code> again!</p>
+<p>Compile the project with <code>make all</code> and install with <code>sudo make install</code>.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">@</span><span class="op">&gt;</span> make all</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">--</span> The C compiler identification is GNU 12.2.0</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">--</span> Detecting C compiler ABI info</span>
@@ -345,7 +345,7 @@ Example:</p>
 <span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>   --find     same as info, but finddir is not implemented</span>
 <span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>   --infodir  Info about file in dir &lt;places&gt; in database           </span></code></pre></div>
 <p>For standard listings: - List database contents: hsguard -l - List directories only: hsguard –listdir without files - Find
-specific files using globbing: hsguard -i ‘<em>login</em>’ Example:</p>
+specific files using globbing: hsguard -i <em>'*login*'</em> Example:</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">@</span><span class="op">&gt;</span>hsguard <span class="at">-l</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="ex">9</span>     1 journald.conf        0x3532257f    1 KB 2022-08-07 15:25:09</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="ex">5</span>     1 logind.conf          0x6c8caa63    1 KB 2022-08-07 15:25:09</span>

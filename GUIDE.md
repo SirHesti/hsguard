@@ -13,7 +13,7 @@ instructions for building, configuring, and using the hsguard tool.
 
 Here's a breakdown of its contents:
 
-Contens/Verzeichnis
+#### Table of Contens
 
 1. [Build from Source](#BUILD)
 1. [Base Config](#CONFIG)
@@ -35,14 +35,14 @@ remote: Enumerating objects: 193, done.
 @> cd hsguard
 @> cmake .
 ```
-Use cmake . to configure the project. If SQLite3(dev) is missing, install it using:
+Use `cmake .` to configure the project. If SQLite3(dev) is missing, install it using:
 ```sh
 sudo apt install sqlite3 libsqlite3-dev
 password: ***********
 ```
-run "cmake ." again!
+run `cmake .` again!
 
-Compile the project with make all. Install the compiled files using
+Compile the project with `make all` and install with `sudo make install`.
 ```sh
 @> make all
 -- The C compiler identification is GNU 12.2.0
@@ -173,7 +173,7 @@ Details commands to list, inspect, and query the database:
 For standard listings:
  - List database contents: hsguard -l
  - List directories only: hsguard --listdir without files 
- - Find specific files using globbing: hsguard -i '*login*'
+ - Find specific files using globbing: hsguard -i _\'\*login\*\'_
 Example:  
 ```sh
 @>hsguard -l
