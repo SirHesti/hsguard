@@ -471,6 +471,11 @@ title: QuickStart & Compile-Guide
 
 $LINK:README / Man-Page:README.md:hsguard.html:null
 
+This Guide serves as a QuickStart and Compile Guide for the hsguard project. It provides
+instructions for building, configuring, and using the hsguard tool. 
+
+Here's a breakdown of its contents:
+
 Contens/Verzeichnis
 
 1. [Build from Source](#BUILD)
@@ -482,6 +487,7 @@ Contens/Verzeichnis
 
 <a name="BUILD">Build from Source</a>
 
+Clone the repository:
 ```sh
 @> git clone https://github.com/SirHesti/hsguard.git
 clone to 'hsguard'...
@@ -490,12 +496,14 @@ remote: Enumerating objects: 193, done.
 @> cd hsguard
 @> cmake .
 ```
-Maybe an Error occured like __"SQLite3 not found"__ . sqlite3(dev) is missing. In this case enter
+Use cmake . to configure the project. If SQLite3(dev) is missing, install it using:
 ```sh
 sudo apt install sqlite3 libsqlite3-dev
 password: ***********
 ```
-to solve this problem. run "cmake ." again!
+run "cmake ." again!
+
+Compile the project with make all. Install the compiled files using
 ```sh
 @> make all
 -- The C compiler identification is GNU 12.2.0
@@ -512,11 +520,12 @@ Install the project...
 -- Installing: /usr/share/man/man8/hsguard.8.gz
 -- Installing: /usr/share/man/de/man8/hsguard.8.gz
 ```
-we're done.
 
 <a name="CONFIG">Configure hsguard</a>
 
-To run hsguard, a configuration is required. Simply let hsguard do this as follows:
+To run hsguard, a configuration is required. Steps include:
+
+Creating the configuration file (/etc/hsguard.rc) using:
 ```sh
 @>hsguard
 [DATE] /etc/hsguard.rc not exists ....
@@ -526,7 +535,7 @@ Sure you want to create /etc/hsguard.rc (y/n) ? Y
 Create Dir in /var/hsguard (y/n) ? Y
 generated /etc/hsguard.rc
 ```
-Now see the config like:
+Now see the Example configuration:
 ```ini
 DATABASE=/var/hsguard/hsguard.db
 BASE=/
@@ -539,11 +548,11 @@ EMERGENCY=PANIC
 ANSICOLOR=Y
 COL_* can be delete. This is only necessary if you want to become an absolute pro.
 ```
-That's all fine, but _BASE_ need your Attention. Enter here your Datapath. For a Test use an exists path:
+Set the BASE parameter to your desired data path, e.g., /usr/share/keyrings
 ```ini
 BASE=/usr/share/keyrings
 ```
-We need also a Database. Enter following:
+We need also a Database. Initialize: 
 ```sh
 @>hsguard --initdb
 Sure you want to create /var/hsguard/hsguard.db (y/n) ? Y
@@ -559,15 +568,12 @@ This take a short time to see (real is colored) what we have just see:
  6 1 debian-archive-bookworm-security-automatic.gpg   0x320bd4fc    9 KB 2023-03-18 15:53:41
 [etc]
 ```
-The [README](#HOME) has more Information.
+$LINK:The README has more Information:README.md:hsguard.html:null
 
 <a name="FORWARD">Forward your Config</a>
 
-In some cases, the configuration need saved somewhere else. All options
-can be overridden with switches. hsguard can use a completely different file than the one
-in /etc with '--config <file>'. A "real" forward can be entered in /etc/hsguard.rc
-
-Just write in /etc/hsguard.rc:
+Configurations can be forwarded to a different file using '--config <file>' or the FORWARD
+parameter in /etc/hsguard.rc. Example:
 ```ini
 FORWARD=/srv/admin/configs/hsguard.rc
 ```
@@ -575,9 +581,9 @@ and now hsguard continue the config from here.
 
 <a name="DAILY">Daily Workshop</a>
 
-After all the hard work we need a script. Create a systemd-unit if you want. I can do
-this, but only a daily-call is need. Just use /etc/cron.daily (systemd sign over
-crontab anyway) and write a little script:
+After all that hard work we need a script. Create a systemd-unit if you want. I can do
+this, but a daily-call is enough. Just use /etc/cron.daily (systemd sign over
+crontab anyway) and write a small script:
 ```sh
 #!/bin/sh
 LOGDIR=/srv/admin/log
@@ -602,12 +608,13 @@ fi
 [ $rc -ge 99 ] && diemsg 99 "PANIC - Error [$rc] while hsguard testdb"
 [ $rc -gt 0 ]  && diemsg $rc "Error[$rc] while hsguard testdb"
 ```
-if you got a PANIC Error use the LOG-File to see what exactly happened. In this
-case i wish you 'good luck'. Hope only a concurrent access.
+if you got a PANIC Error use the LOG-File to see what exactly happened.
+
 
 <a name="DATABASE">Check Database</a>
 
-```
+Details commands to list, inspect, and query the database:
+```txt
 -l --list     print out database contens
    --listdir  print only dirs from database
               -r=deep can go deeper '-r' lists everything
@@ -617,7 +624,11 @@ case i wish you 'good luck'. Hope only a concurrent access.
    --find     same as info, but finddir is not implemented
    --infodir  Info about file in dir <places> in database           
 ```
-The standard option for listings is the -l option. You can, but don't have to, specify a directory.
+For standard listings:
+ - List database contents: hsguard -l
+ - List directories only: hsguard --listdir without files 
+ - Find specific files using globbing: hsguard -i '*login*'
+Example:  
 ```sh
 @>hsguard -l
     9     1 journald.conf        0x3532257f    1 KB 2022-08-07 15:25:09
@@ -659,13 +670,16 @@ chkcount = 1
 lastchk  = 2025-06-17 12:48:27
 founded  = 2025-06-17 12:48:27
 ```
-This output is real full-colored. All Files will list only once.
+This output is real full-colored (or do a _ANSICOLOR=N_). All files will be
+listed once.
 
 <a name="EXCLUDE">Exclude some Files</a>
 
+[!NOTE]
 our _BASE_ has been moved to /etc/systemd
 
-There a more than 2 Idea's to exclude some Files. Some Files may changed daily or else.
+
+There are more than 2 Idea's to exclude some Files. Some Files may changed daily or else.
 But that should not be reason for this consideration. We will not have them in de Database.
 
 First we have a switch to exclude like:
@@ -717,7 +731,7 @@ ifhost WK-Reception message "Hope nobody here"
 ```
 You can find some info more
 
-$LINK:here in the Readme:README.md#EXCLUDEFILE:hsguard.html#EXCLUDEFILE:null 
+$LINK:here in the Readme:README.md#EXCLUDEFILE:hsguard.html#EXCLUDEFILE:null
  
 
 <!-- a name="HESTI">I was here</a -->

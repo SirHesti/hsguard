@@ -224,6 +224,9 @@
 </header>
 <p><a name="HOME"></a></p>
 <a href="hsguard.html">README / Man-Page</a>
+<p>This Guide serves as a QuickStart and Compile Guide for the hsguard project. It provides instructions for building, configuring,
+and using the hsguard tool.</p>
+<p>Here’s a breakdown of its contents:</p>
 <p>Contens/Verzeichnis</p>
 <ol type="1">
 <li><a href="#BUILD">Build from Source</a></li>
@@ -234,16 +237,18 @@
 <li><a href="#EXCLUDE">Exclude some Files</a></li>
 </ol>
 <p><a name="BUILD">Build from Source</a></p>
+<p>Clone the repository:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">@</span><span class="op">&gt;</span> git clone https://github.com/SirHesti/hsguard.git</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">clone</span> to <span class="st">&#39;hsguard&#39;</span>...</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">remote:</span> Enumerating objects: 193, done.</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="ex">[etc]</span></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="ex">@</span><span class="op">&gt;</span> cd hsguard</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="ex">@</span><span class="op">&gt;</span> cmake .</span></code></pre></div>
-<p>Maybe an Error occured like <strong>“SQLite3 not found”</strong> . sqlite3(dev) is missing. In this case enter</p>
+<p>Use cmake . to configure the project. If SQLite3(dev) is missing, install it using:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install sqlite3 libsqlite3-dev</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">password:</span> <span class="pp">***********</span></span></code></pre></div>
-<p>to solve this problem. run “cmake .” again!</p>
+<p>run “cmake .” again!</p>
+<p>Compile the project with make all. Install the compiled files using</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">@</span><span class="op">&gt;</span> make all</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">--</span> The C compiler identification is GNU 12.2.0</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">--</span> Detecting C compiler ABI info</span>
@@ -258,9 +263,9 @@
 <span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="ex">--</span> Installing: /usr/bin/hsguard</span>
 <span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="ex">--</span> Installing: /usr/share/man/man8/hsguard.8.gz</span>
 <span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="ex">--</span> Installing: /usr/share/man/de/man8/hsguard.8.gz</span></code></pre></div>
-<p>we’re done.</p>
 <p><a name="CONFIG">Configure hsguard</a></p>
-<p>To run hsguard, a configuration is required. Simply let hsguard do this as follows:</p>
+<p>To run hsguard, a configuration is required. Steps include:</p>
+<p>Creating the configuration file (/etc/hsguard.rc) using:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">@</span><span class="op">&gt;</span>hsguard</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">[DATE]</span> /etc/hsguard.rc not exists ....</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="ex">@</span><span class="op">&gt;</span>sudo hsguard <span class="at">--create</span></span>
@@ -268,7 +273,7 @@
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="ex">Sure</span> you want to create /etc/hsguard.rc <span class="er">(</span><span class="ex">y/n</span><span class="kw">)</span> <span class="ex">?</span> Y</span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="ex">Create</span> Dir in /var/hsguard <span class="er">(</span><span class="ex">y/n</span><span class="kw">)</span> <span class="ex">?</span> Y</span>
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="ex">generated</span> /etc/hsguard.rc</span></code></pre></div>
-<p>Now see the config like:</p>
+<p>Now see the Example configuration:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode ini"><code class="sourceCode ini"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="dt">DATABASE</span><span class="ot">=</span><span class="st">/var/hsguard/hsguard.db</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="dt">BASE</span><span class="ot">=</span><span class="st">/</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">#ROOT/FAIL/USER/INFO/DEVL</span></span>
@@ -279,9 +284,9 @@
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="dt">EMERGENCY</span><span class="ot">=</span><span class="st">PANIC</span></span>
 <span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="dt">ANSICOLOR</span><span class="ot">=</span><span class="st">Y</span></span>
 <span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="dt">COL_* can be delete. This is only necessary if you want to become an absolute pro.</span></span></code></pre></div>
-<p>That’s all fine, but <em>BASE</em> need your Attention. Enter here your Datapath. For a Test use an exists path:</p>
+<p>Set the BASE parameter to your desired data path, e.g., /usr/share/keyrings</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode ini"><code class="sourceCode ini"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="dt">BASE</span><span class="ot">=</span><span class="st">/usr/share/keyrings</span></span></code></pre></div>
-<p>We need also a Database. Enter following:</p>
+<p>We need also a Database. Initialize:</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">@</span><span class="op">&gt;</span>hsguard <span class="at">--initdb</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Sure</span> you want to create /var/hsguard/hsguard.db <span class="er">(</span><span class="ex">y/n</span><span class="kw">)</span> <span class="ex">?</span> Y</span></code></pre></div>
 <p>Now run an update:</p>
@@ -291,16 +296,15 @@
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a> <span class="ex">8</span> 1 debian-archive-bookworm-automatic.gpg            0x290e8fa0    8 KB 2023-03-18 15:53:41</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a> <span class="ex">6</span> 1 debian-archive-bookworm-security-automatic.gpg   0x320bd4fc    9 KB 2023-03-18 15:53:41</span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="ex">[etc]</span></span></code></pre></div>
-<p>The <a href="#HOME">README</a> has more Information.</p>
+<a href="hsguard.html">The README has more Information</a>
 <p><a name="FORWARD">Forward your Config</a></p>
-<p>In some cases, the configuration need saved somewhere else. All options can be overridden with switches. hsguard can use a
-completely different file than the one in /etc with ‘–config <file>’. A “real” forward can be entered in /etc/hsguard.rc</p>
-<p>Just write in /etc/hsguard.rc:</p>
+<p>Configurations can be forwarded to a different file using ‘–config <file>’ or the FORWARD parameter in /etc/hsguard.rc.
+Example:</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode ini"><code class="sourceCode ini"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="dt">FORWARD</span><span class="ot">=</span><span class="st">/srv/admin/configs/hsguard.rc</span></span></code></pre></div>
 <p>and now hsguard continue the config from here.</p>
 <p><a name="DAILY">Daily Workshop</a></p>
-<p>After all the hard work we need a script. Create a systemd-unit if you want. I can do this, but only a daily-call is need. Just
-use /etc/cron.daily (systemd sign over crontab anyway) and write a little script:</p>
+<p>After all that hard work we need a script. Create a systemd-unit if you want. I can do this, but a daily-call is enough. Just use
+/etc/cron.daily (systemd sign over crontab anyway) and write a small script:</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/sh</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="va">LOGDIR</span><span class="op">=</span>/srv/admin/log</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span><span class="fu"> diemsg()</span><span class="kw">{</span></span>
@@ -323,18 +327,19 @@ use /etc/cron.daily (systemd sign over crontab anyway) and write a little script
 <span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a><span class="co">#mailmsg not included 99 may mailed</span></span>
 <span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a><span class="bu">[</span> <span class="va">$rc</span> <span class="ot">-ge</span> 99 <span class="bu">]</span> <span class="kw">&amp;&amp;</span> <span class="ex">diemsg</span> 99 <span class="st">&quot;PANIC - Error [</span><span class="va">$rc</span><span class="st">] while hsguard testdb&quot;</span></span>
 <span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a><span class="bu">[</span> <span class="va">$rc</span> <span class="ot">-gt</span> 0 <span class="bu">]</span>  <span class="kw">&amp;&amp;</span> <span class="ex">diemsg</span> <span class="va">$rc</span> <span class="st">&quot;Error[</span><span class="va">$rc</span><span class="st">] while hsguard testdb&quot;</span></span></code></pre></div>
-<p>if you got a PANIC Error use the LOG-File to see what exactly happened. In this case i wish you ‘good luck’. Hope only a
-concurrent access.</p>
+<p>if you got a PANIC Error use the LOG-File to see what exactly happened.</p>
 <p><a name="DATABASE">Check Database</a></p>
-<pre><code>-l --list     print out database contens
-   --listdir  print only dirs from database
-              -r=deep can go deeper &#39;-r&#39; lists everything
--i --info     Info about file in path &lt;entrie&gt; in database
-              path like /name/too
-              path without starting &#39;/&#39; will find with &#39;*&#39; case intensive
-   --find     same as info, but finddir is not implemented
-   --infodir  Info about file in dir &lt;places&gt; in database           </code></pre>
-<p>The standard option for listings is the -l option. You can, but don’t have to, specify a directory.</p>
+<p>Details commands to list, inspect, and query the database:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode txt"><code class="sourceCode default"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>-l --list     print out database contens</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>   --listdir  print only dirs from database</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>              -r=deep can go deeper &#39;-r&#39; lists everything</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>-i --info     Info about file in path &lt;entrie&gt; in database</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>              path like /name/too</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>              path without starting &#39;/&#39; will find with &#39;*&#39; case intensive</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>   --find     same as info, but finddir is not implemented</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>   --infodir  Info about file in dir &lt;places&gt; in database           </span></code></pre></div>
+<p>For standard listings: - List database contents: hsguard -l - List directories only: hsguard –listdir without files - Find
+specific files using globbing: hsguard -i ‘<em>login</em>’ Example:</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">@</span><span class="op">&gt;</span>hsguard <span class="at">-l</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="ex">9</span>     1 journald.conf        0x3532257f    1 KB 2022-08-07 15:25:09</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="ex">5</span>     1 logind.conf          0x6c8caa63    1 KB 2022-08-07 15:25:09</span>
@@ -367,10 +372,10 @@ single quotes.</p>
 <span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="ex">chkcount</span> = 1</span>
 <span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="ex">lastchk</span>  = 2025-06-17 12:48:27</span>
 <span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="ex">founded</span>  = 2025-06-17 12:48:27</span></code></pre></div>
-<p>This output is real full-colored. All Files will list only once.</p>
+<p>This output is real full-colored (or do a <em>ANSICOLOR=N</em>). All files will be listed once.</p>
 <p><a name="EXCLUDE">Exclude some Files</a></p>
-<p>our <em>BASE</em> has been moved to /etc/systemd</p>
-<p>There a more than 2 Idea’s to exclude some Files. Some Files may changed daily or else. But that should not be reason for this
+<p>[!NOTE] our <em>BASE</em> has been moved to /etc/systemd</p>
+<p>There are more than 2 Idea’s to exclude some Files. Some Files may changed daily or else. But that should not be reason for this
 consideration. We will not have them in de Database.</p>
 <p>First we have a switch to exclude like:</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">@</span><span class="op">&gt;</span>hsguard <span class="at">-u</span> <span class="at">--exclude_add</span> <span class="st">&#39;*logind.conf&#39;</span></span></code></pre></div>
