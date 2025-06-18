@@ -1,5 +1,5 @@
 ---
-title: QuickGuide
+title: QuickStart & Compile-Guide
 ---
 
 Contens/Verzeichnis
@@ -10,6 +10,7 @@ Contens/Verzeichnis
 1. [After install/init Daily Workshop](#DAILY)
 1. [Check Database](#DATABASE)
 1. [Exclude some Files](#EXCLUDE)
+1. [README](hsguard.html)
 
 <a name="BUILD">Build from Source</a>
 

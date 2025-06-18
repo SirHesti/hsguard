@@ -15,7 +15,7 @@
     }
     body {
       margin: 0 auto;
-      max-width: 36em;
+
       padding-left: 50px;
       padding-right: 50px;
       padding-top: 50px;
@@ -161,51 +161,34 @@
 <p class="date">18.06.2025</p>
 </header>
 <h1 id="name">NAME</h1>
-<p><strong>hsguard</strong> - Program to detect changes in the file
-system</p>
+<p><strong>hsguard</strong> - Program to detect changes in the file system</p>
 <h1 id="synopsis">SYNOPSIS</h1>
 <a href="hsguard-de.html">🇩🇪 german translation 🇩🇪</a>
-
-<p>hsguard creates a database from the configurable directories. Each
-file is checked individually and a CRC checksum (OLDSTYLE) is generated.
-Once the hard drive is included in the database every file can be
-checked for (unwanted) changes.</p>
-<p>This is precisely the purpose of hsguard. Hard drives (HDDs) age and
-if data is not read the drive may “forget” a bit.</p>
-<p>I have HDDs running around the clock as backup systems, local file
-sharing, etc. I want to keep the data on these drives for many
+<a href="GUIDE.html">🙋 Quickstart &amp; Compile Guide 🙋</a>
+<p>hsguard creates a database from the configurable directories. Each file is checked individually and a CRC checksum (OLDSTYLE) is
+generated. Once the hard drive is included in the database every file can be checked for (unwanted) changes.</p>
+<p>This is precisely the purpose of hsguard. Hard drives (HDDs) age and if data is not read the drive may “forget” a bit.</p>
+<p>I have HDDs running around the clock as backup systems, local file sharing, etc. I want to keep the data on these drives for many
 years.</p>
-<p>Additionally, this makes it possible to detect if malware is in the
-process of encrypting all your data.</p>
-<p>This is where “hsguard” comes in. hsguard stores all important
-information about a file. A file that has been changed is normally
-updated in the database. A CRC32 is calculated for each file. The
-checksum is saved per file and can be checked against.</p>
-<p>Position, name, file size, file modification date, and the CRC32 are
-stored. Check counters and the date of inclusion can also be retrieved
-from the database.</p>
-<p>In a cron job, hsguard [–update] –check can be called, where
-different files can then be checked. These are selected at random. An
-update adds new or changed files beforehand.</p>
-<p>With many options, the data can be listed and verified. Thus, in case
-of an incident, the database will be a helpful supplement.</p>
-<p>IMPORTANT! hsguard will not modify the contents of any hard drive. It
-will not delete or add any files. The only exception is the database
-itself. “hsguard –create” will, once, create a hsguard.rc. This file
-will not be overwritten. However, all parameters can also be specified
-on the command line.</p>
+<p>Additionally, this makes it possible to detect if malware is in the process of encrypting all your data.</p>
+<p>This is where “hsguard” comes in. hsguard stores all important information about a file. A file that has been changed is normally
+updated in the database. A CRC32 is calculated for each file. The checksum is saved per file and can be checked against.</p>
+<p>Position, name, file size, file modification date, and the CRC32 are stored. Check counters and the date of inclusion can also be
+retrieved from the database.</p>
+<p>In a cron job, hsguard [–update] –check can be called, where different files can then be checked. These are selected at random.
+An update adds new or changed files beforehand.</p>
+<p>With many options, the data can be listed and verified. Thus, in case of an incident, the database will be a helpful
+supplement.</p>
+<p>IMPORTANT! hsguard will not modify the contents of any hard drive. It will not delete or add any files. The only exception is the
+database itself. “hsguard –create” will, once, create a hsguard.rc. This file will not be overwritten. However, all parameters can
+also be specified on the command line.</p>
 <p>hsguard only requires read access to the data.</p>
-<p>hsguard can be configured in many ways: config file, exclude file,
-and command-line switches.</p>
-<p>If hsguard is started for the first time, it will complain that the
-file /etc/hsguard.rc is missing. With “hsguard –create”, an initial
-version can be created, along with a subdirectory /var/hsguard. An
-example can be found in the file hsguard_sample.rc.</p>
+<p>hsguard can be configured in many ways: config file, exclude file, and command-line switches.</p>
+<p>If hsguard is started for the first time, it will complain that the file /etc/hsguard.rc is missing. With “hsguard –create”, an
+initial version can be created, along with a subdirectory /var/hsguard. An example can be found in the file hsguard_sample.rc.</p>
 <h1 id="description">DESCRIPTION</h1>
-<p>hsguard reads the file system and stores basic data. If a file is not
-present or has changed (fsize/mtime), a CRC32 checksum is generated for
-the file. This checksum is checked and an alert is triggered if
-necessary.</p>
+<p>hsguard reads the file system and stores basic data. If a file is not present or has changed (fsize/mtime), a CRC32 checksum is
+generated for the file. This checksum is checked and an alert is triggered if necessary.</p>
 <h1 id="options">OPTIONS</h1>
 <ul>
 <li><strong>--help -? -h </strong>
@@ -217,15 +200,13 @@ Print this helpmsg
 <li><strong>-d --db sqlite3.db </strong>
 <p>
 <blockquote>
-use this “[PATH/]sqlite3.db” database <strong>overwrite: <a
-href="#RC-DATABASE">RCdatabase</a></strong>
+use this “[PATH/]sqlite3.db” database <strong>overwrite: <a href="#RC-DATABASE">RCdatabase</a></strong>
 </p>
 </blockquote></li>
 <li><strong>-b --base &lt;dir&gt; </strong>
 <p>
 <blockquote>
-basedir for all operations <strong>overwrite <a
-href="#RC-BASE">RCbase</a></strong>
+basedir for all operations <strong>overwrite <a href="#RC-BASE">RCbase</a></strong>
 </p>
 </blockquote></li>
 <li><strong>--create </strong>
@@ -249,15 +230,13 @@ create an example excludefile
 <li><strong>-x --exclude &lt;file&gt; </strong>
 <p>
 <blockquote>
-read a list of excluded files -- ‘#’ comment ## <strong>add this list:
-<a href="#RC-EXCLUDE">RCexclude</a></strong>
+read a list of excluded files -- ‘#’ comment ## <strong>add this list: <a href="#RC-EXCLUDE">RCexclude</a></strong>
 </p>
 </blockquote></li>
 <li><strong>--exclude_add &lt;file&gt; </strong>
 <p>
 <blockquote>
-add a single file/dir to excludelist <strong>works too: <a
-href="#RC-EXADD">RCexadd</a></strong>
+add a single file/dir to excludelist <strong>works too: <a href="#RC-EXADD">RCexadd</a></strong>
 </p>
 </blockquote></li>
 <li><strong>--ldir/--edir &lt;dir&gt; </strong>
@@ -306,8 +285,7 @@ don’t ask me; i answer yes
 <li><strong>-v --verbose </strong>
 <p>
 <blockquote>
-use   -v=1 to silence, also use -v- ** overwrite <a
-href="#RC-VERBOSE">RCverbose</a>**<br />
+use   -v=1 to silence, also use -v- ** overwrite <a href="#RC-VERBOSE">RCverbose</a>**<br />
       -v=2 erros(default) -v FAIL is the same<br />
       -v=3 (same -v) userinfo<br />
       -vv  -v=4 info<br />
@@ -318,16 +296,14 @@ href="#RC-VERBOSE">RCverbose</a>**<br />
 <p>
 <blockquote>
 In case of UserCMD’s like ‘--list’ make screen for output.<br />
-all UserMsg are saved only in the log. to turn off noscreen use -s-
-<strong>overwrite <a href="#RC-NOSCREEN">RCnoscreen</a></strong>
+all UserMsg are saved only in the log. to turn off noscreen use -s- <strong>overwrite <a href="#RC-NOSCREEN">RCnoscreen</a></strong>
 </p>
 </blockquote></li>
 <li><strong>-a --ansi on/off/-/+ </strong>
 <p>
 <blockquote>
 Ansicolor at find/info/list -a- off -a=On or only -a is on<br />
-colors can be tuned in the config file <strong>overwrite: <a
-href="#RC-ANSICOLOR">RCansicolor</a></strong>
+colors can be tuned in the config file <strong>overwrite: <a href="#RC-ANSICOLOR">RCansicolor</a></strong>
 </p>
 </blockquote></li>
 <li><strong>-l --list </strong>
@@ -353,8 +329,7 @@ Multiline: :MINI, BASIC, MEDIUM, ALL
 <li><strong>-r --recursive </strong>
 <p>
 <blockquote>
-list subdirs too <em>-r=deep</em> can go deeper <em>‘-r’</em> lists
-everything
+list subdirs too <em>-r=deep</em> can go deeper <em>‘-r’</em> lists everything
 </p>
 </blockquote></li>
 <li><strong>-i --info &lt;dir&gt;or&lt;path&gt;or@&lt;id&gt; </strong>
@@ -396,8 +371,7 @@ find dupes beginn at &lt;dir&gt; or start in base. This can take a while
 <em>OPTIONS</em> are [r],count,[size],[path], where…<br />
 <em>[r]</em>    optional will activate the random Mode *<br />
 <em>count</em>  of Files that will checked<br />
-<em>[size]</em> optional size that will never reached. You can use 10TB
-or 500k<br />
+<em>[size]</em> optional size that will never reached. You can use 10TB or 500k<br />
 <em>[path]</em> optional, if not set then start check from BASE<br />
 <ul>
 <li>if no random activated, then oldest (from lastchk) will checked
@@ -407,15 +381,12 @@ or 500k<br />
 <li><strong>-e --emergency [OPTIONS] </strong>
 <p>
 <blockquote>
-PANIC,ABORT=&lt;errorlevel&gt;,SKIP,COUNT=&lt;num&gt;,UPDATE,UPDATEALL
-<strong>overwrite: <a
+PANIC,ABORT=&lt;errorlevel&gt;,SKIP,COUNT=&lt;num&gt;,UPDATE,UPDATEALL <strong>overwrite: <a
 href="#RC-EMERGENCY">RCemergency</a></strong><br />
 <em>PANIC</em>        : Abort all, use Errorlevel 99 to exit<br />
-<em>ABORT</em>[=&lt;el&gt;] : Abort with Errorlevel 1, if
-&lt;el&gt;(2-98) is set, then el is use<br />
+<em>ABORT</em>[=&lt;el&gt;] : Abort with Errorlevel 1, if &lt;el&gt;(2-98) is set, then el is use<br />
 <em>SKIP</em>         : Skip this to COUNT, then abort<br />
-<em>COUNT</em>=&lt;num&gt;  : Skip not forever, only for this
-&lt;num&gt;<br />
+<em>COUNT</em>=&lt;num&gt;  : Skip not forever, only for this &lt;num&gt;<br />
 <em>UPDATE</em>       : Update lastchk and chkcount in DB<br />
 <em>UPDATEALL</em>    : Update size,fmtime,crc32 as found too
 </p>
@@ -423,115 +394,84 @@ href="#RC-EMERGENCY">RCemergency</a></strong><br />
 <li><strong>--wbs &lt;size&gt; </strong>
 <p>
 <blockquote>
-Warning big size Files default is 16GB <strong>overwrite: <a
-href="#RC-WBS">RCwarnbigsize</a></strong>
+Warning big size Files default is 16GB <strong>overwrite: <a href="#RC-WBS">RCwarnbigsize</a></strong>
 </p>
 </blockquote></li>
 </ul>
 <h1 id="environment">ENVIRONMENT</h1>
-<p>see section: <strong><a
-href="#hsguard.rc">hsguard.rc</a></strong></p>
+<p>see section: <strong><a href="#hsguard.rc">hsguard.rc</a></strong></p>
 <p><a name="hsguard.rc"></a></p>
 <h1 id="etchsguard.rc">/etc/hsguard.rc</h1>
 <p><a name="RC-DATABASE"></a></p>
 <h2 id="database">DATABASE=</h2>
-<p>The database itself. This can usefully be located under /var.
-Together with –initDB, this can be created as a basic configuration. For
-this, it must have read/write permissions. <em>--db overrides the file
-specified in the RC file</em></p>
+<p>The database itself. This can usefully be located under /var. Together with –initDB, this can be created as a basic
+configuration. For this, it must have read/write permissions. <em>--db overrides the file specified in the RC file</em></p>
 <p><a name="RC-BASE"></a></p>
 <h2 id="base">BASE=</h2>
-<p>BASE for everything specified. Where should the database be created
-from? This line should definitely be adjusted. For example, the path to
-the data to be protected could be /server/pictures or similar. <em>-b
-<path> overrides this</em></p>
+<p>BASE for everything specified. Where should the database be created from? This line should definitely be adjusted. For example,
+the path to the data to be protected could be /server/pictures or similar. <em>-b <path> overrides this</em></p>
 <p><a name="RC-VERBOSE"></a></p>
 <h2 id="verbose">VERBOSE=</h2>
-<p>Represents the log level. The higher the level, the more information
-about the tasks performed can be found in the log file or on the screen.
-More finely tuned via the special switch <em>–noscreen</em> .</p>
+<p>Represents the log level. The higher the level, the more information about the tasks performed can be found in the log file or on
+the screen. More finely tuned via the special switch <em>–noscreen</em> .</p>
 <p>Verbosity levels are supported from 0-4 or better:</p>
 <ul>
 <li><code>ROOT  0 :</code> Only system errors</li>
 <li><code>FAIL  1 :</code> Only messages that include errors</li>
-<li><code>USER  2 :</code> Default setting. Information about the start
-and end of each action is output</li>
+<li><code>USER  2 :</code> Default setting. Information about the start and end of each action is output</li>
 <li><code>INFO  3 :</code> This can be a lot of messages</li>
-<li><code>DEVL  4 :</code> Better not to look at this—intended only for
-developers</li>
+<li><code>DEVL  4 :</code> Better not to look at this—intended only for developers</li>
 </ul>
 <p><a name="RC-EXCLUDE"></a></p>
 <h2 id="exclude">EXCLUDE=</h2>
-<p>There are folders that do not need to be searched, e.g., temp folders
-or the folder of this database. The files/directories are listed line by
-line, and with ‘?’ and ’*’ you can exclude multiple items. A ‘#’ at the
-beginning of a line is a comment. More on this topic <strong>under: <a
-href="#EXCLUDEFILE">Exclude-File</a></strong></p>
+<p>There are folders that do not need to be searched, e.g., temp folders or the folder of this database. The files/directories are
+listed line by line, and with ‘?’ and ’*’ you can exclude multiple items. A ‘#’ at the beginning of a line is a comment. More on
+this topic <strong>under: <a href="#EXCLUDEFILE">Exclude-File</a></strong></p>
 <p><a name="RC-NOSCREEN"></a></p>
 <h2 id="noscreen">NOSCREEN=</h2>
-<p>Can be Y/N. If Y, almost all output is only written to the log file
-and no longer displayed on the screen. Messages are only available in
-the log file. -s- on the command line can disable this behavior, even if
-NOSCREEN=Y is specified. It is recommended to comment out this line when
-setting up.</p>
+<p>Can be Y/N. If Y, almost all output is only written to the log file and no longer displayed on the screen. Messages are only
+available in the log file. -s- on the command line can disable this behavior, even if NOSCREEN=Y is specified. It is recommended to
+comment out this line when setting up.</p>
 <p><a name="RC-EMERGENCY"></a></p>
 <h2 id="emergency">EMERGENCY=</h2>
-<p>Here you specify how –testDB should handle errors, including their
-repetition. The PANIC option is expressly recommended.</p>
+<p>Here you specify how –testDB should handle errors, including their repetition. The PANIC option is expressly recommended.</p>
 <ul>
-<li><code>PANIC     :</code> Immediate abort. Program ends with error
-level 99</li>
-<li><code>COUNT=    :</code> The specified number of errors is counted.
-STOP at 0</li>
-<li><code>SKIP      :</code> Checked, but no further action is
-taken</li>
-<li><code>ABORT     :</code> Ends “normally” with error level 1.
-COUNT!</li>
-<li><code>UPDATE    :</code> Even in case of errors, the lastchk date is
-updated</li>
-<li><code>UPDATEALL :</code> As above, but also updates new size, CRC,
-FMTime</li>
+<li><code>PANIC     :</code> Immediate abort. Program ends with error level 99</li>
+<li><code>COUNT=    :</code> The specified number of errors is counted. STOP at 0</li>
+<li><code>SKIP      :</code> Checked, but no further action is taken</li>
+<li><code>ABORT     :</code> Ends “normally” with error level 1. COUNT!</li>
+<li><code>UPDATE    :</code> Even in case of errors, the lastchk date is updated</li>
+<li><code>UPDATEALL :</code> As above, but also updates new size, CRC, FMTime</li>
 </ul>
 <p><em>-e or –emergency can override these settings</em></p>
 <p><a name="RC-ANSICOLOR"></a></p>
 <h2 id="ansicolor">ANSICOLOR=</h2>
-<p>Many outputs are color-coded for better distinction. Y/N can disable
-the output of ANSI colors. If Y, colors can also be varied further.
-These can be viewed in the sample file.</p>
+<p>Many outputs are color-coded for better distinction. Y/N can disable the output of ANSI colors. If Y, colors can also be varied
+further. These can be viewed in the sample file.</p>
 <p><a name="RC-EXADD"></a></p>
 <h2 id="exadd">EXADD=</h2>
-<p>Here you can ignore a file or even a directory. It’s much better to
-use <a href="#RC-EXCLUDE">RCexclude</a>.</p>
+<p>Here you can ignore a file or even a directory. It’s much better to use <a href="#RC-EXCLUDE">RCexclude</a>.</p>
 <p><a name="RC-WBS"></a></p>
 <h2 id="warnwbs">WARNWBS</h2>
-<p>This parameter triggers a “warning” when a “large file” is detected.
-This can be useful if the files to be checked are not connected via the
-fastest connection. To prevent the cursor from appearing frozen while
-waiting, a file size can be set here. The warning is issued at user
-level. Specify in human-readable format like 1TB or 10MB. Set to 0 to
-disable this behavior.</p>
+<p>This parameter triggers a “warning” when a “large file” is detected. This can be useful if the files to be checked are not
+connected via the fastest connection. To prevent the cursor from appearing frozen while waiting, a file size can be set here. The
+warning is issued at user level. Specify in human-readable format like 1TB or 10MB. Set to 0 to disable this behavior.</p>
 <p>Default value is 16GB.</p>
 <p><a name="RC-FORWARD"></a></p>
 <h2 id="forward">FORWARD</h2>
-<p>This can be used once to refer to another config. This is useful if
-you can refer to other configs (e.g., on the network). As a feature, the
-section can be specified directly. This might look like:</p>
+<p>This can be used once to refer to another config. This is useful if you can refer to other configs (e.g., on the network). As a
+feature, the section can be specified directly. This might look like:</p>
 <pre><code>FORWARD=/srv/pub/backup.rc,std</code></pre>
 <p><a name="EXCLUDEFILE"></a></p>
 <h3 id="exclude-files">Exclude Files</h3>
-<p>There are many good reasons to exclude certain files or entire
-directory trees. This can be done very simply with a single file in the
-exclude file. A comment begins with a ‘#’. Everything following is a
-comment.</p>
-<p>Multiple files can each be added individually or captured using the
-built-in file globbing. This works for files that ‘ls’ would find, like
-’ls /var/log/*.log’.</p>
-<p>Additionally, there are some keywords that exclude something if a
-certain situation applies. For example:</p>
+<p>There are many good reasons to exclude certain files or entire directory trees. This can be done very simply with a single file
+in the exclude file. A comment begins with a ‘#’. Everything following is a comment.</p>
+<p>Multiple files can each be added individually or captured using the built-in file globbing. This works for files that ‘ls’ would
+find, like ’ls /var/log/*.log’.</p>
+<p>Additionally, there are some keywords that exclude something if a certain situation applies. For example:</p>
 <pre><code>ifhost WKST-Conny /etc/pconly.rc</code></pre>
-<p>With each new line, the situation is re-evaluated. That is, no
-multi-line blocks. However, the ‘situation evaluations’ can be nested
-arbitrarily deep. The following can be used in this way:</p>
+<p>With each new line, the situation is re-evaluated. That is, no multi-line blocks. However, the ‘situation evaluations’ can be
+nested arbitrarily deep. The following can be used in this way:</p>
 <pre><code>ifhost WKST-Conny ifuser werner message &quot;Don&#39;t break anything on Conny&#39;s PC&quot;</code></pre>
 <table>
 <thead>
@@ -576,9 +516,7 @@ arbitrarily deep. The following can be used in this way:</p>
 </tbody>
 </table>
 <h1 id="authors">AUTHORS</h1>
-<p>Heiko Stoevesandt - alias Hesti - <a
-href="mailto:hstools@t-online.de"
-class="email">hstools@t-online.de</a></p>
+<p>Heiko Stoevesandt - alias Hesti - <a href="mailto:hstools@t-online.de" class="email">hstools@t-online.de</a></p>
 <h1 id="bugs">BUGS</h1>
 <p>Please report bugs (including in this manpage)</p>
 </body>

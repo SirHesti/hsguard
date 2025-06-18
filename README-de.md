@@ -12,7 +12,10 @@ __hsguard__ - Programm um Aenderungen im Dateisystem festzustellen
 ### SYNOPSIS
 
 [🇬🇧 english version 🇬🇧](README.md)
-Quickstart & Compile Guide 🙋:GUIDE.md:null:null
+
+[🙋 Quickstart & Compile Guide 🙋](GUIDE.md)
+
+deutschasda{lang=de}
 
 hsguard stellt aus den konfigurierbaren Verzeichnisse eine Datenbank
 zusammen. Dabei wird jede Datei für sich geprüft und eine CRC-Prüfsumme

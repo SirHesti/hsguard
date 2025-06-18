@@ -20,7 +20,8 @@
 #-[ README.md ]---------------------------------------------------------------------------------
 
 $LINK:🇩🇪 german translation 🇩🇪:README-de.md:hsguard-de.html:null
-$LINK:🙋 Quickstart & Compile Guide 🙋:GUIDE.md:null:null
+
+$LINK:🙋 Quickstart & Compile Guide 🙋:GUIDE.md:GUIDE.html:null
 
 hsguard creates a database from the configurable directories. Each file is checked
 individually and a CRC checksum (OLDSTYLE) is generated. Once the hard drive is included
@@ -66,7 +67,10 @@ file hsguard_sample.rc.
 #-[ README-de.md ]------------------------------------------------------------------------------------
 
 $LINK:🇬🇧 english version 🇬🇧:README.md:hsguard.html:null
-$LINK:🙋 Quickstart & Compile Guide 🙋:GUIDE.md:null:null
+
+$LINK:🙋 Quickstart & Compile Guide 🙋:GUIDE.md:GUIDE.html:null
+
+[deutsch](#SAVE)asda{lang=de}
 
 hsguard stellt aus den konfigurierbaren Verzeichnisse eine Datenbank zusammen. Dabei wird jede
 Datei für sich geprüft und eine CRC-Prüfsumme (OLDSTYLE) erstellt. Ist die Festplatte erst
@@ -461,7 +465,7 @@ Fehler (auch in dieser Manpage) unbedingt bitte melden
 
 #-[ GUIDE.md ]-------------------------------------------------------------------------------------
 ---
-title: QuickGuide
+title: QuickStart & Compile-Guide
 ---
 
 Contens/Verzeichnis
@@ -472,6 +476,7 @@ Contens/Verzeichnis
 1. [After install/init Daily Workshop](#DAILY)
 1. [Check Database](#DATABASE)
 1. [Exclude some Files](#EXCLUDE)
+1. [README](hsguard.html)
 
 <a name="BUILD">Build from Source</a>
 
