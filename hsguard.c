@@ -691,7 +691,10 @@ founded  = 2025-06-17 12:48:27
 - For file lookups, even partial or fuzzy searches are supported through globbing.
 - Example commands and outputs (above) illustrate how each command works.
 
-<a name="EXCLUDE">Exclude some Files</a>
+<a name="EXCLUDE_Y"></a>
+# Exclude some Files
+
+<a name="EXCLUDE_X">Exclude some Files</a>
 
 <a name="EXCLUDE" style="font-size: 150%; text-decoration: underline;">Exclude some Files</a>
 
