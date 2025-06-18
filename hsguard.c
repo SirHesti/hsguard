@@ -794,6 +794,12 @@ $LINK:here in the Readme:README.md#EXCLUDEFILE:hsguard.html#EXCLUDEFILE:null
 
 Exclusion patterns use globbing (wildcards like `*`), so you can exclude groups of files easily.
 
+#### Conclusion / Additional Notes
+ * The guide includes notes on managing exclusions conditionally (e.g., based on hostname).
+ * References to related documentation are provided, such as the README file.
+ * This file is essential for understanding how to set up, compile,
+   and operate the hsguard monitoring tool effectively.
+
 
 #-[ hsguard.rc ]-----------------------------------------------------------------------------------
 # hsguard has a buildin --create to create your *.rc file maybe you need sudo hsguard --initDB too
@@ -847,6 +853,7 @@ COL_LOCFOUNDED=PURPLE
  ** 16.06.25 HS Dokumentation überarbeitet (Übersetzung vorgesehen)
  ** 17.06.25 HS English <-> German
  ** 17.06.25 HS guide.md (english only)
+ ** 18.06.25 HS guide.md (reorganisiert, simpler)
 
 #-[ ******************************************************************************************** */
 
@@ -999,9 +1006,3 @@ int startMsg(void)
     int ws_col = atoi(strNotNULL(getenv("COLUMNS")));
     printf("Columns: %s %d\n",s, ws_col);
 #endif
-Additional Notes
-
-    The guide includes notes on managing exclusions conditionally (e.g., based on hostname).
-    References to related documentation are provided, such as the README file.
-
-This file is essential for understanding how to set up, compile, and operate the hsguard monitoring tool effectively.
