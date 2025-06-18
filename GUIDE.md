@@ -1,8 +1,8 @@
 ---
 title: hsguard QuickStart & Compile-Guide
 header: hsguard - coded by Hesti
-footer: hsguard $VERSION
-date: $DATE
+footer: hsguard 2.24.59 Beta
+date: 18.06.2025
 ---
 <a name="HOME"></a>
 
