@@ -222,6 +222,8 @@
 <header id="title-block-header">
 <h1 class="title">QuickStart &amp; Compile-Guide</h1>
 </header>
+<p><a name="HOME"></a></p>
+<a href="hsguard.html">README / Man-Page</a>
 <p>Contens/Verzeichnis</p>
 <ol type="1">
 <li><a href="#BUILD">Build from Source</a></li>
@@ -230,7 +232,6 @@
 <li><a href="#DAILY">After install/init Daily Workshop</a></li>
 <li><a href="#DATABASE">Check Database</a></li>
 <li><a href="#EXCLUDE">Exclude some Files</a></li>
-<li><a href="hsguard.html">README</a></li>
 </ol>
 <p><a name="BUILD">Build from Source</a></p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">@</span><span class="op">&gt;</span> git clone https://github.com/SirHesti/hsguard.git</span>
@@ -239,8 +240,7 @@
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="ex">[etc]</span></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="ex">@</span><span class="op">&gt;</span> cd hsguard</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="ex">@</span><span class="op">&gt;</span> cmake .</span></code></pre></div>
-<p>Maybe an Error occured like <strong>“SQLite3 not found”</strong> .
-sqlite3(dev) is missing. In this case enter</p>
+<p>Maybe an Error occured like <strong>“SQLite3 not found”</strong> . sqlite3(dev) is missing. In this case enter</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install sqlite3 libsqlite3-dev</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">password:</span> <span class="pp">***********</span></span></code></pre></div>
 <p>to solve this problem. run “cmake .” again!</p>
@@ -260,8 +260,7 @@ sqlite3(dev) is missing. In this case enter</p>
 <span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="ex">--</span> Installing: /usr/share/man/de/man8/hsguard.8.gz</span></code></pre></div>
 <p>we’re done.</p>
 <p><a name="CONFIG">Configure hsguard</a></p>
-<p>To run hsguard, a configuration is required. Simply let hsguard do
-this as follows:</p>
+<p>To run hsguard, a configuration is required. Simply let hsguard do this as follows:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">@</span><span class="op">&gt;</span>hsguard</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">[DATE]</span> /etc/hsguard.rc not exists ....</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="ex">@</span><span class="op">&gt;</span>sudo hsguard <span class="at">--create</span></span>
@@ -270,8 +269,7 @@ this as follows:</p>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="ex">Create</span> Dir in /var/hsguard <span class="er">(</span><span class="ex">y/n</span><span class="kw">)</span> <span class="ex">?</span> Y</span>
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="ex">generated</span> /etc/hsguard.rc</span></code></pre></div>
 <p>Now see the config like:</p>
-<div class="sourceCode" id="cb5"><pre
-class="sourceCode ini"><code class="sourceCode ini"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="dt">DATABASE</span><span class="ot">=</span><span class="st">/var/hsguard/hsguard.db</span></span>
+<div class="sourceCode" id="cb5"><pre class="sourceCode ini"><code class="sourceCode ini"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="dt">DATABASE</span><span class="ot">=</span><span class="st">/var/hsguard/hsguard.db</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="dt">BASE</span><span class="ot">=</span><span class="st">/</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">#ROOT/FAIL/USER/INFO/DEVL</span></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="dt">VERBOSE</span><span class="ot">=</span><span class="st">USER</span></span>
@@ -281,38 +279,29 @@ class="sourceCode ini"><code class="sourceCode ini"><span id="cb5-1"><a href="#c
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="dt">EMERGENCY</span><span class="ot">=</span><span class="st">PANIC</span></span>
 <span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="dt">ANSICOLOR</span><span class="ot">=</span><span class="st">Y</span></span>
 <span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="dt">COL_* can be delete. This is only necessary if you want to become an absolute pro.</span></span></code></pre></div>
-<p>That’s all fine, but <em>BASE</em> need your Attention. Enter here
-your Datapath. For a Test use an exists path:</p>
-<div class="sourceCode" id="cb6"><pre
-class="sourceCode ini"><code class="sourceCode ini"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="dt">BASE</span><span class="ot">=</span><span class="st">/usr/share/keyrings</span></span></code></pre></div>
+<p>That’s all fine, but <em>BASE</em> need your Attention. Enter here your Datapath. For a Test use an exists path:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode ini"><code class="sourceCode ini"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="dt">BASE</span><span class="ot">=</span><span class="st">/usr/share/keyrings</span></span></code></pre></div>
 <p>We need also a Database. Enter following:</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">@</span><span class="op">&gt;</span>hsguard <span class="at">--initdb</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Sure</span> you want to create /var/hsguard/hsguard.db <span class="er">(</span><span class="ex">y/n</span><span class="kw">)</span> <span class="ex">?</span> Y</span></code></pre></div>
 <p>Now run an update:</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">@</span><span class="op">&gt;</span>hsguard <span class="at">-u</span></span></code></pre></div>
-<p>This take a short time to see (real is colored) what we have just
-see:</p>
+<p>This take a short time to see (real is colored) what we have just see:</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">@</span><span class="op">&gt;</span>hsguard <span class="at">-l</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a> <span class="ex">8</span> 1 debian-archive-bookworm-automatic.gpg            0x290e8fa0    8 KB 2023-03-18 15:53:41</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a> <span class="ex">6</span> 1 debian-archive-bookworm-security-automatic.gpg   0x320bd4fc    9 KB 2023-03-18 15:53:41</span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="ex">[etc]</span></span></code></pre></div>
-<p>The <a href="README.md">README</a> has more Information.</p>
+<p>The <a href="#HOME">README</a> has more Information.</p>
 <p><a name="FORWARD">Forward your Config</a></p>
-<p>In some cases, the configuration need saved somewhere else. All
-options can be overridden with switches. hsguard can use a completely
-different file than the one in /etc with ‘–config <file>’. A “real”
-forward can be entered in /etc/hsguard.rc</p>
+<p>In some cases, the configuration need saved somewhere else. All options can be overridden with switches. hsguard can use a
+completely different file than the one in /etc with ‘–config <file>’. A “real” forward can be entered in /etc/hsguard.rc</p>
 <p>Just write in /etc/hsguard.rc:</p>
-<div class="sourceCode" id="cb10"><pre
-class="sourceCode ini"><code class="sourceCode ini"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="dt">FORWARD</span><span class="ot">=</span><span class="st">/srv/admin/configs/hsguard.rc</span></span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode ini"><code class="sourceCode ini"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="dt">FORWARD</span><span class="ot">=</span><span class="st">/srv/admin/configs/hsguard.rc</span></span></code></pre></div>
 <p>and now hsguard continue the config from here.</p>
 <p><a name="DAILY">Daily Workshop</a></p>
-<p>After all the hard work we need a script. Create a systemd-unit if
-you want. I can do this, but only a daily-call is need. Just use
-/etc/cron.daily (systemd sign over crontab anyway) and write a little
-script:</p>
-<div class="sourceCode" id="cb11"><pre
-class="sourceCode sh"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/sh</span></span>
+<p>After all the hard work we need a script. Create a systemd-unit if you want. I can do this, but only a daily-call is need. Just
+use /etc/cron.daily (systemd sign over crontab anyway) and write a little script:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/sh</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="va">LOGDIR</span><span class="op">=</span>/srv/admin/log</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span><span class="fu"> diemsg()</span><span class="kw">{</span></span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="va">rc</span><span class="op">=</span><span class="va">$1</span></span>
@@ -334,9 +323,8 @@ class="sourceCode sh"><code class="sourceCode bash"><span id="cb11-1"><a href="#
 <span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a><span class="co">#mailmsg not included 99 may mailed</span></span>
 <span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a><span class="bu">[</span> <span class="va">$rc</span> <span class="ot">-ge</span> 99 <span class="bu">]</span> <span class="kw">&amp;&amp;</span> <span class="ex">diemsg</span> 99 <span class="st">&quot;PANIC - Error [</span><span class="va">$rc</span><span class="st">] while hsguard testdb&quot;</span></span>
 <span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a><span class="bu">[</span> <span class="va">$rc</span> <span class="ot">-gt</span> 0 <span class="bu">]</span>  <span class="kw">&amp;&amp;</span> <span class="ex">diemsg</span> <span class="va">$rc</span> <span class="st">&quot;Error[</span><span class="va">$rc</span><span class="st">] while hsguard testdb&quot;</span></span></code></pre></div>
-<p>if you got a PANIC Error use the LOG-File to see what exactly
-happened. In this case i wish you ‘good luck’. Hope only a concurrent
-access.</p>
+<p>if you got a PANIC Error use the LOG-File to see what exactly happened. In this case i wish you ‘good luck’. Hope only a
+concurrent access.</p>
 <p><a name="DATABASE">Check Database</a></p>
 <pre><code>-l --list     print out database contens
    --listdir  print only dirs from database
@@ -346,10 +334,8 @@ access.</p>
               path without starting &#39;/&#39; will find with &#39;*&#39; case intensive
    --find     same as info, but finddir is not implemented
    --infodir  Info about file in dir &lt;places&gt; in database           </code></pre>
-<p>The standard option for listings is the -l option. You can, but don’t
-have to, specify a directory.</p>
-<div class="sourceCode" id="cb13"><pre
-class="sourceCode sh"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">@</span><span class="op">&gt;</span>hsguard <span class="at">-l</span></span>
+<p>The standard option for listings is the -l option. You can, but don’t have to, specify a directory.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">@</span><span class="op">&gt;</span>hsguard <span class="at">-l</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="ex">9</span>     1 journald.conf        0x3532257f    1 KB 2022-08-07 15:25:09</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="ex">5</span>     1 logind.conf          0x6c8caa63    1 KB 2022-08-07 15:25:09</span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="ex">4</span>     1 networkd.conf        0xd7c3b869     609 2021-02-02 16:29:47</span>
@@ -362,22 +348,16 @@ class="sourceCode sh"><code class="sourceCode bash"><span id="cb13-1"><a href="#
 <span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>    <span class="ex">2</span> /etc/systemd/network                               2025-06-17 12:48:27</span>
 <span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>    <span class="ex">3</span> /etc/systemd/system                                2025-06-17 12:48:27</span>
 <span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>   <span class="ex">22</span> /etc/systemd/user                                  2025-06-17 12:48:30</span></code></pre></div>
-<p>Beware the switch <em>-r</em> . You list recursive all yourfile in
-<strong>BASE</strong>.</p>
-<p>--listdir wird nur Verzeichnisse aufzeigen. This is the
-<em>places</em> in the database.</p>
-<div class="sourceCode" id="cb14"><pre
-class="sourceCode sh"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">@</span><span class="op">&gt;</span>hsguard <span class="at">--listdir</span></span>
+<p>Beware the switch <em>-r</em> . You list recursive all yourfile in <strong>BASE</strong>.</p>
+<p>--listdir wird nur Verzeichnisse aufzeigen. This is the <em>places</em> in the database.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">@</span><span class="op">&gt;</span>hsguard <span class="at">--listdir</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="ex">2</span> /etc/systemd/network                               2025-06-17 12:48:27</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="ex">3</span> /etc/systemd/system                                2025-06-17 12:48:27</span>
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>   <span class="ex">22</span> /etc/systemd/user                                  2025-06-17 12:48:30</span></code></pre></div>
-<p>Attentive observers will notice that the output is identical. The
-exception is that only the directories are listed.</p>
-<p>In other cases you need to find a file. You can do it with
-fileglobbing. Note that the shell does not evaluate the ’*’, etc. Use
+<p>Attentive observers will notice that the output is identical. The exception is that only the directories are listed.</p>
+<p>In other cases you need to find a file. You can do it with fileglobbing. Note that the shell does not evaluate the ’*’, etc. Use
 single quotes.</p>
-<div class="sourceCode" id="cb15"><pre
-class="sourceCode sh"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">@</span><span class="op">&gt;</span>hsguard <span class="at">-i</span> <span class="st">&#39;login*&#39;</span></span>
+<div class="sourceCode" id="cb15"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">@</span><span class="op">&gt;</span>hsguard <span class="at">-i</span> <span class="st">&#39;login*&#39;</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="ex">ID</span>       = 5</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="ex">location</span> = <span class="er">(</span><span class="ex">1</span><span class="kw">)</span> <span class="ex">/etc/systemd</span> 2025-06-17 12:48:26</span>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="ex">fname</span>    = logind.conf</span>
@@ -390,51 +370,35 @@ class="sourceCode sh"><code class="sourceCode bash"><span id="cb15-1"><a href="#
 <p>This output is real full-colored. All Files will list only once.</p>
 <p><a name="EXCLUDE">Exclude some Files</a></p>
 <p>our <em>BASE</em> has been moved to /etc/systemd</p>
-<p>There a more than 2 Idea’s to exclude some Files. Some Files may
-changed daily or else. But that should not be reason for this
+<p>There a more than 2 Idea’s to exclude some Files. Some Files may changed daily or else. But that should not be reason for this
 consideration. We will not have them in de Database.</p>
 <p>First we have a switch to exclude like:</p>
-<div class="sourceCode" id="cb16"><pre
-class="sourceCode sh"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">@</span><span class="op">&gt;</span>hsguard <span class="at">-u</span> <span class="at">--exclude_add</span> <span class="st">&#39;*logind.conf&#39;</span></span></code></pre></div>
-<p><em>/etc/systemd/logind.conf</em> are excluded from update. just
-type</p>
-<div class="sourceCode" id="cb17"><pre
-class="sourceCode sh"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">@</span><span class="op">&gt;</span>hsguard <span class="at">-l</span></span></code></pre></div>
-<p>to see the result. if you have many files this. However, if there are
-many files, things can quickly become confusing.</p>
-<p>in the config you can an entry to create an exclude file. Remove the
-Comment-mark.</p>
-<div class="sourceCode" id="cb18"><pre
-class="sourceCode ini"><code class="sourceCode ini"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co">#If desired, an empty file can be created with --createexcl</span></span>
+<div class="sourceCode" id="cb16"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">@</span><span class="op">&gt;</span>hsguard <span class="at">-u</span> <span class="at">--exclude_add</span> <span class="st">&#39;*logind.conf&#39;</span></span></code></pre></div>
+<p><em>/etc/systemd/logind.conf</em> are excluded from update. just type</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">@</span><span class="op">&gt;</span>hsguard <span class="at">-l</span></span></code></pre></div>
+<p>to see the result. if you have many files this. However, if there are many files, things can quickly become confusing.</p>
+<p>in the config you can an entry to create an exclude file. Remove the Comment-mark.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode ini"><code class="sourceCode ini"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co">#If desired, an empty file can be created with --createexcl</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="dt">EXCLUDE</span><span class="ot">=</span><span class="st">/var/hsguard/exclude.lst</span></span></code></pre></div>
 <p>Now the file exclude.lst does not exists.</p>
-<div class="sourceCode" id="cb19"><pre
-class="sourceCode sh"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[DATE]</span> exclude not found: /var/hsguard/exclude.lst<span class="kw">;</span> <span class="ex">maybe</span> using <span class="at">--createexcl</span></span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[DATE]</span> exclude not found: /var/hsguard/exclude.lst<span class="kw">;</span> <span class="ex">maybe</span> using <span class="at">--createexcl</span></span></code></pre></div>
 <p>Create an sample file.</p>
-<div class="sourceCode" id="cb20"><pre
-class="sourceCode sh"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="ex">@</span><span class="op">&gt;</span>hsguard <span class="at">--createexcl</span></span>
+<div class="sourceCode" id="cb20"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="ex">@</span><span class="op">&gt;</span>hsguard <span class="at">--createexcl</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Sure</span> you want to create /var/hsguard/exclude.lst <span class="er">(</span><span class="ex">y/n</span><span class="kw">)</span> <span class="ex">?</span> Y</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="ex">please</span> open with editor of your choice and view: /var/hsguard/exclude.lst</span></code></pre></div>
-<p>There are good stuff to begin, but we need have the BASE to
-‘/etc/systemd’. Remove all lines and write only:</p>
-<div class="sourceCode" id="cb21"><pre
-class="sourceCode sh"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="ex">/etc/systemd/logind.conf</span></span>
+<p>There are good stuff to begin, but we need have the BASE to ‘/etc/systemd’. Remove all lines and write only:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="ex">/etc/systemd/logind.conf</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="ex">/etc/*logind.conf</span></span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="ex">/etc/systemd/logind.*</span></span></code></pre></div>
-<p>Its not all the same, but in this case every line excludes:
-<em>/etc/systemd/logind.conf</em> .</p>
-<p>You can add excludes if [not] conditions true. So an ‘ifhost
-dcyqx-wkst’ will execute next token. if the token an file then that will
-excluded or next ifxxxx will checked. You can add a Message if you
-like.</p>
-<p>Exclusions can also be made dependent on certain conditions being
-met. For example, ‘ifhost dcyqx-wkst’ will execute the next token. The
-next token can again be a condition or an exclude.</p>
+<p>Its not all the same, but in this case every line excludes: <em>/etc/systemd/logind.conf</em> .</p>
+<p>You can add excludes if [not] conditions true. So an ‘ifhost dcyqx-wkst’ will execute next token. if the token an file then that
+will excluded or next ifxxxx will checked. You can add a Message if you like.</p>
+<p>Exclusions can also be made dependent on certain conditions being met. For example, ‘ifhost dcyqx-wkst’ will execute the next
+token. The next token can again be a condition or an exclude.</p>
 <p>A message can also be sent instead of the exclude.</p>
-<div class="sourceCode" id="cb22"><pre
-class="sourceCode sh"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="ex">ifhost</span> WK-Reception message <span class="st">&quot;Hope nobody here&quot;</span></span></code></pre></div>
-<p>You can find some info more <a href="README.md#EXCLUDEFILE">here in
-the Readme</a></p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="ex">ifhost</span> WK-Reception message <span class="st">&quot;Hope nobody here&quot;</span></span></code></pre></div>
+<p>You can find some info more</p>
+<a href="hsguard.html#EXCLUDEFILE">here in the Readme</a>
 <!-- a name="HESTI">I was here</a -->
 </body>
 </html>

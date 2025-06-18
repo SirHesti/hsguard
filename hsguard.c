@@ -467,6 +467,9 @@ Fehler (auch in dieser Manpage) unbedingt bitte melden
 ---
 title: QuickStart & Compile-Guide
 ---
+<a name="HOME"></a>
+
+$LINK:README / Man-Page:README.md:hsguard.html:null
 
 Contens/Verzeichnis
 
@@ -476,7 +479,6 @@ Contens/Verzeichnis
 1. [After install/init Daily Workshop](#DAILY)
 1. [Check Database](#DATABASE)
 1. [Exclude some Files](#EXCLUDE)
-1. [README](hsguard.html)
 
 <a name="BUILD">Build from Source</a>
 
@@ -557,7 +559,7 @@ This take a short time to see (real is colored) what we have just see:
  6 1 debian-archive-bookworm-security-automatic.gpg   0x320bd4fc    9 KB 2023-03-18 15:53:41
 [etc]
 ```
-The [README](README.md) has more Information.
+The [README](#HOME) has more Information.
 
 <a name="FORWARD">Forward your Config</a>
 
@@ -713,7 +715,10 @@ A message can also be sent instead of the exclude.
 ```sh
 ifhost WK-Reception message "Hope nobody here"
 ```
-You can find some info more [here in the Readme](README.md#EXCLUDEFILE)
+You can find some info more
+
+$LINK:here in the Readme:README.md#EXCLUDEFILE:hsguard.html#EXCLUDEFILE:null 
+ 
 
 <!-- a name="HESTI">I was here</a -->
 
