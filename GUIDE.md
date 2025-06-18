@@ -324,14 +324,13 @@ You can find some info more
 
 [here in the Readme](README.md#EXCLUDEFILE)
  
-#### Note
+> [!Note]
+> Exclusion patterns use globbing (wildcards like `*`), so you can exclude groups of files easily.
 
-Exclusion patterns use globbing (wildcards like `*`), so you can exclude groups of files easily.
-
-#### Conclusion / Additional Notes
- * The guide includes notes on managing exclusions conditionally (e.g., based on hostname).
- * References to related documentation are provided, such as the README file.
- * This file is essential for understanding how to set up, compile,
-   and operate the hsguard monitoring tool effectively.
+> #### Conclusion / Additional Notes
+> * The guide includes notes on managing exclusions conditionally (eg., based on hostname).
+> * References to related documentation are provided, such as the README file.
+> * This file is essential for understanding how to set up, compile,
+>   and operate the hsguard monitoring tool effectively.
 
 
