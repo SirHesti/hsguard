@@ -327,6 +327,7 @@ You can find some info more
 > [!Note]
 > Exclusion patterns use globbing (wildcards like `*`), so you can exclude groups of files easily.
 
+> [!IMPORTANT]
 > #### Conclusion / Additional Notes
 > * The guide includes notes on managing exclusions conditionally (eg., based on hostname).
 > * References to related documentation are provided, such as the README file.
