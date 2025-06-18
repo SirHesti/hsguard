@@ -675,8 +675,8 @@ listed once.
 
 <a name="EXCLUDE">Exclude some Files</a>
 
-[!NOTE]
-our _BASE_ has been moved to /etc/systemd
+> [!NOTE]
+> our _BASE_ has been moved to /etc/systemd
 
 
 There are more than 2 Idea's to exclude some Files. Some Files may changed daily or else.
