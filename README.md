@@ -3,7 +3,7 @@ title: hsguard
 section: 8
 header: hsguard - coded by Hesti
 footer: hsguard 2.24.59 Beta
-date: 17.06.2025
+date: 18.06.2025
 ---
 
 ### NAME
@@ -12,6 +12,7 @@ __hsguard__ - Program to detect changes in the file system
 ### SYNOPSIS
 
 [🇩🇪 german translation 🇩🇪](README-de.md)
+[🙋 Quickstart & Compile Guide 🙋](GUIDE.md)
 
 hsguard creates a database from the configurable directories. Each file
 is checked individually and a CRC checksum (OLDSTYLE) is generated. Once

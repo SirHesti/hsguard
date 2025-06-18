@@ -3,7 +3,7 @@ title: hsguard
 section: 8
 header: hsguard - coded by Hesti
 footer: hsguard 2.24.59 Beta
-date: 17.06.2025
+date: 18.06.2025
 ---
 
 ### NAME
@@ -12,6 +12,7 @@ __hsguard__ - Programm um Aenderungen im Dateisystem festzustellen
 ### SYNOPSIS
 
 [🇬🇧 english version 🇬🇧](README.md)
+Quickstart & Compile Guide 🙋:GUIDE.md:null:null
 
 hsguard stellt aus den konfigurierbaren Verzeichnisse eine Datenbank
 zusammen. Dabei wird jede Datei für sich geprüft und eine CRC-Prüfsumme

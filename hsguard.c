@@ -20,6 +20,7 @@
 #-[ README.md ]---------------------------------------------------------------------------------
 
 $LINK:🇩🇪 german translation 🇩🇪:README-de.md:hsguard-de.html:null
+$LINK:🙋 Quickstart & Compile Guide 🙋:GUIDE.md:null:null
 
 hsguard creates a database from the configurable directories. Each file is checked
 individually and a CRC checksum (OLDSTYLE) is generated. Once the hard drive is included
@@ -65,6 +66,7 @@ file hsguard_sample.rc.
 #-[ README-de.md ]------------------------------------------------------------------------------------
 
 $LINK:🇬🇧 english version 🇬🇧:README.md:hsguard.html:null
+$LINK:🙋 Quickstart & Compile Guide 🙋:GUIDE.md:null:null
 
 hsguard stellt aus den konfigurierbaren Verzeichnisse eine Datenbank zusammen. Dabei wird jede
 Datei für sich geprüft und eine CRC-Prüfsumme (OLDSTYLE) erstellt. Ist die Festplatte erst
@@ -458,6 +460,9 @@ Heiko Stoevesandt - alias Hesti - <hstools@t-online.de>
 Fehler (auch in dieser Manpage) unbedingt bitte melden
 
 #-[ GUIDE.md ]-------------------------------------------------------------------------------------
+---
+title: QuickGuide
+---
 
 Contens/Verzeichnis
 
