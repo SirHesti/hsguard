@@ -227,13 +227,19 @@ founded  = 2025-06-17 12:48:27
 
 <a name="EXCLUDE">Exclude some Files</a>
 
+<a name="EXCLUDE" style="font-size: 150%; text-decoration: underline;">Exclude some Files</a>
+
 > [!NOTE]
 > our _BASE_ has been moved to /etc/systemd
 
-There are more than 2 Idea's to exclude some Files. Some Files may changed daily or else.
-But that should not be reason for this consideration. We will not have them in de Database.
+Some files are not relevant for monitoring—maybe they’re updated all the time, are temporary,
+or simply not important for your use case. Excluding such files keeps your database clean
+and avoids unnecessary alerts or confusion.
 
-First we have a switch to exclude like:
+First we have a command-line exclusion (temporary/immediate):
+ - Use the `--exclude_add` option with the update command to exclude files
+   matching a pattern during that run.
+ - Example:
 ```sh
 @>hsguard -u --exclude_add '*logind.conf'
 ```
