@@ -2,8 +2,8 @@
 title: hsguard
 section: 8
 header: hsguard - coded by Hesti
-footer: hsguard 2.24.59 Beta
-date: 18.06.2025
+footer: hsguard 2.25.0 Finale
+date: 19.06.2025
 ---
 
 ### NAME
